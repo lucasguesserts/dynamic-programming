@@ -6,6 +6,7 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     TEST_CASE_SOURCE_LIST
+    factorial.test.cpp
     fibonacci.test.cpp
 )
 
