@@ -6,16 +6,12 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
-      - name: Install GCC11
+      - name: install gcc
         shell: bash
         run:  |
               sudo apt update
               sudo apt install gcc-11 g++-11 cmake
       - name: install catch2
-        run: |
-          git submodule update --init --recursive
-          cd dependency/catch
-          cmake -Bbuild -H. -DBUILD_TESTING=OFF
-          sudo cmake --build build/ --target install
+        run: ./script/install_catch
       - name: test
         run: ./script/test
