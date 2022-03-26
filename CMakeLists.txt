@@ -15,23 +15,18 @@ set(CMAKE_BUILD_TYPE Debug)
 
 find_package(Catch2 3 REQUIRED)
 
-set(
-    PROJECT_LIBRARY
-    ${PROJECT_NAME}
-)
+set(PROJECT_LIBRARY ${PROJECT_NAME})
+set(SRC src)
 
 set(
     PROJECT_SOURCE_FILES
-    src/factorial.cpp
+    ${SRC}/factorial.cpp
+    ${SRC}/fibonacci.cpp
 )
 
-add_library(
-    ${PROJECT_LIBRARY}
-    SHARED
-    ${PROJECT_SOURCE_FILES}
-)
+add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 
-include_directories(src/)
+include_directories(${SRC})
 enable_testing()
 add_subdirectory(test)
 
