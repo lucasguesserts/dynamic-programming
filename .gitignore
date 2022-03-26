@@ -1,0 +1,12 @@
+# c++
+build/
+
+# node
+node_modules/
+
+# vim
+*.swp
+*.swo
+
+# others
+*.log
