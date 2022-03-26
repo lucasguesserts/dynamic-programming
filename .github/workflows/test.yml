@@ -1,0 +1,11 @@
+name: Test
+on: [push]
+jobs:
+  Test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: ls repository
+        run: ls ${{ github.workspace }}
+      - run: echo "job status -- ${{ job.status }}."
