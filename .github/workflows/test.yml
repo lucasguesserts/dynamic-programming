@@ -6,6 +6,12 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
-      - name: ls repository
-        run: ls ${{ github.workspace }}
-      - run: echo "job status -- ${{ job.status }}."
+      - name: install gcc
+        shell: bash
+        run:  |
+              sudo apt update
+              sudo apt install gcc-11 g++-11 cmake
+      - name: install catch2
+        run: ./script/install_catch
+      - name: test
+        run: ./script/test
