@@ -1,0 +1,21 @@
+{
+  "name": "dynamic-programming",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lucasguesserts/dynamic-programming",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "private": true,
+  "author": {
+    "name": "Lucas Guesser Targino da Silva",
+    "email": "lucasguesserts@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:lucasguesserts/dynamic-programming.git"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "15.0.0",
+    "@commitlint/config-conventional": "15.0.0"
+  }
+}
