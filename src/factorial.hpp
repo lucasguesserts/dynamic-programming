@@ -1,6 +1,8 @@
 #ifndef FACTORIAL_HPP_
 #define FACTORIAL_HPP_
 
-unsigned int factorial( unsigned int number );
+long unsigned factorial(const long unsigned n);
+long unsigned factorial_memoization(const long unsigned n);
+long unsigned factorial_naive(const long unsigned n);
 
 #endif
