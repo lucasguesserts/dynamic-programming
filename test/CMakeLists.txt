@@ -6,7 +6,8 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     TEST_CASE_SOURCE_LIST
-    factorial_test.cpp
+    factorial.test.cpp
+    fibonacci.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
