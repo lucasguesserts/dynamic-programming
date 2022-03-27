@@ -24,6 +24,8 @@ set(
     ${SRC}/factorial/factorial_memoization.cpp
     ${SRC}/factorial/factorial_naive.cpp
     ${SRC}/stairwayToHeaven/stairwayToHeaven.cpp
+    ${SRC}/stairwayToHeaven/stairwayToHeaven_recursive.cpp
+    ${SRC}/stairwayToHeaven/stairwayToHeaven_sum.cpp
     ${SRC}/fibonacci.cpp
 )
 
