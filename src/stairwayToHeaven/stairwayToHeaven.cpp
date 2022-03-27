@@ -1,12 +1,17 @@
 #include "stairwayToHeaven.hpp"
 #include "factorial.hpp"
 
-long int stairwayToHeaven (const long int n) {
-    const auto remainder = n % 2lu;
-    const auto quotient = (n - remainder) / 2;
-    long int acc = 0lu;
-    for (long unsigned i = 0lu; i <= quotient; ++i) {
-        acc += factorial(n - i) / ( factorial(i) * factorial(n - 2*i) );
+#include <vector>
+
+constexpr auto initialValues = { 1lu, 1lu, 2lu };
+
+long unsigned stairwayToHeaven (const long unsigned n) {
+    static std::vector<long unsigned> values = initialValues;
+    if (n < values.size()) {
+        return values[n];
+    } else {
+        const long unsigned result = stairwayToHeaven(n - 1) + stairwayToHeaven(n - 2);
+        values.push_back(result);
+        return result;
     }
-    return acc;
 }
