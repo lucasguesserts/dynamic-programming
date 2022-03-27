@@ -20,7 +20,9 @@ set(SRC src)
 
 set(
     PROJECT_SOURCE_FILES
-    ${SRC}/factorial.cpp
+    ${SRC}/factorial/factorial.cpp
+    ${SRC}/factorial/factorial_memoization.cpp
+    ${SRC}/factorial/factorial_naive.cpp
     ${SRC}/fibonacci.cpp
 )
 
