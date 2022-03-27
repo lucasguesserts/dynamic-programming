@@ -1,6 +1,6 @@
 #include "stairwayToHeaven.hpp"
 
-long int stairwayToHeaven_recursive (const long int n) {
+long unsigned stairwayToHeaven_recursive (const long unsigned n) {
     if      (n == 0) return 1lu;
     else if (n == 1) return 1lu;
     else if (n == 2) return 2lu;
