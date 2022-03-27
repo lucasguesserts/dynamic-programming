@@ -8,5 +8,8 @@ node_modules/
 *.swp
 *.swo
 
+# vscode
+.vscode/
+
 # others
 *.log
