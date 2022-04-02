@@ -32,8 +32,10 @@ set(
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 
 include_directories(${SRC})
+
 enable_testing()
 add_subdirectory(test)
+add_subdirectory(benchmark)
 
 message("\n")
 message("---- Project ${PROJECT_NAME} ----")
