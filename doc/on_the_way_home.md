@@ -2,7 +2,7 @@
 
 ## Problem
 
-You are at the top left corner of a grid and your home is at the bottom right corner. In how many unique ways can you reach home?
+You are at the top left corner of a grid (origin) and your home is at the bottom right corner (destination). How many unique paths from your position to home (origin to destination) exist?
 
 ### Constraints
 
@@ -18,7 +18,7 @@ Only two movements are available (to go from one point of the grid to another):
 
 ### Output
 
-- `n`: number of unique ways you can reach home
+- `n`: number of unique paths from the origin to the destination
 
 ## Definitions
 
@@ -33,7 +33,7 @@ Only two movements are available (to go from one point of the grid to another):
 
 ![three positions](./images/on_the_way_home_0.jpg)
 
-In the figure above, suppose one knows the number of the unique ways to reach both the positions red and blue. Being that the case, then we can compute the number of the unique ways to reach the position green as the sum of the number of the red and the blue.
+In the figure above, suppose one knows the number of unique paths to reach both the positions red and blue. Being that the case, then we can compute the number of the unique paths to reach the position green as the sum of the number of the red and the blue.
 
 That is because:
 
