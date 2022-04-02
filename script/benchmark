@@ -1,0 +1,12 @@
+#!/bin/bash
+
+mkdir -p build &&\
+cd build &&\
+cmake .. &&\
+make -j 4 &&\
+for BENCHMARK in `find ./benchmark/ -type f -perm /111`
+do
+    echo -e "\n\n"
+    echo "============ $BENCHMARK ============"
+    $BENCHMARK
+done
