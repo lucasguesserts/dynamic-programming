@@ -8,5 +8,5 @@ for BENCHMARK in `find ./benchmark/ -type f -perm /111`
 do
     echo -e "\n\n"
     echo "============ $BENCHMARK ============"
-    exec $BENCHMARK
+    $BENCHMARK
 done
