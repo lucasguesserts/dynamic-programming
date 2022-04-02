@@ -35,3 +35,7 @@ W(n) = sum
 ```
 
 That is not particularly obvious, but if you spend some time analysing how one constructs all possibilities and if you apply a bit of combinatorial analysis, you get there...
+
+## Solution - Fibonacci
+
+Notice that the solution to this problem is a Fibonacci number.
