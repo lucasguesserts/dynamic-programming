@@ -20,6 +20,7 @@ set(SRC src)
 
 set(
     PROJECT_SOURCE_FILES
+    ${SRC}/random/random.cpp
     ${SRC}/factorial/factorial.cpp
     ${SRC}/factorial/factorial_memoization.cpp
     ${SRC}/factorial/factorial_naive.cpp
