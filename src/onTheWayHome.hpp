@@ -3,10 +3,11 @@
 
 #include <utility>
 
-using Position = std::pair<long unsigned, long unsigned>;
+struct Position {
+    const long unsigned row;
+    const long unsigned column;
+};
 
-long unsigned onTheWayHome ([[maybe_unused]] const Position position) {
-    return 1lu;
-}
+long unsigned onTheWayHome (const Position& position);
 
 #endif

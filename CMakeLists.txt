@@ -28,6 +28,7 @@ set(
     ${SRC}/stairwayToHeaven/stairwayToHeaven_recursive.cpp
     ${SRC}/stairwayToHeaven/stairwayToHeaven_sum.cpp
     ${SRC}/fibonacci/fibonacci.cpp
+    ${SRC}/onTheWayHome/onTheWayHome.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
