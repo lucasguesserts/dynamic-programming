@@ -11,33 +11,33 @@ struct TestInstance {
     long unsigned numberOfUniquePaths;
 };
 
-// TEST_CASE("boundary conditions", "[onTheWayHome]") {
-//     SECTION("first row") {
-//         const std::vector<TestInstance> testInstances = {
-//             {{0, 0                     }, 1},
-//             {{0, generateRandomNumber()}, 1},
-//             {{0, generateRandomNumber()}, 1},
-//             {{0, generateRandomNumber()}, 1},
-//             {{0, generateRandomNumber()}, 1},
-//             {{0, generateRandomNumber()}, 1},
-//         };
-//         for (const auto& instance: testInstances) {
-//             CHECK(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
-//         }
-//     }
-//     SECTION("first column") {
-//         const std::vector<TestInstance> testInstances = {
-//             {{0,                      0}, 1},
-//             {{generateRandomNumber(), 0}, 1},
-//             {{generateRandomNumber(), 0}, 1},
-//             {{generateRandomNumber(), 0}, 1},
-//             {{generateRandomNumber(), 0}, 1},
-//         };
-//         for (const auto& instance: testInstances) {
-//             CHECK(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
-//         }
-//     }
-// }
+TEST_CASE("boundary conditions", "[onTheWayHome]") {
+    SECTION("first row") {
+        const std::vector<TestInstance> testInstances = {
+            {{0, 0                     }, 1},
+            {{0, generateRandomNumber()}, 1},
+            {{0, generateRandomNumber()}, 1},
+            {{0, generateRandomNumber()}, 1},
+            {{0, generateRandomNumber()}, 1},
+            {{0, generateRandomNumber()}, 1},
+        };
+        for (const auto& instance: testInstances) {
+            CHECK(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
+        }
+    }
+    SECTION("first column") {
+        const std::vector<TestInstance> testInstances = {
+            {{0,                      0}, 1},
+            {{generateRandomNumber(), 0}, 1},
+            {{generateRandomNumber(), 0}, 1},
+            {{generateRandomNumber(), 0}, 1},
+            {{generateRandomNumber(), 0}, 1},
+        };
+        for (const auto& instance: testInstances) {
+            CHECK(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
+        }
+    }
+}
 
 TEST_CASE("solution", "[onTheWayHome]") {
     const std::vector<TestInstance> testInstances = {
