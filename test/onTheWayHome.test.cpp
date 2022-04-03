@@ -22,7 +22,7 @@ TEST_CASE("boundary conditions", "[onTheWayHome]") {
             {{0, generateRandomNumber()}, 1},
         };
         for (const auto& instance: testInstances) {
-            REQUIRE(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
+            CHECK(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
         }
     }
     SECTION("first column") {
@@ -34,7 +34,7 @@ TEST_CASE("boundary conditions", "[onTheWayHome]") {
             {{generateRandomNumber(), 0}, 1},
         };
         for (const auto& instance: testInstances) {
-            REQUIRE(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
+            CHECK(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
         }
     }
 }
@@ -50,6 +50,6 @@ TEST_CASE("solution", "[onTheWayHome]") {
         {{2, 2},   6}
     };
     for (const auto& instance: testInstances) {
-        REQUIRE(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
+        CHECK(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
     }
 }
