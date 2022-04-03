@@ -14,6 +14,7 @@ struct TestInstance {
 TEST_CASE("boundary conditions", "[onTheWayHome]") {
     SECTION("first row") {
         const std::vector<TestInstance> testInstances = {
+            {{0, 0                     }, 1},
             {{0, generateRandomNumber()}, 1},
             {{0, generateRandomNumber()}, 1},
             {{0, generateRandomNumber()}, 1},
@@ -26,7 +27,7 @@ TEST_CASE("boundary conditions", "[onTheWayHome]") {
     }
     SECTION("first column") {
         const std::vector<TestInstance> testInstances = {
-            {{generateRandomNumber(), 0}, 1},
+            {{0,                      0}, 1},
             {{generateRandomNumber(), 0}, 1},
             {{generateRandomNumber(), 0}, 1},
             {{generateRandomNumber(), 0}, 1},
@@ -35,5 +36,20 @@ TEST_CASE("boundary conditions", "[onTheWayHome]") {
         for (const auto& instance: testInstances) {
             REQUIRE(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
         }
+    }
+}
+
+TEST_CASE("solution", "[onTheWayHome]") {
+    const std::vector<TestInstance> testInstances = {
+        {{0, 0},   1},
+        {{3, 4},  35},
+        {{5, 5}, 252},
+        {{5, 1},   6},
+        {{1, 5},   6},
+        {{1, 5},   6},
+        {{2, 2},   6}
+    };
+    for (const auto& instance: testInstances) {
+        REQUIRE(onTheWayHome(instance.position) == instance.numberOfUniquePaths);
     }
 }
