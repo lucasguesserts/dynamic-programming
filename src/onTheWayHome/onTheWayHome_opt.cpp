@@ -2,11 +2,11 @@
 
 #include <vector>
 
-using details::swapPosition;
-using details::previousRow;
-using details::previousColumn;
-using details::rowExists;
-using details::columnExists;
+using details::onTheWayHome::swapPosition;
+using details::onTheWayHome::previousRow;
+using details::onTheWayHome::previousColumn;
+using details::onTheWayHome::rowExists;
+using details::onTheWayHome::columnExists;
 
 long unsigned onTheWayHome_opt (Position position) {
     static constexpr long unsigned boundaryValue = 1lu;

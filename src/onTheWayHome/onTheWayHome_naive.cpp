@@ -1,7 +1,7 @@
 #include "onTheWayHome.hpp"
 
-using details::previousRow;
-using details::previousColumn;
+using details::onTheWayHome::previousRow;
+using details::onTheWayHome::previousColumn;
 
 long unsigned onTheWayHome_naive (const Position& position) {
     static constexpr long unsigned boundaryValue = 1lu;
