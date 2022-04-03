@@ -4,10 +4,12 @@
 #include <utility>
 
 struct Position {
-    const long unsigned row;
-    const long unsigned column;
+    long unsigned row;
+    long unsigned column;
 };
 
-long unsigned onTheWayHome (const Position& position);
+long unsigned onTheWayHome (Position position);
+
+long unsigned onTheWayHome_naive (const Position& position);
 
 #endif
