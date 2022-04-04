@@ -48,7 +48,7 @@ namespace details {
             const long unsigned column,
             const std::vector<long unsigned> list
         );
-    };
-};
+    }
+}
 
 #endif
