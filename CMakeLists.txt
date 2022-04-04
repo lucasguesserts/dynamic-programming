@@ -20,6 +20,7 @@ set(SRC src)
 
 set(
     PROJECT_SOURCE_FILES
+    ${SRC}/random/random.cpp
     ${SRC}/factorial/factorial.cpp
     ${SRC}/factorial/factorial_memoization.cpp
     ${SRC}/factorial/factorial_naive.cpp
@@ -27,6 +28,10 @@ set(
     ${SRC}/stairwayToHeaven/stairwayToHeaven_recursive.cpp
     ${SRC}/stairwayToHeaven/stairwayToHeaven_sum.cpp
     ${SRC}/fibonacci/fibonacci.cpp
+    ${SRC}/onTheWayHome/onTheWayHome_class.cpp
+    ${SRC}/onTheWayHome/onTheWayHome_memoization.cpp
+    ${SRC}/onTheWayHome/onTheWayHome_naive.cpp
+    ${SRC}/onTheWayHome/onTheWayHome_details.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})

@@ -6,9 +6,11 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     TEST_CASE_SOURCE_LIST
+    random.test.cpp
     factorial.test.cpp
     fibonacci.test.cpp
     stairwayToHeaven.test.cpp
+    onTheWayHome.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
