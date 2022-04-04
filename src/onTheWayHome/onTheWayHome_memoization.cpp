@@ -8,12 +8,12 @@ using details::onTheWayHome::previousColumn;
 using details::onTheWayHome::rowExists;
 using details::onTheWayHome::columnExists;
 
-long unsigned onTheWayHome_memoization (Position position) {
+long unsigned onTheWayHome_memoization (const Position& position) {
     static constexpr long unsigned boundaryValue = 1lu;
-    static const std::vector<long unsigned> newRow = { boundaryValue };
+    static const std::vector<long unsigned> newRow = {};
     static std::vector<std::vector<long unsigned>> values {{ boundaryValue }};
     // handle only half of the problem: if row > column, swap them
-    position = swapPosition(position);
+    // const auto position = swapPosition(pos);
     const auto& row = position.row;
     const auto& column = position.column;
     if (rowExists(row, values)) {

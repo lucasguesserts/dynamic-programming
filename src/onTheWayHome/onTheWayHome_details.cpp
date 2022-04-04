@@ -10,8 +10,8 @@ Position details::onTheWayHome::swapPosition(const Position& position) {
 }
 
 bool details::onTheWayHome::columnExists (
-    const long unsigned column,
-    const std::vector<long unsigned> list
+    const long unsigned& column,
+    const std::vector<long unsigned>& list
 );
 
 Position details::onTheWayHome::previousRow (const Position& position) {
@@ -23,15 +23,15 @@ Position details::onTheWayHome::previousColumn (const Position& position) {
 }
 
 bool details::onTheWayHome::rowExists (
-    const long unsigned row,
-    const std::vector<std::vector<long unsigned>> list
+    const long unsigned& row,
+    const std::vector<std::vector<long unsigned>>& list
 ) {
     return row < list.size();
 }
 
 bool details::onTheWayHome::columnExists (
-    const long unsigned column,
-    const std::vector<long unsigned> list
+    const long unsigned& column,
+    const std::vector<long unsigned>& list
 ) {
     return column < list.size();
 }
