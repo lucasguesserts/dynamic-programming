@@ -21,31 +21,14 @@ long unsigned OnTheWayHome::compute (Position position) {
 long unsigned OnTheWayHome::getPreviousRowValue (const Position& referencePosition) {
     if (referencePosition.row == 0) return outOfRangeValue;
     const Position position = previousRow(referencePosition);
-    if (positionExists(position)) {
-        return getValue(position);
-    } else {
-        const auto& previousRowValue = getPreviousRowValue(position);
-        addRowIfItDoesntExist(position);
-        const auto& previousColumnValue = getPreviousColumnValue(position);
-        const auto value = previousRowValue + previousColumnValue;
-        addValue(value, position);
-        return value;
-    }
+    return compute(position);
 }
 
 long unsigned OnTheWayHome::getPreviousColumnValue (const Position& referencePosition) {
     // condition: row exists
     if (referencePosition.column == 0) return outOfRangeValue;
     const Position position = previousColumn(referencePosition);
-    if (positionExists(position)) {
-        return getValue(position);
-    } else {
-        const auto& previousRowValue = getPreviousRowValue(position);
-        const auto& previousColumnValue = getPreviousColumnValue(position);
-        const auto value = previousRowValue + previousColumnValue;
-        addValue(value, position);
-        return value;
-    }
+    return compute(position);
 }
 
 void OnTheWayHome::addValue(
