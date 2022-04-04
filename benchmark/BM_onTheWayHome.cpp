@@ -38,6 +38,15 @@ static void BM_onTheWayHome_opt(benchmark::State& state) {
 }
 BENCHMARK(BM_onTheWayHome_opt);
 
+static void BM_onTheWayHome_class(benchmark::State& state) {
+  for (auto _ : state) {
+      for (const auto& instance: problemInstances) {
+        OnTheWayHome::compute(instance);
+      }
+  }
+}
+BENCHMARK(BM_onTheWayHome_class);
+
 static void BM_onTheWayHome_naive(benchmark::State& state) {
   for (auto _ : state) {
       for (const auto& instance: problemInstances) {

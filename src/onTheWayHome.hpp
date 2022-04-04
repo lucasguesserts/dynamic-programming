@@ -18,9 +18,21 @@ class OnTheWayHome {
     public:
         static long unsigned compute(Position position);
     private:
+        static constexpr long unsigned outOfRangeValue = 0lu;
         static constexpr long unsigned boundaryValue = 1lu;
         static const std::vector<long unsigned> newRow;
         static std::vector<std::vector<long unsigned>> values;
+
+        static bool positionExists(const Position& position);
+        static long unsigned getValue(const Position& position);
+        static bool rowExists(const Position& position);
+        static bool columnExists(const Position& position);
+        static long unsigned getPreviousRowValue(const Position& referencePosition);
+        static long unsigned getPreviousColumnValue(const Position& referencePosition);
+        static void addRowIfItDoesntExist(const Position& position);
+        static void addValue(const long unsigned& value, const Position& position);
+        static Position previousRow(const Position& position);
+        static Position previousColumn(const Position& position);
 };
 
 namespace details {
