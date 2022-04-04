@@ -8,7 +8,7 @@ struct Position {
     long unsigned column;
 };
 
-long unsigned onTheWayHome_memoization (Position position);
+long unsigned onTheWayHome_memoization (const Position& position);
 
 long unsigned onTheWayHome_naive (const Position& position);
 
@@ -39,12 +39,12 @@ namespace details {
         Position previousRow (const Position& position);
         Position previousColumn (const Position& position);
         bool rowExists (
-            const long unsigned row,
-            const std::vector<std::vector<long unsigned>> list
+            const long unsigned& row,
+            const std::vector<std::vector<long unsigned>>& list
         );
         bool columnExists (
-            const long unsigned column,
-            const std::vector<long unsigned> list
+            const long unsigned& column,
+            const std::vector<long unsigned>& list
         );
     }
 }
