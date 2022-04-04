@@ -5,7 +5,7 @@
 const std::vector<long unsigned> OnTheWayHome::newRow = {};
 std::vector<std::vector<long unsigned>> OnTheWayHome::values {{ boundaryValue }};
 
-long unsigned OnTheWayHome::compute (Position position) {
+long unsigned OnTheWayHome::compute (const Position& position) {
     if (positionExists(position)) {
         return getValue(position);
     } else {

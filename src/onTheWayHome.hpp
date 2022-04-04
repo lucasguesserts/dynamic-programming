@@ -8,15 +8,13 @@ struct Position {
     long unsigned column;
 };
 
-long unsigned onTheWayHome_opt (Position position);
-
-long unsigned onTheWayHome (Position position);
+long unsigned onTheWayHome_memoization (Position position);
 
 long unsigned onTheWayHome_naive (const Position& position);
 
 class OnTheWayHome {
     public:
-        static long unsigned compute(Position position);
+        static long unsigned compute(const Position& position);
     private:
         static constexpr long unsigned outOfRangeValue = 0lu;
         static constexpr long unsigned boundaryValue = 1lu;

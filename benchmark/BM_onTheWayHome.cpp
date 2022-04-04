@@ -20,19 +20,10 @@ const std::vector<Position> problemInstances = {
     {5, 12},
 };
 
-static void BM_onTheWayHome(benchmark::State& state) {
-  for (auto _ : state) {
-      for (const auto& instance: problemInstances) {
-        onTheWayHome(instance);
-      }
-  }
-}
-BENCHMARK(BM_onTheWayHome);
-
 static void BM_onTheWayHome_opt(benchmark::State& state) {
   for (auto _ : state) {
       for (const auto& instance: problemInstances) {
-        onTheWayHome_opt(instance);
+        onTheWayHome_memoization(instance);
       }
   }
 }
