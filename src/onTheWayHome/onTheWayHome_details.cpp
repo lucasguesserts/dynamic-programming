@@ -3,11 +3,10 @@
 #include <vector>
 #include <algorithm>
 
-void details::onTheWayHome::swapPosition(Position& position) {
+Position details::onTheWayHome::swapPosition(const Position& position) {
     const auto row = std::min(position.row, position.column);
     const auto column = std::max(position.row, position.column);
-    position.row = row;
-    position.column = column;
+    return {row, column};
 }
 
 bool details::onTheWayHome::columnExists (

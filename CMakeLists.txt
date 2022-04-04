@@ -29,6 +29,7 @@ set(
     ${SRC}/stairwayToHeaven/stairwayToHeaven_sum.cpp
     ${SRC}/fibonacci/fibonacci.cpp
     ${SRC}/onTheWayHome/onTheWayHome.cpp
+    ${SRC}/onTheWayHome/onTheWayHome_class.cpp
     ${SRC}/onTheWayHome/onTheWayHome_opt.cpp
     ${SRC}/onTheWayHome/onTheWayHome_naive.cpp
     ${SRC}/onTheWayHome/onTheWayHome_details.cpp
