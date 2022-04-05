@@ -50,6 +50,32 @@ It is unfortunate that the definition requires an algorithm... But one can get t
 
 Dynamic Programming is appliable!
 
+## Solution
+
+### Initial step
+
+The solution for $n = 1$ is $s_1 = \left<1\right>$ with value $f(1)$
+
+### Next step
+
+Suppose we have the solutions $s_j,\ \forall j < n$. Now consider the problem of finding the optimal solution for $n$. The following are the candidates and their corresponding values:
+
+$$
+\left<n\right> \quad-\quad f(\left<n\right>)\\
+s_{n-1} \oplus s_{1} \quad-\quad f(s_{n-1}) + f(s_{1})\\
+s_{n-2} \oplus s_{2} \quad-\quad f(s_{n-2}) + f(s_{2})\\
+\vdots\\
+s_{n-\lfloor\frac{n}{2}\rfloor} \oplus s_{\lfloor\frac{n}{2}\rfloor} \quad-\quad f(s_{n-\lfloor\frac{n}{2}\rfloor}) + f(s_{\lfloor\frac{n}{2}\rfloor})\\
+$$
+
+The solution for $n$ is the candidate above with the highest value.
+
+The first is a rod with size $n$. The others are combinations of the previous solutions two by two.
+
+Considering combinations of two is enough. Notice that a combination for three solutions is at most as good as a combination of the two equivalent solutions, and the same holds for higher combinations.
+
+(And now one can see how we are going to use memoization and dynamic programming in order to solve the problem).
+
 ## References
 
 - Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.
