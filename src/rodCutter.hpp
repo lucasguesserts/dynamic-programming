@@ -6,26 +6,24 @@
 namespace RodCutter {
 
 class Problem {
-    friend class ProblemBuilder;
     public:
+        Problem (const std::vector<double>& pricesOfRodPieces);
+        unsigned getMaximumRodSize () const;
+        double price (const unsigned& rodSize) const;
     private:
-        unsigned _rodSize;
-        std::vector<unsigned> _pricesOfRodPieces;
-};
-
-class ProblemBuilder {
-    public:
-        ProblemBuilder () {};
-        ProblemBuilder& rodSize ([[maybe_unused]] const unsigned) { return *this; };
-        ProblemBuilder& prices ([[maybe_unused]] const std::vector<unsigned>& pricesOfRodPieces) { return *this; };
-        Problem build () { return Problem(); };
+        std::vector<double> pricesOfRodPieces;
+        void checkPrices (const std::vector<double>& prices);
 };
 
 class Solver {
     public:
-        Solver ([[maybe_unused]] const Problem& problem) {};
-        unsigned operator() ([[maybe_unused]] const unsigned& rodSize) { return 0lu; };
+        Solver (const Problem& problem);
+        double operator() (const unsigned& rodSize);
+    private:
+        const Problem& problem;
+        void checkProblemSize (const unsigned& rodSize);
 };
+
 }
 
 #endif
