@@ -8,15 +8,13 @@ Given a rod of length `n`, and an array that contains the prices of all the piec
 
 ### Input
 
-- the rod size $n \in \N$
+- the rod size $n \in \N$, $n \ne 0$
   - define a domain set $D = \{1, ..., n\}$
-- piece price function $f: D \rightarrow \R_+^*, \quad f(0) = 0$
-
-Obs: the natural numbers here do not include $0$.
+- piece price function $f: D \cup \{0\} \rightarrow \R_+, \quad f(0) = 0$
 
 ### Goal
 
-Let $p \in \N^1 \cup \dots \cup \N^n$ and $l = length(p)$:
+Let $p \in D^1 \cup \dots \cup D^n$ and $l = length(p)$:
 
 Maximize $\displaystyle\sum\limits_{j = 1}^{l} f(p_j)$
 
