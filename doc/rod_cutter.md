@@ -74,6 +74,22 @@ Considering combinations of two is enough. Notice that a combination for three s
 
 (And now one can see how we are going to use memoization and dynamic programming in order to solve the problem).
 
+### Pseudocode
+
+```pseudocode
+rod_cutter
+Input: n, f
+Output s, f(s)
+if n == 1
+  return [1], f(1)
+return max {
+  f([n]),
+  rod_cutter(n-1) + rod_cutter(1),
+  ...,
+  rod_cutter(n-floor(n/2)) + rod_cutter(floor(n/2))
+}
+```
+
 ## References
 
 - Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2022.
