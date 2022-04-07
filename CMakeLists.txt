@@ -34,6 +34,7 @@ set(
     ${SRC}/onTheWayHome/onTheWayHome_memoization.cpp
     ${SRC}/onTheWayHome/onTheWayHome_naive.cpp
     ${SRC}/onTheWayHome/onTheWayHome_details.cpp
+    ${SRC}/rodCutter/rodCutter.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
