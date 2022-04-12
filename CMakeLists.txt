@@ -22,6 +22,7 @@ set(
     PROJECT_SOURCE_FILES
     ${SRC}/random/random.cpp
     ${SRC}/factorial/factorial.cpp
+    ${SRC}/factorial/FactorialMemoization.cpp
     ${SRC}/factorial/factorial_memoization.cpp
     ${SRC}/factorial/factorial_naive.cpp
     ${SRC}/stairwayToHeaven/stairwayToHeaven.cpp
