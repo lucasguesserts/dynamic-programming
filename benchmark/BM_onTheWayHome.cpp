@@ -31,8 +31,9 @@ BENCHMARK(BM_onTheWayHome_opt);
 
 static void BM_onTheWayHome_class(benchmark::State& state) {
   for (auto _ : state) {
+      OnTheWayHome solver;
       for (const auto& instance: problemInstances) {
-        OnTheWayHome::compute(instance);
+        solver.compute(instance);
       }
   }
 }

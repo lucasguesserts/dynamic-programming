@@ -1,9 +1,14 @@
 #include "onTheWayHome.hpp"
 
+#include <initializer_list>
 #include <vector>
 
-const std::vector<long unsigned> OnTheWayHome::newRow = {};
-std::vector<std::vector<long unsigned>> OnTheWayHome::values {{ boundaryValue }};
+constexpr long unsigned outOfRangeValue = 0lu;
+constexpr long unsigned boundaryValue = 1lu;
+
+OnTheWayHome::OnTheWayHome () {
+    this->values = {{ boundaryValue }};
+}
 
 long unsigned OnTheWayHome::compute (const Position& position) {
     if (positionExists(position)) {
@@ -39,6 +44,7 @@ void OnTheWayHome::addValue(
 }
 
 void OnTheWayHome::addRowIfItDoesntExist (const Position& position) {
+    constexpr std::initializer_list<long unsigned> newRow = {};
     if (!rowExists(position)) {
         values.push_back(newRow);
     }

@@ -105,6 +105,7 @@ TEST_CASE("solution - naive", "[onTheWayHome]") {
 }
 
 TEST_CASE("boundary conditions - class", "[onTheWayHome]") {
+    OnTheWayHome solver;
     SECTION("first row") {
         const std::vector<TestInstance> testInstances = {
             {{0, 0                     }, 1},
@@ -115,7 +116,7 @@ TEST_CASE("boundary conditions - class", "[onTheWayHome]") {
             {{0, generateRandomNumber()}, 1},
         };
         for (const auto& instance: testInstances) {
-            CHECK(OnTheWayHome::compute(instance.position) == instance.numberOfUniquePaths);
+            CHECK(solver.compute(instance.position) == instance.numberOfUniquePaths);
         }
     }
     SECTION("first column") {
@@ -127,12 +128,13 @@ TEST_CASE("boundary conditions - class", "[onTheWayHome]") {
             {{generateRandomNumber(), 0}, 1},
         };
         for (const auto& instance: testInstances) {
-            CHECK(OnTheWayHome::compute(instance.position) == instance.numberOfUniquePaths);
+            CHECK(solver.compute(instance.position) == instance.numberOfUniquePaths);
         }
     }
 }
 
 TEST_CASE("solution - class", "[onTheWayHome]") {
+    OnTheWayHome solver;
     const std::vector<TestInstance> testInstances = {
         {{0, 0},   1},
         {{0, 9},   1},
@@ -145,6 +147,6 @@ TEST_CASE("solution - class", "[onTheWayHome]") {
         {{2, 2},   6}
     };
     for (const auto& instance: testInstances) {
-        CHECK(OnTheWayHome::compute(instance.position) == instance.numberOfUniquePaths);
+        CHECK(solver.compute(instance.position) == instance.numberOfUniquePaths);
     }
 }
