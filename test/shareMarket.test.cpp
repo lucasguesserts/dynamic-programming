@@ -24,3 +24,19 @@ TEST_CASE("shareMarket", "[shareMarket]") {
         CHECK(shareMarket(prices) == expected_value);
     }
 }
+
+TEST_CASE("shareMarket - zero cases", "[shareMarket]") {
+    SECTION("example 1") {
+        const std::initializer_list<double> prices = {5, 4, 3, 2, 1};
+        const auto expected_value = 0.0_a;
+        CHECK(shareMarket(prices) == expected_value);
+    }
+}
+
+TEST_CASE("shareMarket - maximum cases", "[shareMarket]") {
+    SECTION("example 1") {
+        const std::initializer_list<double> prices = {0, 1, 2, 3, 4, 5};
+        const auto expected_value = 5.0_a;
+        CHECK(shareMarket(prices) == expected_value);
+    }
+}
