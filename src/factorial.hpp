@@ -10,7 +10,7 @@ long unsigned factorial_naive(const long unsigned n);
 class FactorialMemoization {
     public:
         FactorialMemoization();
-        long unsigned operator() (const long unsigned n);
+        long unsigned operator()(const long unsigned n);
     private:
         std::vector<long unsigned> values;
 };
