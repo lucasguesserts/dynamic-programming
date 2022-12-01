@@ -12,6 +12,7 @@ set(
     BM_factorial.cpp
     BM_onTheWayHome.cpp
     BM_rodCutter.cpp
+    BM_shareMarket.cpp
 )
 
 foreach(BENCKMARK_CASE_SOURCE IN ITEMS ${BENCHMARK_CASE_SOURCE_LIST})
