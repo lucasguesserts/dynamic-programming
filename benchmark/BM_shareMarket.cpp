@@ -13,4 +13,11 @@ static void BM_shareMarket(benchmark::State& state) {
 }
 BENCHMARK(BM_shareMarket);
 
+static void BM_shareMarketSimple(benchmark::State& state) {
+  for (auto _ : state) {
+      shareMarketSimple(prices);
+  }
+}
+BENCHMARK(BM_shareMarketSimple);
+
 BENCHMARK_MAIN();
