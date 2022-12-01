@@ -11,6 +11,7 @@ set(
     BM_stairwayToHeaven.cpp
     BM_factorial.cpp
     BM_onTheWayHome.cpp
+    BM_rodCutter.cpp
 )
 
 foreach(BENCKMARK_CASE_SOURCE IN ITEMS ${BENCHMARK_CASE_SOURCE_LIST})
