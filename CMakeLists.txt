@@ -22,9 +22,11 @@ set(
     PROJECT_SOURCE_FILES
     ${SRC}/random/random.cpp
     ${SRC}/factorial/factorial.cpp
+    ${SRC}/factorial/FactorialMemoization.cpp
     ${SRC}/factorial/factorial_memoization.cpp
     ${SRC}/factorial/factorial_naive.cpp
     ${SRC}/stairwayToHeaven/stairwayToHeaven.cpp
+    ${SRC}/stairwayToHeaven/StairwayToHeaven.cpp
     ${SRC}/stairwayToHeaven/stairwayToHeaven_recursive.cpp
     ${SRC}/stairwayToHeaven/stairwayToHeaven_sum.cpp
     ${SRC}/fibonacci/fibonacci.cpp

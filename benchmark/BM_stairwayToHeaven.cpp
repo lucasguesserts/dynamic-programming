@@ -11,6 +11,14 @@ static void BM_stairwayToHeaven(benchmark::State& state) {
 }
 BENCHMARK(BM_stairwayToHeaven);
 
+static void BM_StairwayToHeaven(benchmark::State& state) {
+  for (auto _ : state) {
+      StairwayToHeaven solver;
+      solver(PROBLEM_SIZE);
+  }
+}
+BENCHMARK(BM_StairwayToHeaven);
+
 static void BM_stairwayToHeaven_recursive(benchmark::State& state) {
   for (auto _ : state) {
       stairwayToHeaven_recursive(PROBLEM_SIZE);
