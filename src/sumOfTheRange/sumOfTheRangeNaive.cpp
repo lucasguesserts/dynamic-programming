@@ -1,6 +1,8 @@
 #include "sumOfTheRange.hpp"
 
 #include <vector>
+#include <algorithm>
+#include <numeric>
 
 Naive::Naive(const std::vector<double> & values)
     : values(values)

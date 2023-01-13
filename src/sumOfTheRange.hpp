@@ -1,10 +1,6 @@
-#include <functional>
+#include <array>
 #include <vector>
-#include <numeric>
-#include <algorithm>
-
-// using SumOfTheRange = std::function<double (const unsigned, const unsigned)>;
-// using Query = std::array<unsigned, 2>;
+#include <functional>
 
 class Query: public std::array<double, 2> {
     public:
@@ -15,6 +11,8 @@ class Query: public std::array<double, 2> {
             return (*this)[1];
         }
 };
+
+using SumOfTheRangeAlgorithm = std::function<std::vector<double>(const std::vector<Query> & queries)>;
 
 class Naive {
     public:
