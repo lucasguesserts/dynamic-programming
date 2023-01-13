@@ -31,4 +31,8 @@ TEST_CASE("sumOfTheRange", "[rodCutter]") {
         const SumOfTheRangeAlgorithm solver = Naive(values);
         check_solution(solver, queries, expected);
     }
+    SECTION("opt algorithm") {
+        const SumOfTheRangeAlgorithm solver = Opt(values);
+        check_solution(solver, queries, expected);
+    }
 }
