@@ -1,19 +1,3 @@
-\documentclass{article}
-\usepackage[a4paper]{geometry}
-\usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{url}
-\usepackage{hyperref}
-\usepackage{float}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{algorithm}
-\usepackage{algorithmicx}
-\usepackage[noend]{algpseudocode}
-\usepackage{xspace}
-
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Nb}[1]{\ensuremath{\N_{#1}}}
@@ -24,7 +8,6 @@
 \newcommand{\Set}[1]{\ensuremath{\left\{ #1 \right\}}}
 \newcommand{\SetOf}[2]{\ensuremath{\Set{ #1 : #2}}}
 \newcommand{\tupleOf}[2]{\ensuremath{\tuple{ #1 \ : \ #2}}}
-\DeclareMathOperator*{\argmax}{arg\,max}
 \newcommand{\incl}[2]{#1 \triangleright #2}
 \newcommand{\great}{Great\xspace}
 
@@ -41,18 +24,7 @@
 \newcommand{\sopt}{\ensuremath{S^{*}}}
 \newcommand{\sop}{\ensuremath{\op^{*}}}
 
-\theoremstyle{definition}
-\newtheorem{defn}{Definition}
-\theoremstyle{plain}
-\newtheorem{lemma}{Lemma}
-\newtheorem{theorem}{Theorem}
-
-\title{Share Market}
-\author{Lucas Guesser Targino da Silva - RA: 203534}
-
-\begin{document}
-
-\maketitle
+\chapter{Share Market}
 
 \section{Basic Definitions}
 
@@ -392,6 +364,3 @@ Complexity: $\mathcal{O}(n)$
 The filter takes care of removing the drops on the price, while the sum of the differences computes the gains.
 
 Complexity: $\mathcal{O}(n)$
-
-
-\end{document}

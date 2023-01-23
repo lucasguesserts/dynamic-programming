@@ -1,0 +1,82 @@
+\newcommand{\Sum}[3]{\displaystyle\sum\limits_{#1}^{#2} #3}
+
+\chapter{Sum of the Range}
+
+\section{Problem Definition}
+
+\subsection{Input}
+
+\begin{enumerate}
+    \item two natural numbers $m, n \in \N$
+    \item an array of values $v \in \R^n$
+    \item an set of queries $Q = \SetOf{\tuple{i, j}}{i, j < n}^{m}$
+\end{enumerate}
+
+\subsection{Output}
+
+The output $a: Q \rightarrow \R^m$ is the answer function of all queries $Q$. The answer $a(q)$ to a query $q = \tuple{i, j}$ is given by:
+
+\begin{equation}
+    a(q) = \Sum{k=i}{j}{v[k]}
+\end{equation}
+
+\section{Example}
+
+\begin{eqnarray}
+    n & = & 6 \\
+    m & = & 3 \\
+    v & = & \tuple{1, -2, 3, 10, -8, 0} \\
+    q & = & \tuple{
+        \tuple{0, 2},
+        \tuple{1, 4},
+        \tuple{3, 3}
+    } \\
+    a & = & \tuple{2, 3, 10} = \tuple{1-2+3, -2+3+10-8, 10}
+\end{eqnarray}
+
+\section{Solution Naive}
+
+\begin{algorithm}[H]
+    \caption{Naive}
+    \label{sum-of-the-range:algorithm:naive}
+    \begin{algorithmic}[1]
+        \Require{$m \in \N, n \in \N, v \in \R^n, Q = \SetOf{\tuple{i, j}}{i, j < n}^{m}$}
+        \State{$a = zeros(m)$}
+        \For{$k \in \Set{0, \dots, m-1}$}
+            \State{$\tuple{i, j} \gets Q[k]$}
+            \State{$a[k] \gets sum(\tuple{v[i], \dots, v[j]})$}
+        \EndFor
+        \State{\textbf{return} $a$}
+    \end{algorithmic}
+\end{algorithm}
+
+\section{Solution Optimized}
+
+Notice that:
+
+\begin{equation} \label{sum-of-the-range:eq:mathematical-relation}
+    a(\tuple{i, j}) = \left\lbrace \begin{array}{lll}
+        a(\tuple{0, j}) - a(\tuple{0, i-1}) & , & \mbox{if } i > 0 \\
+        a(\tuple{0, j}) & , & \mbox{if } j = 0
+    \end{array} \right.
+\end{equation}
+
+The algorithm is then: compute all values $a(\tuple{0, j}), \forall j \in \Set{0, \dots, n-1}$ and then answer all queries using the formula above.
+
+\begin{algorithm}[H]
+    \caption{Opt}
+    \label{sum-of-the-range:algorithm:opt}
+    \begin{algorithmic}[1]
+        \Require{$m \in \N, n \in \N, v \in \R^n, Q = \SetOf{\tuple{i, j}}{i, j < n}^{m}$}
+        \State{$\Delta s \gets \mbox{zeros}(n + 1)$}
+        \For{$i \in \Set{0, \dots, n-1}$}
+            \State{$\Delta s [i+1] \gets \Delta s [i] + v[i]$}
+        \EndFor
+        \State{$a = zeros(m)$}
+        \For{$k \in \Set{0, \dots, m-1}$}
+            \State{$\tuple{i, j} \gets Q[k]$}
+            \State{$a[k] =  \Delta s[j+1] - \Delta s[i]$}
+        \EndFor
+        \State{\textbf{return} $a$}
+    \end{algorithmic}
+\end{algorithm}

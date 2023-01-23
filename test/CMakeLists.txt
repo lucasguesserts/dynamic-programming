@@ -13,6 +13,7 @@ set(
     onTheWayHome.test.cpp
     rodCutter.test.cpp
     shareMarket.test.cpp
+    sumOfTheRange.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
