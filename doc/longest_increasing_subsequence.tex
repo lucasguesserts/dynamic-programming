@@ -1,0 +1,38 @@
+\newcommand{\sequence}[2]{\ensuremath{\mathcal{S}\left( #1, #2 \right)}}
+\newcommand{\subsequence}[2]{\ensuremath{#1 \preceq #2}}
+
+\chapter{Longest Increasing Subsequence}
+
+\section{Basic Definitions}
+
+\begin{defn}[Sequence]
+    A \textbf{Sequence} is a function $f$ from the subset $I \subseteq \N$ of the Natural Numbers into a Codomain $Cd$:
+    \begin{equation}
+        f: I \rightarrow Cd
+    \end{equation}
+    Denote by $\sequence{I}{Cd}$ the set of all sequences of $I$ into $Cd$:
+    \begin{equation}
+        \sequence{n}{Cd} = \Set{f: I \rightarrow Cd}
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Subsequence]
+    Let $f \in \sequence{I}{Cd}$ be a sequence from $I \subseteq \N$ into a Codomain $Cd$. A sequence $g \in \sequence{I'}{Cd'}$ is called a subsequence of $f$, and denoted by $\subsequence{g}{f}$, when $I' \subseteq I$ and $Cd' \subseteq Cd$:
+    \begin{equation}
+        \forall f \left(
+            f \in \sequence{I}{Cd}
+            \rightarrow
+            \forall g \left(
+                g \in \sequence{I'}{Cd'}
+                \rightarrow
+                \left(
+                    \subsequence{g}{f} \leftrightarrow \left(
+                        I' \subseteq I
+                        \land
+                        Cd' \subseteq Cd
+                    \right)
+                \right)
+            \right)
+        \right)
+    \end{equation}
+\end{defn}
