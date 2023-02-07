@@ -38,6 +38,7 @@ set(
     ${SRC}/shareMarket/shareMarket.cpp
     ${SRC}/shareMarket/shareMarketSimple.cpp
     ${SRC}/sumOfTheRange/sumOfTheRangeNaive.cpp
+    ${SRC}/longestIncreasingSubsequence/longestIncreasingSubsequence.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
