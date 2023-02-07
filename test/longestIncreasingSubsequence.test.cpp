@@ -2,16 +2,81 @@
 #include <catch2/catch_approx.hpp>
 
 #include <vector>
-#include <set>
+#include <string>
 
 #include "longestIncreasingSubsequence.hpp"
 
-using namespace Catch::literals;
+using LongestIncreasingSubsequence::Sequence;
+using LongestIncreasingSubsequence::SequenceSet;
+using LongestIncreasingSubsequence::SubsequenceGenerator;
+using LongestIncreasingSubsequence::NaiveAlgorithm;
+
+struct SubsequenceTestCase {
+    const std::string name;
+    const Sequence sequence;
+    const SequenceSet expected;
+};
 
 struct LongestIncreasingSubsequenceTestCase {
-    const std::vector<double> values;
-    const unsigned expected_length;
+    const Sequence sequence;
+    const unsigned expectedLength;
 };
+
+TEST_CASE("subsequences") {
+    const std::vector<SubsequenceTestCase> testCaseDataList = {
+        {
+            "sequence with three elements",
+            {7, 4, 8},
+            {
+                {7},
+                {4},
+                {8},
+                {7, 4},
+                {7, 8},
+                {4, 8},
+                {7, 4, 8},
+            }
+        },
+        {
+            "sequence with three elements and repetition",
+            {1, 1, 2},
+            {
+                {1},
+                {2},
+                {1, 1},
+                {1, 2},
+                {1, 1, 2}
+            }
+        },
+        {
+            "sequence with four elements",
+            {10, 3, 9, 4},
+            {
+                {10},
+                {3},
+                {9},
+                {4},
+                {10, 3},
+                {10, 9},
+                {10, 4},
+                {3, 9},
+                {3, 4},
+                {9, 4},
+                {10, 3, 9},
+                {10, 3, 4},
+                {10, 9, 4},
+                {3, 9, 4},
+                {10, 3, 9, 4}
+            }
+        }
+    };
+    for (const auto & data : testCaseDataList) {
+        SECTION(data.name) {
+            const LongestIncreasingSubsequence::SubsequenceGenerator gen(data.sequence);
+            CHECK(gen.getSubsequences() == data.expected);
+        }
+    }
+}
 
 TEST_CASE("LongestIncreasingSubsequence", "[LongestIncreasingSubsequence]") {
     const std::vector<LongestIncreasingSubsequenceTestCase> test_case_list = {
@@ -23,30 +88,7 @@ TEST_CASE("LongestIncreasingSubsequence", "[LongestIncreasingSubsequence]") {
         {{1, 2, 3}, 0},
     };
     for (const auto & test_case : test_case_list) {
-        const LongestIncreasingSubsequence::NaiveAlgorithm solver(test_case.values);
-        CHECK(solver.getOptimalLength() == test_case.expected_length);
+        const NaiveAlgorithm solver(test_case.sequence);
+        CHECK(solver.getOptimalLength() == test_case.expectedLength);
     }
-}
-
-TEST_CASE("subsequences") {
-    LongestIncreasingSubsequence::Sequence sequence = {10, 3, 9, 4};
-    const LongestIncreasingSubsequence::SequenceSet subsequences_expected = {
-        {10},
-        {3},
-        {9},
-        {4},
-        {10, 3},
-        {10, 9},
-        {10, 4},
-        {3, 9},
-        {3, 4},
-        {9, 4},
-        {10, 3, 9},
-        {10, 3, 4},
-        {10, 9, 4},
-        {3, 9, 4},
-        {10, 3, 9, 4},
-    };
-    const LongestIncreasingSubsequence::SubsequenceGenerator gen(sequence);
-    CHECK(gen.getSubsequences() == subsequences_expected);
 }
