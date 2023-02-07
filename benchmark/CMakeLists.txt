@@ -14,6 +14,7 @@ set(
     BM_rodCutter.cpp
     BM_shareMarket.cpp
     BM_sumOfTheRange.cpp
+    BM_longestIncreasingSubsequence.cpp
 )
 
 foreach(BENCKMARK_CASE_SOURCE IN ITEMS ${BENCHMARK_CASE_SOURCE_LIST})
