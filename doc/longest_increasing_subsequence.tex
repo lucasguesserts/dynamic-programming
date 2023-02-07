@@ -99,3 +99,17 @@ Find the longest increasing subsequence of $v$:
 \begin{equation}
     s^* = \ArgMax{s \in \increasingSubsequence{v}}{\length{s}}
 \end{equation}
+
+\section{Naive Algorithm}
+
+\begin{algorithm}[H]
+    \caption{Naive}
+    \label{longest-increasing-subsequence:algorithm:naive}
+    \begin{algorithmic}[1]
+        \Require{$n \in \N, v \in \R^n$}
+        \State{$S \gets \mbox{generate\_all\_subsequences}(v)$}
+        \State{$S' \gets \mbox{filter}(\mbox{is\_increasing\_sequence}, s)$}
+        \State{$s^* \gets \ArgMax{s \in S'}{\length{s}}$}
+        \State{\textbf{return} $s^*$}
+    \end{algorithmic}
+\end{algorithm}
