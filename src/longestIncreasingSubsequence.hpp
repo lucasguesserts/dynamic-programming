@@ -2,6 +2,7 @@
 #define LONGEST_INCREASING_SUBSEQUENCE_HPP_
 
 #include <vector>
+#include <set>
 
 namespace LongestIncreasingSubsequence {
 
@@ -9,14 +10,15 @@ namespace LongestIncreasingSubsequence {
     using Sequence = std::vector<Element>;
     using SequenceIt = Sequence::const_iterator;
     using SequenceList = std::vector<Sequence>;
+    using SequenceSet = std::set<Sequence>;
 
     class SubsequenceGenerator {
         public:
             SubsequenceGenerator(const Sequence & sequence);
-            SequenceList getSubsequences() const noexcept;
+            SequenceSet getSubsequences() const noexcept;
         private:
             const Sequence sequence;
-            SequenceList subsequences;
+            SequenceSet subsequences;
 
             SequenceList recursiveGenerator(
                 const SequenceIt begin,
@@ -35,7 +37,7 @@ namespace LongestIncreasingSubsequence {
         public:
             NaiveAlgorithm(const Sequence & sequence);
             unsigned getOptimalLength() const noexcept;
-            SequenceList getOptimalSublists() const noexcept;
+            SequenceList getOptimalSubsequences() const noexcept;
         private:
             const Sequence sequence;
             const SequenceList subsequenceList;

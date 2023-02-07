@@ -2,6 +2,7 @@
 #include <catch2/catch_approx.hpp>
 
 #include <vector>
+#include <set>
 
 #include "longestIncreasingSubsequence.hpp"
 
@@ -28,22 +29,22 @@ TEST_CASE("LongestIncreasingSubsequence", "[LongestIncreasingSubsequence]") {
 }
 
 TEST_CASE("subsequences") {
-    std::vector<double> sequence = {10, 3, 9, 4};
-    const std::vector<std::vector<double>> subsequences_expected = {
-        {4},
-        {9},
-        {3},
+    LongestIncreasingSubsequence::Sequence sequence = {10, 3, 9, 4};
+    const LongestIncreasingSubsequence::SequenceSet subsequences_expected = {
         {10},
+        {3},
+        {9},
+        {4},
         {10, 3},
-        {3, 9},
         {10, 9},
-        {10, 3, 9},
-        {9, 4},
-        {3, 4},
         {10, 4},
+        {3, 9},
+        {3, 4},
+        {9, 4},
+        {10, 3, 9},
         {10, 3, 4},
-        {3, 9, 4},
         {10, 9, 4},
+        {3, 9, 4},
         {10, 3, 9, 4},
     };
     const LongestIncreasingSubsequence::SubsequenceGenerator gen(sequence);

@@ -4,10 +4,11 @@ namespace LongestIncreasingSubsequence {
 
 SubsequenceGenerator::SubsequenceGenerator(const Sequence & sequence)
     : sequence(sequence) {
-    this->subsequences = this->recursiveGenerator(this->sequence.cbegin(), this->sequence.cend());
+    const auto subsequenceList = this->recursiveGenerator(this->sequence.cbegin(), this->sequence.cend());
+    this->subsequences = SequenceSet(subsequenceList.cbegin(), subsequenceList.cend());
 }
 
-SequenceList SubsequenceGenerator::getSubsequences() const noexcept {
+SequenceSet SubsequenceGenerator::getSubsequences() const noexcept {
     return this->subsequences;
 }
 
@@ -61,7 +62,7 @@ unsigned NaiveAlgorithm::getOptimalLength() const noexcept {
     return 0u;
 }
 
-SequenceList NaiveAlgorithm::getOptimalSublists() const noexcept {
+SequenceList NaiveAlgorithm::getOptimalSubsequences() const noexcept {
     return {};
 }
 
