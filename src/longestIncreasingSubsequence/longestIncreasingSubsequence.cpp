@@ -2,18 +2,18 @@
 
 namespace LongestIncreasingSubsequence {
 
-SubsequenceGenerator::SubsequenceGenerator(const std::vector<double> & sequence)
+SubsequenceGenerator::SubsequenceGenerator(const Sequence & sequence)
     : sequence(sequence) {
     this->subsequences = this->recursiveGenerator(this->sequence.begin(), this->sequence.end());
 }
 
-std::vector<std::vector<double>> SubsequenceGenerator::getSubsequences() const noexcept {
+SequenceList SubsequenceGenerator::getSubsequences() const noexcept {
     return this->subsequences;
 }
 
-std::vector<std::vector<double>> SubsequenceGenerator::recursiveGenerator(
-    std::vector<double>::iterator begin,
-    std::vector<double>::iterator end
+SequenceList SubsequenceGenerator::recursiveGenerator(
+    SequenceIt begin,
+    SequenceIt end
 ) {
     if (doesListHasOneElement(begin, end)) {
         return generateFromListOfOneElement(begin);
@@ -21,7 +21,7 @@ std::vector<std::vector<double>> SubsequenceGenerator::recursiveGenerator(
         auto subsequenceWithLastElement = generateFromListOfOneElement(end-1);
         auto subsequencesOfSubproblem = recursiveGenerator(begin, end-1);
         auto subsequencesOfSubproblemWithLastElement = appendElementToSubsequences(*(end-1), subsequencesOfSubproblem);
-        std::vector<std::vector<double>> all;
+        SequenceList all;
         expandSubsequenceList(all, subsequenceWithLastElement);
         expandSubsequenceList(all, subsequencesOfSubproblem);
         expandSubsequenceList(all, subsequencesOfSubproblemWithLastElement);
@@ -30,17 +30,17 @@ std::vector<std::vector<double>> SubsequenceGenerator::recursiveGenerator(
 }
 
 bool SubsequenceGenerator::doesListHasOneElement(
-    std::vector<double>::iterator begin,
-    std::vector<double>::iterator end
+    SequenceIt begin,
+    SequenceIt end
 ) {
     return begin == (end-1);
 }
 
-std::vector<std::vector<double>> SubsequenceGenerator::generateFromListOfOneElement(std::vector<double>::iterator begin) {
+SequenceList SubsequenceGenerator::generateFromListOfOneElement(SequenceIt begin) {
     return {{*begin}};
 }
 
-std::vector<std::vector<double>> SubsequenceGenerator::appendElementToSubsequences(double element, std::vector<std::vector<double>> & subsequences) {
+SequenceList SubsequenceGenerator::appendElementToSubsequences(Element element, SequenceList & subsequences) {
     auto copy = subsequences;
     for (auto & subsequence: copy) {
         subsequence.push_back(element);
@@ -48,14 +48,14 @@ std::vector<std::vector<double>> SubsequenceGenerator::appendElementToSubsequenc
     return copy;
 }
 
-void SubsequenceGenerator::expandSubsequenceList(std::vector<std::vector<double>> & toExpand, std::vector<std::vector<double>> & expansion) {
+void SubsequenceGenerator::expandSubsequenceList(SequenceList & toExpand, SequenceList & expansion) {
     for (auto & subsequence : expansion) {
         toExpand.push_back(subsequence);
     }
     return;
 }
 
-NaiveAlgorithm::NaiveAlgorithm(const std::vector<double> & sequence)
+NaiveAlgorithm::NaiveAlgorithm(const Sequence & sequence)
     : sequence(sequence) {}
 
 
@@ -63,7 +63,7 @@ unsigned NaiveAlgorithm::getOptimalLength() const noexcept {
     return 0u;
 }
 
-std::vector<std::vector<double>> NaiveAlgorithm::getOptimalSublists() const noexcept {
+SequenceList NaiveAlgorithm::getOptimalSublists() const noexcept {
     return {};
 }
 
