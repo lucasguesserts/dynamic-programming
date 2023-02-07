@@ -7,7 +7,7 @@ namespace LongestIncreasingSubsequence {
 
     using Element = double;
     using Sequence = std::vector<Element>;
-    using SequenceIt = Sequence::iterator;
+    using SequenceIt = Sequence::const_iterator;
     using SequenceList = std::vector<Sequence>;
 
     class SubsequenceGenerator {
@@ -15,20 +15,20 @@ namespace LongestIncreasingSubsequence {
             SubsequenceGenerator(const Sequence & sequence);
             SequenceList getSubsequences() const noexcept;
         private:
-            Sequence sequence;
+            const Sequence sequence;
             SequenceList subsequences;
 
             SequenceList recursiveGenerator(
-                SequenceIt begin,
-                SequenceIt end
+                const SequenceIt begin,
+                const SequenceIt end
             );
             static bool doesListHasOneElement(
-                SequenceIt begin,
-                SequenceIt end
-            );
-            static SequenceList generateFromListOfOneElement(SequenceIt begin);
-            static SequenceList appendElementToSubsequences(Element element, SequenceList & subsequences);
-            static void expandSubsequenceList(SequenceList & toExpand, SequenceList & expansion);
+                const SequenceIt begin,
+                const SequenceIt end
+            ) noexcept;
+            static SequenceList generateFromListOfOneElement(const SequenceIt begin) noexcept;
+            static SequenceList appendElementToSubsequences(const Element element, const SequenceList & subsequences);
+            static void expandSubsequenceList(SequenceList & toExpand, const SequenceList & expansion);
     };
 
     class NaiveAlgorithm {

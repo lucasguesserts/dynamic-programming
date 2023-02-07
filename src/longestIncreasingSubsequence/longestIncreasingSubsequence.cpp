@@ -4,7 +4,7 @@ namespace LongestIncreasingSubsequence {
 
 SubsequenceGenerator::SubsequenceGenerator(const Sequence & sequence)
     : sequence(sequence) {
-    this->subsequences = this->recursiveGenerator(this->sequence.begin(), this->sequence.end());
+    this->subsequences = this->recursiveGenerator(this->sequence.cbegin(), this->sequence.cend());
 }
 
 SequenceList SubsequenceGenerator::getSubsequences() const noexcept {
@@ -12,17 +12,17 @@ SequenceList SubsequenceGenerator::getSubsequences() const noexcept {
 }
 
 SequenceList SubsequenceGenerator::recursiveGenerator(
-    SequenceIt begin,
-    SequenceIt end
+    const SequenceIt begin,
+    const SequenceIt end
 ) {
     if (doesListHasOneElement(begin, end)) {
         return generateFromListOfOneElement(begin);
     } else {
-        auto subsequenceWithLastElement = generateFromListOfOneElement(end-1);
-        auto subsequencesOfSubproblem = recursiveGenerator(begin, end-1);
-        auto subsequencesOfSubproblemWithLastElement = appendElementToSubsequences(*(end-1), subsequencesOfSubproblem);
+        const auto onlyLastElement = generateFromListOfOneElement(end-1);
+        const auto subsequencesOfSubproblem = recursiveGenerator(begin, end-1);
+        const auto subsequencesOfSubproblemWithLastElement = appendElementToSubsequences(*(end-1), subsequencesOfSubproblem);
         SequenceList all;
-        expandSubsequenceList(all, subsequenceWithLastElement);
+        expandSubsequenceList(all, onlyLastElement);
         expandSubsequenceList(all, subsequencesOfSubproblem);
         expandSubsequenceList(all, subsequencesOfSubproblemWithLastElement);
         return all;
@@ -30,17 +30,17 @@ SequenceList SubsequenceGenerator::recursiveGenerator(
 }
 
 bool SubsequenceGenerator::doesListHasOneElement(
-    SequenceIt begin,
-    SequenceIt end
-) {
+    const SequenceIt begin,
+    const SequenceIt end
+) noexcept {
     return begin == (end-1);
 }
 
-SequenceList SubsequenceGenerator::generateFromListOfOneElement(SequenceIt begin) {
+SequenceList SubsequenceGenerator::generateFromListOfOneElement(const SequenceIt begin) noexcept {
     return {{*begin}};
 }
 
-SequenceList SubsequenceGenerator::appendElementToSubsequences(Element element, SequenceList & subsequences) {
+SequenceList SubsequenceGenerator::appendElementToSubsequences(const Element element, const SequenceList & subsequences) {
     auto copy = subsequences;
     for (auto & subsequence: copy) {
         subsequence.push_back(element);
@@ -48,10 +48,8 @@ SequenceList SubsequenceGenerator::appendElementToSubsequences(Element element, 
     return copy;
 }
 
-void SubsequenceGenerator::expandSubsequenceList(SequenceList & toExpand, SequenceList & expansion) {
-    for (auto & subsequence : expansion) {
-        toExpand.push_back(subsequence);
-    }
+void SubsequenceGenerator::expandSubsequenceList(SequenceList & toExpand, const SequenceList & expansion) {
+    toExpand.insert(toExpand.end(),expansion.cbegin(), expansion.cend());
     return;
 }
 
