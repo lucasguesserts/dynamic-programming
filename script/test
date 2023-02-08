@@ -1,7 +1,4 @@
 #!/bin/bash
 
-mkdir -p build &&\
-cd build &&\
-cmake .. &&\
-make -j 4 &&\
-make test
+./script/make &&\
+make -C build test
