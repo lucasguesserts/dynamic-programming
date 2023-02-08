@@ -37,11 +37,16 @@ namespace LongestIncreasingSubsequence {
         public:
             NaiveAlgorithm(const Sequence & sequence);
             unsigned getOptimalLength() const noexcept;
-            SequenceList getOptimalSubsequences() const noexcept;
+            SequenceSet getOptimalSubsequences() const noexcept;
         private:
             const Sequence sequence;
-            const SequenceList subsequenceList;
-            const SequenceList optimalSubsequences;
+            SequenceSet increasingSubsequences;
+            SequenceSet optimalSubsequences;
+            unsigned optimalLength;
+
+            static bool isSequenceIncreasing(const Sequence & sequence);
+            void selectIncreasingSubsequences();
+            void selectLongestSubsequences();
     };
 
 }
