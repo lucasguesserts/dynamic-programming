@@ -12,7 +12,7 @@ static void BM_longestIncreasingSubsequence_subsequenceGenerator(benchmark::Stat
 BENCHMARK(BM_longestIncreasingSubsequence_subsequenceGenerator);
 
 
-const LongestIncreasingSubsequence::Sequence sequenceAlgorithms = {7, 2, 2, 9, 9, 1, 7, 10, 7, 1, 8, 7, 7, 3, 9};
+const LongestIncreasingSubsequence::Sequence sequenceAlgorithms = {17, 46, 3, 22, 10, 35, 28, 21, 13, 19, 27, 8, 12, 25, 18};
 
 static void BM_longestIncreasingSubsequence_naive(benchmark::State& state) {
   for (auto _ : state) {
@@ -27,5 +27,12 @@ static void BM_longestIncreasingSubsequence_recursive(benchmark::State& state) {
   }
 }
 BENCHMARK(BM_longestIncreasingSubsequence_recursive);
+
+static void BM_longestIncreasingSubsequence_dynamicProgramming(benchmark::State& state) {
+  for (auto _ : state) {
+      const LongestIncreasingSubsequence::DynamicProgrammingAlgorithm solver(sequenceAlgorithms);
+  }
+}
+BENCHMARK(BM_longestIncreasingSubsequence_dynamicProgramming);
 
 BENCHMARK_MAIN();
