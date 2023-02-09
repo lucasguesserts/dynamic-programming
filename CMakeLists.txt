@@ -41,6 +41,7 @@ set(
     ${SRC}/longestIncreasingSubsequence/SubsequenceGenerator.cpp
     ${SRC}/longestIncreasingSubsequence/NaiveAlgorithm.cpp
     ${SRC}/longestIncreasingSubsequence/RecursiveAlgorithm.cpp
+    ${SRC}/longestIncreasingSubsequence/DynamicProgrammingAlgorithm.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})

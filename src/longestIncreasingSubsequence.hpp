@@ -70,6 +70,25 @@ namespace LongestIncreasingSubsequence {
             static Sequence findLongest(const SequenceList & subsequences);
     };
 
+    class DynamicProgrammingAlgorithm {
+        public:
+            DynamicProgrammingAlgorithm(const Sequence & sequence);
+            Index getOptimalLength() const noexcept;
+            SequenceSet getOptimalSubsequences() const noexcept;
+        private:
+            const Sequence sequence;
+            std::vector<std::set<Index>> B;
+            SequenceList solutions;
+            SequenceSet optimalSubsequences;
+            Index optimalLength;
+
+            void makeB() noexcept;
+            void makeSolutions();
+            void selectLongestSubsequences();
+            Sequence makeSubproblemSolution(const Index i);
+            static Sequence findLongest(const std::vector<Sequence> & subsequences);
+    };
+
 }
 
 #endif
