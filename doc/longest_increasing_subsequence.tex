@@ -21,7 +21,7 @@
     \end{equation}
     Denote by $\sequence{I}{Cd}$ the set of all sequences of $I$ into $Cd$:
     \begin{equation}
-        \sequence{n}{Cd} = \Set{f: I \rightarrow Cd}
+        \sequence{I}{Cd} = \Set{f: I \rightarrow Cd}
     \end{equation}
 \end{defn}
 
@@ -79,13 +79,56 @@
     \end{enumerate}
 \end{defn}
 
+\begin{theorem}
+    \label{theorem:equivalence-with-natural-sequence}
+    \todo{Write this theorem appropriately and prove it.}
+    Every sequence of $n$ elements can be indexed using $\Set{0, \dots, n-1}$.
+\end{theorem}
+
+\subsection{Examples}
+
+We will write the sequence using ordered pairs. For example, a sequence $v$ with $I = \Set{0, 1, 3, 10}$ and $Cd = \R$ could be:
+
+\begin{equation}
+    v = \Set{
+        \tuple{0, 4.7},
+        \tuple{1, -8.8},
+        \tuple{3, -5.4},
+        \tuple{10, 2.3}
+    }
+\end{equation}
+
+The elements of the sequence will be written using common function notation:
+
+\begin{align*}
+    v(0) & = 4.7 \\
+    v(1) & = -8.8 \\
+    v(3) & = -5.4 \\
+    v(10) & = 2.3
+\end{align*}
+
+In general, we are interested in sequences of $n$ elements for which $I = \Set{0, \dots, n-1}$. In such cases, we will write the sequence simply as a tuple:
+
+\begin{align}
+    \nonumber
+    v
+    & = \Set{
+        \tuple{0, 4.7},
+        \tuple{1, -8.8},
+        \tuple{2, -5.4},
+        \tuple{3, 2.3}
+        }
+    \\
+    & \equiv \tuple{4.7, -8.8, -5.4, 2.3}
+\end{align}
+
 \section{Problem Definition}
 
 \subsection{Input}
 
 \begin{enumerate}
     \item a natural number $n \in \N$;
-    \item A sequence $v \in \sequence{\Set{0, \dots, n-1}}{\R}$
+    \item A sequence $v \in \sequence{\Set{0, \dots, n-1}}{\R}$\footnote{Notice that here we are indexing using the naturals $\Set{0, \dots, n-1}$ and not a general $I \subseteq \N$. This is because of the Theorem \ref{theorem:equivalence-with-natural-sequence}.}
 \end{enumerate}
 
 \subsection{Output}
@@ -113,3 +156,31 @@ Find the longest increasing subsequence of $v$:
         \State{\textbf{return} $s^*$}
     \end{algorithmic}
 \end{algorithm}
+
+\section{Recursive Algorithm}
+
+Define:
+
+\begin{enumerate}
+    \item $B(i)$: the set of indices lower than $i$ for which the correspondent element in the sequence is smaller than $v(i)$. This is going to be used to compose the subproblems.
+    \begin{equation}
+        B(i, v) = \SetOf{j \in \subsequenceDomain{v}}{j < i \ \land\  v(j) < v(i)}
+    \end{equation}
+    \item $L(i)$: the longest increasing subsequence ending at the index $i$, so that its last element is $v(i)$. It can be defined recursively by the Equation \ref{longest-increasing-subsequence:algorithm:subproblem}. In it, $\oplus$ is the concatenation of two sequences and when $B = \varnothing$, the output of the $\ArgMax{}{}$ is an empty sequence.
+    \begin{equation}
+        \label{longest-increasing-subsequence:algorithm:subproblem}
+        L(i, v) = \ArgMax{j \in B(i, v)}{\length{L(j)}} \oplus \tuple{v(i)}
+    \end{equation}
+\end{enumerate}
+
+\begin{algorithm}[H]
+    \caption{Recursive}
+    \label{longest-increasing-subsequence:algorithm:recursive}
+    \begin{algorithmic}[1]
+        \Require{$n \in \N, v \in \R^n$}
+        \State{$S \gets \tupleOf{L(i)}{i \in \subsequenceDomain{v}}$}
+        \State{$s^* \gets \ArgMax{s \in S}{\length{s}}$}
+        \State{\textbf{return} $s^*$}
+    \end{algorithmic}
+\end{algorithm}
+
