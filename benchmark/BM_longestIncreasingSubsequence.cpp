@@ -21,4 +21,11 @@ static void BM_longestIncreasingSubsequence_naive(benchmark::State& state) {
 }
 BENCHMARK(BM_longestIncreasingSubsequence_naive);
 
+static void BM_longestIncreasingSubsequence_recursive(benchmark::State& state) {
+  for (auto _ : state) {
+      const LongestIncreasingSubsequence::RecursiveAlgorithm solver(sequenceAlgorithms);
+  }
+}
+BENCHMARK(BM_longestIncreasingSubsequence_recursive);
+
 BENCHMARK_MAIN();
