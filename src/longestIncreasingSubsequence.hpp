@@ -51,6 +51,25 @@ namespace LongestIncreasingSubsequence {
             void selectLongestSubsequences();
     };
 
+    class RecursiveAlgorithm {
+        public:
+            RecursiveAlgorithm(const Sequence & sequence);
+            Index getOptimalLength() const noexcept;
+            SequenceSet getOptimalSubsequences() const noexcept;
+        private:
+            const Sequence sequence;
+            std::vector<std::set<Index>> B;
+            SequenceList solutions;
+            SequenceSet optimalSubsequences;
+            Index optimalLength;
+
+            void makeB() noexcept;
+            void makeSolutions();
+            void selectLongestSubsequences();
+            Sequence makeSubproblemSolution(const Index i);
+            static Sequence findLongest(const SequenceList & subsequences);
+    };
+
 }
 
 #endif
