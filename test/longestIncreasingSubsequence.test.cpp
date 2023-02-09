@@ -10,6 +10,7 @@ using LongestIncreasingSubsequence::Sequence;
 using LongestIncreasingSubsequence::SequenceSet;
 using LongestIncreasingSubsequence::SubsequenceGenerator;
 using LongestIncreasingSubsequence::NaiveAlgorithm;
+using LongestIncreasingSubsequence::RecursiveAlgorithm;
 
 struct SubsequenceTestCase {
     const std::string name;
@@ -88,9 +89,15 @@ TEST_CASE("LongestIncreasingSubsequence", "[LongestIncreasingSubsequence]") {
         {{2, 6, 10, 2, 6, 9, 8, 9, 2, 4, 9, 9, 10, 3, 9}, 5}, // opt solution: (2, 6, 8, 9, 10)
     };
     SECTION("naive algorithm") {
-    for (const auto & test_case : test_case_list) {
-        const NaiveAlgorithm solver(test_case.sequence);
-        CHECK(solver.getOptimalLength() == test_case.expectedLength);
+        for (const auto & test_case : test_case_list) {
+            const NaiveAlgorithm solver(test_case.sequence);
+            CHECK(solver.getOptimalLength() == test_case.expectedLength);
+        }
+    }
+    SECTION("recursive algorithm") {
+        for (const auto & test_case : test_case_list) {
+            const RecursiveAlgorithm solver(test_case.sequence);
+            CHECK(solver.getOptimalLength() == test_case.expectedLength);
         }
     }
 }
