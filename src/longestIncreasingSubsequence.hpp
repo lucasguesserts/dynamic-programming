@@ -3,9 +3,11 @@
 
 #include <vector>
 #include <set>
+#include <cstddef>
 
 namespace LongestIncreasingSubsequence {
 
+    using Index = std::size_t;
     using Element = double;
     using Sequence = std::vector<Element>;
     using SequenceIt = Sequence::const_iterator;
@@ -36,13 +38,13 @@ namespace LongestIncreasingSubsequence {
     class NaiveAlgorithm {
         public:
             NaiveAlgorithm(const Sequence & sequence);
-            unsigned getOptimalLength() const noexcept;
+            Index getOptimalLength() const noexcept;
             SequenceSet getOptimalSubsequences() const noexcept;
         private:
             const Sequence sequence;
             SequenceSet increasingSubsequences;
             SequenceSet optimalSubsequences;
-            unsigned optimalLength;
+            Index optimalLength;
 
             static bool isSequenceIncreasing(const Sequence & sequence);
             void selectIncreasingSubsequences();

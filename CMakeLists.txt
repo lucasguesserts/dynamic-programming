@@ -40,6 +40,7 @@ set(
     ${SRC}/sumOfTheRange/sumOfTheRangeNaive.cpp
     ${SRC}/longestIncreasingSubsequence/SubsequenceGenerator.cpp
     ${SRC}/longestIncreasingSubsequence/NaiveAlgorithm.cpp
+    ${SRC}/longestIncreasingSubsequence/RecursiveAlgorithm.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})

@@ -13,7 +13,7 @@ NaiveAlgorithm::NaiveAlgorithm(const Sequence & sequence)
 }
 
 
-unsigned NaiveAlgorithm::getOptimalLength() const noexcept {
+Index NaiveAlgorithm::getOptimalLength() const noexcept {
     return this->optimalLength;
 }
 
@@ -41,7 +41,7 @@ void NaiveAlgorithm::selectIncreasingSubsequences() {
 }
 
 void NaiveAlgorithm::selectLongestSubsequences() {
-    unsigned currentLongestLength = 0;
+    Index currentLongestLength = 0;
     SequenceSet currentLongestSubsequences;
     for (const auto & sequence : this->increasingSubsequences) {
         if (sequence.size() > currentLongestLength) {
