@@ -173,8 +173,10 @@ Define:
     \end{equation}
 \end{enumerate}
 
+The recursive and the dynamic programming algorithms differ in only one thing: the latter stores the intermediate values (memoization) so that no recomputation is made. The former recomputes the solutions of the subproblems every time they are needed.
+
 \begin{algorithm}[H]
-    \caption{Recursive}
+    \caption{Dynamic Programming / Recursive}
     \label{longest-increasing-subsequence:algorithm:recursive}
     \begin{algorithmic}[1]
         \Require{$n \in \N, v \in \R^n$}
@@ -183,4 +185,6 @@ Define:
         \State{\textbf{return} $s^*$}
     \end{algorithmic}
 \end{algorithm}
+
+The complexity of the Recursive algorithm is exponential while the Dynamic Programming algorithm is $\mathcal{O}(n^2)$ (for each element of the sequence, in the worst case scenario it visits all the previous values, so it is quadratic).
 
