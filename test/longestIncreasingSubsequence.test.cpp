@@ -82,12 +82,14 @@ TEST_CASE("subsequences") {
 
 TEST_CASE("LongestIncreasingSubsequence", "[LongestIncreasingSubsequence]") {
     const std::vector<LongestIncreasingSubsequenceTestCase> test_case_list = {
+        {{}, 0}, // empty sequence
         {{10, 3, 9, 4}, 2}, // opt solution: (3, 9)
-        // {{10, 5, 4, 3, 9, 6, 3, 8, 6, 6, 8, 9, 3, 5, 4}, 4}, // opt solution: (5, 6, 8, 9)
-        // {{3, 2, 3, 2, 6, 8, 8, 10, 6, 8, 10, 2, 4, 7, 7}, 5}, // opt solution: (2, 3, 6, 8, 10)
-        // {{7, 1, 7, 10, 4, 7, 3, 4, 5, 3, 4, 10, 6, 1, 6}, 5}, // opt solution: (1, 3, 4, 5, 10)
-        // {{6, 9, 1, 10, 8, 10, 1, 4, 5, 6, 7, 3, 5, 4, 10}, 6}, // opt solution: (1, 4, 5, 6, 7, 10)
-        // {{2, 6, 10, 2, 6, 9, 8, 9, 2, 4, 9, 9, 10, 3, 9}, 5}, // opt solution: (2, 6, 8, 9, 10)
+        {{0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15}, 6}, // (0, 2, 6, 9, 11, 15) // https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
+        {{10, 5, 4, 3, 9, 6, 3, 8, 6, 6, 8, 9, 3, 5, 4}, 4}, // opt solution: (5, 6, 8, 9)
+        {{3, 2, 3, 2, 6, 8, 8, 10, 6, 8, 10, 2, 4, 7, 7}, 5}, // opt solution: (2, 3, 6, 8, 10)
+        {{7, 1, 7, 10, 4, 7, 3, 4, 5, 3, 4, 10, 6, 1, 6}, 5}, // opt solution: (1, 3, 4, 5, 10)
+        {{6, 9, 1, 10, 8, 10, 1, 4, 5, 6, 7, 3, 5, 4, 10}, 6}, // opt solution: (1, 4, 5, 6, 7, 10)
+        {{2, 6, 10, 2, 6, 9, 8, 9, 2, 4, 9, 9, 10, 3, 9}, 5}, // opt solution: (2, 6, 8, 9, 10)
     };
     SECTION("naive algorithm") {
         for (const auto & test_case : test_case_list) {
