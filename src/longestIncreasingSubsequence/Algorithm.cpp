@@ -3,7 +3,10 @@
 namespace LongestIncreasingSubsequence {
 
 Algorithm::Algorithm(const Sequence & sequence)
-: sequence(sequence) {}
+: sequence(sequence),
+  optimalLength(0),
+  optimalSubsequences({})
+{}
 
 
 Index Algorithm::getOptimalLength() const noexcept {
