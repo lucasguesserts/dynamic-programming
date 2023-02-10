@@ -35,4 +35,11 @@ static void BM_longestIncreasingSubsequence_dynamicProgramming(benchmark::State&
 }
 BENCHMARK(BM_longestIncreasingSubsequence_dynamicProgramming);
 
+static void BM_longestIncreasingSubsequence_optimal(benchmark::State& state) {
+  for (auto _ : state) {
+      const LongestIncreasingSubsequence::OptimalAlgorithm solver(sequenceAlgorithms);
+  }
+}
+BENCHMARK(BM_longestIncreasingSubsequence_optimal);
+
 BENCHMARK_MAIN();
