@@ -1,0 +1,190 @@
+\newcommand{\SetDiff}[2]{#1 \backslash #2}
+
+\newcommand{\sequence}[2]{\ensuremath{\mathcal{S}\left( #1, #2 \right)}}
+\newcommand{\subsequenceSet}[1]{\ensuremath{\mathfrak{s}\left(#1\right)}}
+\newcommand{\subsequenceOf}[2]{\ensuremath{#1 \preceq #2}}
+\newcommand{\subsequenceDomain}[1]{\ensuremath{\mathfrak{d}\left(#1\right)}}
+\newcommand{\successorF}[1]{\ensuremath{\sigma_{#1}}}
+\newcommand{\successor}[2]{\ensuremath{\successorF{#2}\left( #1 \right)}}
+\newcommand{\length}[1]{\ensuremath{\mathfrak{L}\left(#1\right)}}
+\newcommand{\increasingSubsequence}[1]{\ensuremath{\mathcal{I}\left(#1\right)}}
+\newcommand{\ArgMax}[2]{\argmax\limits_{#1} \ #2}
+
+\chapter{Longest Increasing Subsequence}
+
+\section{Basic Definitions}
+
+\begin{defn}[Sequence]
+    A \textbf{Sequence} is a function $f$ from the subset $I \subseteq \N$ of the Natural Numbers into a Codomain $Cd$:
+    \begin{equation}
+        f: I \rightarrow Cd
+    \end{equation}
+    Denote by $\sequence{I}{Cd}$ the set of all sequences of $I$ into $Cd$:
+    \begin{equation}
+        \sequence{I}{Cd} = \Set{f: I \rightarrow Cd}
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Successor]
+    Let $I \subseteq \N$ be a set. The successor is a bijective function:
+    \begin{align}
+        \successorF{I}: \SetDiff{I}{\max(I)} & \rightarrow \SetDiff{I}{\min(I)} \\
+        i & \mapsto \min\SetOf{j \in I}{j > i}
+    \end{align}
+\end{defn}
+
+\begin{defn}[Increasing Sequence]
+    Given sets $I \subseteq \N$ and $Cd$, a sequence $f \in \sequence{I}{Cd}$ is said to be \textbf{increasing} when the values of the sequence increase, i.e.:
+    \begin{equation}
+        \mbox{$f$ is an increasing sequence }
+        \quad \leftrightarrow \quad
+        \forall i \left(
+            i \in \SetDiff{I}{\max(I)}
+            \rightarrow
+            f(i) \leqslant f(\successor{i}{I})
+        \right)
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Length of a Sequence]
+    Given sets $I \subseteq \N$ and $Cd$, and a sequence $f \in \sequence{I}{Cd}$, the length of the sequence $f$, denoted by $\length{f}$ is the cardinality (number of elements) of its domain $I$:
+    \begin{equation}
+        \length{f} = |I|
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Subsequence]
+    Let $f \in \sequence{I}{Cd}$ be a sequence from $I \subseteq \N$ into a Codomain $Cd$. A sequence $g \in \sequence{I'}{Cd'}$ is called a subsequence of $f$, and denoted by $\subsequenceOf{g}{f}$, when $I' \subseteq I$ and $Cd' \subseteq Cd$:
+    \begin{equation}
+        \forall f \left(
+            f \in \sequence{I}{Cd}
+            \rightarrow
+            \forall g \left(
+                g \in \sequence{I'}{Cd'}
+                \rightarrow
+                \left(
+                    \subsequenceOf{g}{f} \leftrightarrow \left(
+                        I' \subseteq I
+                        \land
+                        Cd' \subseteq Cd
+                    \right)
+                \right)
+            \right)
+        \right)
+    \end{equation}
+    Moreover, denote by:
+    \begin{enumerate}
+        \item $\subsequenceSet{f}$ the set of all subsequences of the sequence $f$;
+        \item $\subsequenceDomain{g} \subseteq I$ the domain of a subsequence $\subsequenceOf{g}{f}$;
+    \end{enumerate}
+\end{defn}
+
+\begin{theorem}
+    \label{theorem:equivalence-with-natural-sequence}
+    \todo{Write this theorem appropriately and prove it.}
+    Every sequence of $n$ elements can be indexed using $\Set{0, \dots, n-1}$.
+\end{theorem}
+
+\subsection{Examples}
+
+We will write the sequence using ordered pairs. For example, a sequence $v$ with $I = \Set{0, 1, 3, 10}$ and $Cd = \R$ could be:
+
+\begin{equation}
+    v = \Set{
+        \tuple{0, 4.7},
+        \tuple{1, -8.8},
+        \tuple{3, -5.4},
+        \tuple{10, 2.3}
+    }
+\end{equation}
+
+The elements of the sequence will be written using common function notation:
+
+\begin{align*}
+    v(0) & = 4.7 \\
+    v(1) & = -8.8 \\
+    v(3) & = -5.4 \\
+    v(10) & = 2.3
+\end{align*}
+
+In general, we are interested in sequences of $n$ elements for which $I = \Set{0, \dots, n-1}$. In such cases, we will write the sequence simply as a tuple:
+
+\begin{align}
+    \nonumber
+    v
+    & = \Set{
+        \tuple{0, 4.7},
+        \tuple{1, -8.8},
+        \tuple{2, -5.4},
+        \tuple{3, 2.3}
+        }
+    \\
+    & \equiv \tuple{4.7, -8.8, -5.4, 2.3}
+\end{align}
+
+\section{Problem Definition}
+
+\subsection{Input}
+
+\begin{enumerate}
+    \item a natural number $n \in \N$;
+    \item A sequence $v \in \sequence{\Set{0, \dots, n-1}}{\R}$\footnote{Notice that here we are indexing using the naturals $\Set{0, \dots, n-1}$ and not a general $I \subseteq \N$. This is because of the Theorem \ref{theorem:equivalence-with-natural-sequence}.}
+\end{enumerate}
+
+\subsection{Output}
+
+Define $\increasingSubsequence{v} = \SetOf{s \in \subsequenceSet{v}}{s \mbox{ is increasing}}$ the set of all increasing subsequences of $v$. An output is any element $s \in \increasingSubsequence{v}$.
+
+\subsection{Goal}
+
+Find the longest increasing subsequence of $v$:
+
+\begin{equation}
+    s^* = \ArgMax{s \in \increasingSubsequence{v}}{\length{s}}
+\end{equation}
+
+\section{Naive Algorithm}
+
+\begin{algorithm}[H]
+    \caption{Naive}
+    \label{longest-increasing-subsequence:algorithm:naive}
+    \begin{algorithmic}[1]
+        \Require{$n \in \N, v \in \R^n$}
+        \State{$S \gets \mbox{generate\_all\_subsequences}(v)$}
+        \State{$S' \gets \mbox{filter}(\mbox{is\_increasing\_sequence}, s)$}
+        \State{$s^* \gets \ArgMax{s \in S'}{\length{s}}$}
+        \State{\textbf{return} $s^*$}
+    \end{algorithmic}
+\end{algorithm}
+
+\section{Recursive Algorithm}
+
+Define:
+
+\begin{enumerate}
+    \item $B(i)$: the set of indices lower than $i$ for which the correspondent element in the sequence is smaller than $v(i)$. This is going to be used to compose the subproblems.
+    \begin{equation}
+        B(i, v) = \SetOf{j \in \subsequenceDomain{v}}{j < i \ \land\  v(j) < v(i)}
+    \end{equation}
+    \item $L(i)$: the longest increasing subsequence ending at the index $i$, so that its last element is $v(i)$. It can be defined recursively by the Equation \ref{longest-increasing-subsequence:algorithm:subproblem}. In it, $\oplus$ is the concatenation of two sequences and when $B = \varnothing$, the output of the $\ArgMax{}{}$ is an empty sequence.
+    \begin{equation}
+        \label{longest-increasing-subsequence:algorithm:subproblem}
+        L(i, v) = \ArgMax{j \in B(i, v)}{\length{L(j)}} \oplus \tuple{v(i)}
+    \end{equation}
+\end{enumerate}
+
+The recursive and the dynamic programming algorithms differ in only one thing: the latter stores the intermediate values (memoization) so that no recomputation is made. The former recomputes the solutions of the subproblems every time they are needed.
+
+\begin{algorithm}[H]
+    \caption{Dynamic Programming / Recursive}
+    \label{longest-increasing-subsequence:algorithm:recursive}
+    \begin{algorithmic}[1]
+        \Require{$n \in \N, v \in \R^n$}
+        \State{$S \gets \tupleOf{L(i)}{i \in \subsequenceDomain{v}}$}
+        \State{$s^* \gets \ArgMax{s \in S}{\length{s}}$}
+        \State{\textbf{return} $s^*$}
+    \end{algorithmic}
+\end{algorithm}
+
+The complexity of the Recursive algorithm is exponential while the Dynamic Programming algorithm is $\mathcal{O}(n^2)$ (for each element of the sequence, in the worst case scenario it visits all the previous values, so it is quadratic).
+
