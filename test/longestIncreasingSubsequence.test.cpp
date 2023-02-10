@@ -12,6 +12,7 @@ using LongestIncreasingSubsequence::SubsequenceGenerator;
 using LongestIncreasingSubsequence::NaiveAlgorithm;
 using LongestIncreasingSubsequence::RecursiveAlgorithm;
 using LongestIncreasingSubsequence::DynamicProgrammingAlgorithm;
+using LongestIncreasingSubsequence::OptimalAlgorithm;
 
 struct SubsequenceTestCase {
     const std::string name;
@@ -106,6 +107,12 @@ TEST_CASE("LongestIncreasingSubsequence", "[LongestIncreasingSubsequence]") {
     SECTION("dynamic programming algorithm") {
         for (const auto & test_case : test_case_list) {
             const DynamicProgrammingAlgorithm solver(test_case.sequence);
+            CHECK(solver.getOptimalLength() == test_case.expectedLength);
+        }
+    }
+    SECTION("optimal algorithm") {
+        for (const auto & test_case : test_case_list) {
+            const OptimalAlgorithm solver(test_case.sequence);
             CHECK(solver.getOptimalLength() == test_case.expectedLength);
         }
     }
