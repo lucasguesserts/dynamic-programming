@@ -6,19 +6,10 @@
 namespace LongestIncreasingSubsequence {
 
 NaiveAlgorithm::NaiveAlgorithm(const Sequence & sequence)
-: sequence(sequence) {
+: Algorithm(sequence) {
     this->selectIncreasingSubsequences();
     this->selectLongestSubsequences();
     return;
-}
-
-
-Index NaiveAlgorithm::getOptimalLength() const noexcept {
-    return this->optimalLength;
-}
-
-SequenceSet NaiveAlgorithm::getOptimalSubsequences() const noexcept {
-    return this->optimalSubsequences;
 }
 
 bool NaiveAlgorithm::isSequenceIncreasing(const Sequence & sequence) {

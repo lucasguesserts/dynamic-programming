@@ -3,20 +3,11 @@
 namespace LongestIncreasingSubsequence {
 
 RecursiveAlgorithm::RecursiveAlgorithm(const Sequence & sequence)
-: sequence(sequence) {
+: Algorithm(sequence) {
     this->makeB();
     this->makeSolutions();
     this->selectLongestSubsequences();
     return;
-}
-
-
-Index RecursiveAlgorithm::getOptimalLength() const noexcept {
-    return this->optimalLength;
-}
-
-SequenceSet RecursiveAlgorithm::getOptimalSubsequences() const noexcept {
-    return this->optimalSubsequences;
 }
 
 void RecursiveAlgorithm::makeB() noexcept {

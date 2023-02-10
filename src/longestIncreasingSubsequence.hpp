@@ -35,33 +35,36 @@ namespace LongestIncreasingSubsequence {
             static void expandSubsequenceList(SequenceList & toExpand, const SequenceList & expansion);
     };
 
-    class NaiveAlgorithm {
+    class Algorithm {
         public:
-            NaiveAlgorithm(const Sequence & sequence);
+            Algorithm(const Sequence & sequence);
             Index getOptimalLength() const noexcept;
             SequenceSet getOptimalSubsequences() const noexcept;
-        private:
+        protected:
             const Sequence sequence;
-            SequenceSet increasingSubsequences;
             SequenceSet optimalSubsequences;
             Index optimalLength;
+
+            virtual ~Algorithm() {};
+    };
+
+    class NaiveAlgorithm: public Algorithm {
+        public:
+            NaiveAlgorithm(const Sequence & sequence);
+        private:
+            SequenceSet increasingSubsequences;
 
             static bool isSequenceIncreasing(const Sequence & sequence);
             void selectIncreasingSubsequences();
             void selectLongestSubsequences();
     };
 
-    class RecursiveAlgorithm {
+    class RecursiveAlgorithm: public Algorithm {
         public:
             RecursiveAlgorithm(const Sequence & sequence);
-            Index getOptimalLength() const noexcept;
-            SequenceSet getOptimalSubsequences() const noexcept;
-        private:
-            const Sequence sequence;
+        protected:
             std::vector<std::set<Index>> B;
             SequenceList solutions;
-            SequenceSet optimalSubsequences;
-            Index optimalLength;
 
             void makeB() noexcept;
             void makeSolutions();
@@ -70,23 +73,11 @@ namespace LongestIncreasingSubsequence {
             static Sequence findLongest(const SequenceList & subsequences);
     };
 
-    class DynamicProgrammingAlgorithm {
+    class DynamicProgrammingAlgorithm: public RecursiveAlgorithm {
         public:
             DynamicProgrammingAlgorithm(const Sequence & sequence);
-            Index getOptimalLength() const noexcept;
-            SequenceSet getOptimalSubsequences() const noexcept;
-        private:
-            const Sequence sequence;
-            std::vector<std::set<Index>> B;
-            SequenceList solutions;
-            SequenceSet optimalSubsequences;
-            Index optimalLength;
-
-            void makeB() noexcept;
-            void makeSolutions();
-            void selectLongestSubsequences();
+        protected:
             Sequence makeSubproblemSolution(const Index i);
-            static Sequence findLongest(const std::vector<Sequence> & subsequences);
     };
 
 }

@@ -39,6 +39,7 @@ set(
     ${SRC}/shareMarket/shareMarketSimple.cpp
     ${SRC}/sumOfTheRange/sumOfTheRangeNaive.cpp
     ${SRC}/longestIncreasingSubsequence/SubsequenceGenerator.cpp
+    ${SRC}/longestIncreasingSubsequence/Algorithm.cpp
     ${SRC}/longestIncreasingSubsequence/NaiveAlgorithm.cpp
     ${SRC}/longestIncreasingSubsequence/RecursiveAlgorithm.cpp
     ${SRC}/longestIncreasingSubsequence/DynamicProgrammingAlgorithm.cpp
