@@ -26,7 +26,7 @@ void OptimalAlgorithm::expand(const Element & element) {
     }
     bool isSmallest = true;
     bool isLargest;
-    SequenceL::const_iterator it;
+    SequenceList::const_iterator it;
     const auto & largestElement = this->activeLists.front().back();
     if (element > largestElement) {
         isLargest = true;

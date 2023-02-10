@@ -1,9 +1,9 @@
 #ifndef LONGEST_INCREASING_SUBSEQUENCE_HPP_
 #define LONGEST_INCREASING_SUBSEQUENCE_HPP_
 
-#include <vector>
-#include <set>
 #include <list>
+#include <set>
+#include <vector>
 #include <cstddef>
 
 namespace LongestIncreasingSubsequence {
@@ -12,9 +12,9 @@ namespace LongestIncreasingSubsequence {
     using Element = double;
     using Sequence = std::vector<Element>;
     using SequenceIt = Sequence::const_iterator;
-    using SequenceList = std::vector<Sequence>;
+    using SequenceVector = std::vector<Sequence>;
     using SequenceSet = std::set<Sequence>;
-    using SequenceL = std::list<Sequence>;
+    using SequenceList = std::list<Sequence>;
 
     class SubsequenceGenerator {
         public:
@@ -24,7 +24,7 @@ namespace LongestIncreasingSubsequence {
             const Sequence sequence;
             SequenceSet subsequences;
 
-            SequenceList recursiveGenerator(
+            SequenceVector recursiveGenerator(
                 const SequenceIt begin,
                 const SequenceIt end
             );
@@ -32,9 +32,9 @@ namespace LongestIncreasingSubsequence {
                 const SequenceIt begin,
                 const SequenceIt end
             ) noexcept;
-            static SequenceList generateFromListOfOneElement(const SequenceIt begin) noexcept;
-            static SequenceList appendElementToSubsequences(const Element element, const SequenceList & subsequences);
-            static void expandSubsequenceList(SequenceList & toExpand, const SequenceList & expansion);
+            static SequenceVector generateFromListOfOneElement(const SequenceIt begin) noexcept;
+            static SequenceVector appendElementToSubsequences(const Element element, const SequenceVector & subsequences);
+            static void expandSubsequenceList(SequenceVector & toExpand, const SequenceVector & expansion);
     };
 
     class Algorithm {
@@ -66,13 +66,13 @@ namespace LongestIncreasingSubsequence {
             RecursiveAlgorithm(const Sequence & sequence);
         protected:
             std::vector<std::set<Index>> B;
-            SequenceList solutions;
+            SequenceVector solutions;
 
             void makeB() noexcept;
             void makeSolutions();
             void selectLongestSubsequences();
             Sequence makeSubproblemSolution(const Index i);
-            static Sequence findLongest(const SequenceList & subsequences);
+            static Sequence findLongest(const SequenceVector & subsequences);
     };
 
     class DynamicProgrammingAlgorithm: public RecursiveAlgorithm {
@@ -86,7 +86,7 @@ namespace LongestIncreasingSubsequence {
         public:
             OptimalAlgorithm(const Sequence & sequence);
         private:
-            SequenceL activeLists;
+            SequenceList activeLists;
 
             void expand(const Element & element);
     };

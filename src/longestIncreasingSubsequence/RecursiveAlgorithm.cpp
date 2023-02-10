@@ -47,7 +47,7 @@ void RecursiveAlgorithm::selectLongestSubsequences() {
 }
 
 Sequence RecursiveAlgorithm::makeSubproblemSolution(const Index i) {
-    SequenceList subproblemSolutions;
+    SequenceVector subproblemSolutions;
     for (const auto & j : this->B[i]) {
         subproblemSolutions.push_back(this->makeSubproblemSolution(j));
     }
@@ -56,11 +56,11 @@ Sequence RecursiveAlgorithm::makeSubproblemSolution(const Index i) {
     return solution;
 }
 
-Sequence RecursiveAlgorithm::findLongest(const SequenceList & subsequences) {
+Sequence RecursiveAlgorithm::findLongest(const SequenceVector & subsequences) {
     if (subsequences.empty()) {
         return {};
     }
-    SequenceList::const_iterator longestSequence = subsequences.cbegin();
+    SequenceVector::const_iterator longestSequence = subsequences.cbegin();
     for (auto it = subsequences.cbegin(); it != subsequences.cend(); ++it) {
         if ((*it).size() > (*longestSequence).size()) {
             longestSequence = it;
