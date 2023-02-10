@@ -7,6 +7,9 @@ namespace LongestIncreasingSubsequence {
 
 NaiveAlgorithm::NaiveAlgorithm(const Sequence & sequence)
 : Algorithm(sequence) {
+    if (sequence.empty()) {
+        return;
+    }
     this->selectIncreasingSubsequences();
     this->selectLongestSubsequences();
     return;
