@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <set>
+#include <list>
 #include <cstddef>
 
 namespace LongestIncreasingSubsequence {
@@ -13,6 +14,7 @@ namespace LongestIncreasingSubsequence {
     using SequenceIt = Sequence::const_iterator;
     using SequenceList = std::vector<Sequence>;
     using SequenceSet = std::set<Sequence>;
+    using SequenceL = std::list<Sequence>;
 
     class SubsequenceGenerator {
         public:
@@ -42,8 +44,8 @@ namespace LongestIncreasingSubsequence {
             SequenceSet getOptimalSubsequences() const noexcept;
         protected:
             const Sequence sequence;
-            SequenceSet optimalSubsequences;
             Index optimalLength;
+            SequenceSet optimalSubsequences;
 
             virtual ~Algorithm() {};
     };
@@ -78,6 +80,15 @@ namespace LongestIncreasingSubsequence {
             DynamicProgrammingAlgorithm(const Sequence & sequence);
         protected:
             Sequence makeSubproblemSolution(const Index i);
+    };
+
+    class OptimalAlgorithm: public Algorithm {
+        public:
+            OptimalAlgorithm(const Sequence & sequence);
+        private:
+            SequenceL activeLists;
+
+            void expand(const Element & element);
     };
 
 }
