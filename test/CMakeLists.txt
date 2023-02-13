@@ -15,6 +15,7 @@ set(
     shareMarket.test.cpp
     sumOfTheRange.test.cpp
     longestIncreasingSubsequence.test.cpp
+    dominoArrangements.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
