@@ -6,9 +6,9 @@ namespace dominoArrangements {
 
 Grid::Grid(const Index size)
 : size(size) {
-    for(auto & v : this->positionOccupied) {
-        v.resize(this->size);
-        std::fill(v.begin(), v.end(), false);
+    for(auto & vectorOfOccupation : this->positionOccupied) {
+        vectorOfOccupation.resize(this->size);
+        std::fill(vectorOfOccupation.begin(), vectorOfOccupation.end(), false);
     }
     return;
 }
@@ -21,10 +21,10 @@ void Grid::addDomino(const Domino & domino) {
     for (const auto & position : domino.getOccupiedPositions()) {
         this->checkPosition(position);
         if (this->positionOccupied[position.row][position.column]) {
-            throw std::runtime_error("position " + position.to_string() + " already occupied");
+            throw DominoArrangementError("position " + position.to_string() + " already occupied");
         }
     }
-    this->pieces.push_back(domino);
+    this->dominoPieces.push_back(domino);
     for (const auto & position : domino.getOccupiedPositions()) {
         this->positionOccupied[position.row][position.column] = true;
     }
@@ -33,78 +33,68 @@ void Grid::addDomino(const Domino & domino) {
 
 void Grid::checkPosition(const Position & position) {
     if (position.column >= this->size) {
-        throw std::runtime_error("invalid column position. Got " + std::to_string(position.column) + " but expected at most " + std::to_string(this->size-1));
+        throw DominoArrangementError("invalid column position. Got " + std::to_string(position.column) + " but expected at most " + std::to_string(this->size-1));
     }
-    if (position.row >= this->rowsLimit) {
-        throw std::runtime_error("invalid row position. Got " + std::to_string(position.row) + " but expected at most " + std::to_string(this->rowsLimit-1));
+    if (position.row >= this->rowLimit) {
+        throw DominoArrangementError("invalid row position. Got " + std::to_string(position.row) + " but expected at most " + std::to_string(this->rowLimit-1));
     }
     return;
 }
 
-void Grid::addDominoList(const std::vector<Domino> list) {
-    for (const auto & d : list) {
-        this->addDomino(d);
+void Grid::addDominoList(const DominoVector dominoVector) {
+    for (const auto & domino : dominoVector) {
+        this->addDomino(domino);
     }
     return;
 }
 
 char Grid::getNewChar() {
-    static size_t i = 0;
+    static size_t currentIndex = 0;
     static std::array characterArray = {'a', 'b', 'c', 'd', 'e'};
-    const auto ret = characterArray[i];
-    i = (i  + 1) % characterArray.size();
+    const auto ret = characterArray[currentIndex];
+    currentIndex = (currentIndex  + 1) % characterArray.size();
     return ret;
 }
 
 std::string Grid::to_string() const {
     std::string s;
-    std::size_t r;
+    #define ADD_HORIZONTAL_LINE for (std::size_t i = 0 ; i < this->size; ++i) { s += "--"; } s += "-"; s += "\n";
     // print domino pieces
     s += "Domino pieces: {\n";
-    for (const auto & d : this->pieces) {
+    for (const auto & d : this->dominoPieces) {
         s += d.to_string() + ", ";
     }
     s += "}\n";
     // print grid and occupied positions
-    for (std::size_t i = 0 ; i < this->size; ++i) {
-        s += "--";
-    }
-    s += "-";
-    s += "\n";
+    ADD_HORIZONTAL_LINE
     s += "|";
     std::array<std::vector<char>,2> charMatrix;
-    for (auto & m : charMatrix) {
-        m.resize(this->size);
-        std::fill(m.begin(), m.end(), ' ');
+    for (auto & charVector : charMatrix) {
+        charVector.resize(this->size);
+        std::fill(charVector.begin(), charVector.end(), ' ');
     }
-    for (const auto & d : this->pieces) {
+    for (const auto & domino : this->dominoPieces) {
         const auto c = getNewChar();
-        for (const auto & p : d.getOccupiedPositions()) {
-            charMatrix[p.row][p.column] = c;
+        for (const auto & position : domino.getOccupiedPositions()) {
+            charMatrix[position.row][position.column] = c;
         }
     }
-    r = 0;
-    for (std::size_t c = 0 ; c < this->size; ++c) {
-        s += charMatrix[r][c];
+    std::size_t row;
+    row = 0;
+    for (std::size_t column = 0 ; column < this->size; ++column) {
+        s += charMatrix[row][column];
         s += "|";
     }
     s += "\n";
-    for (std::size_t i = 0 ; i < this->size; ++i) {
-        s += "--";
-    }
-    s += "-";
-    s += "\n";
+    ADD_HORIZONTAL_LINE
     s += "|";
-    r = 1;
-    for (std::size_t c = 0 ; c < this->size; ++c) {
-        s += charMatrix[r][c];
+    row = 1;
+    for (std::size_t column = 0 ; column < this->size; ++column) {
+        s += charMatrix[row][column];
         s += "|";
     }
     s += "\n";
-    for (std::size_t i = 0 ; i < this->size; ++i) {
-        s += "--";
-    }
-    s += "-";
+    ADD_HORIZONTAL_LINE
     return s;
 }
 

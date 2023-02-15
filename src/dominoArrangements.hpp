@@ -30,16 +30,24 @@ namespace dominoArrangements {
         std::array<Position,2> getOccupiedPositions() const;
     };
 
+    using DominoVector = std::vector<Domino>;
+    using DominoMatrix = std::vector<std::vector<Domino>>;
+
+    class DominoArrangementError: public std::runtime_error {
+        public:
+            DominoArrangementError(std::string s);
+    };
+
     class Grid {
         public:
             Grid(const Index size);
             Index getSize() const;
-            void addDominoList(const std::vector<Domino> list);
+            void addDominoList(const DominoVector list);
             std::string to_string() const;
         private:
-            const Index rowsLimit = 2;
+            const Index rowLimit = 2;
             const Index size;
-            std::vector<Domino> pieces;
+            DominoVector dominoPieces;
             std::array<std::vector<bool>, 2> positionOccupied;
 
             void addDomino(const Domino & domino);
@@ -47,22 +55,20 @@ namespace dominoArrangements {
             static char getNewChar();
     };
 
-    using DominoVector = std::vector<Domino>;
-    using DominoMatrix = std::vector<std::vector<Domino>>;
-
     class RecursiveAlgorithm {
         public:
             const Index size;
-            std::vector<Grid> grids;
+            std::vector<Grid> solvedGrids;
 
             RecursiveAlgorithm(const Index size);
             Index getNumberOfSolutions();
-            DominoVector oneVertical(const Index column);
-            DominoVector twoVertical(const Index column);
-            DominoVector twoHorizontal(const Index column);
-            DominoMatrix solutionRecursion(const Index size);
-            DominoMatrix join(const DominoMatrix & lhs, const DominoVector & rhs);
             std::string to_string() const;
+        private:
+            DominoVector oneVerticalDominoAt(const Index column);
+            DominoVector twoVerticalDominosAt(const Index column);
+            DominoVector twoHorizontalDominosAt(const Index column);
+            DominoMatrix solve(const Index size);
+            DominoMatrix join(const DominoMatrix & lhs, const DominoVector & rhs);
     };
 
 }

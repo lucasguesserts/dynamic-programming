@@ -49,6 +49,7 @@ set(
     ${SRC}/dominoArrangements/Domino.cpp
     ${SRC}/dominoArrangements/Grid.cpp
     ${SRC}/dominoArrangements/RecursiveAlgorithm.cpp
+    ${SRC}/dominoArrangements/DominoArrangementError.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})

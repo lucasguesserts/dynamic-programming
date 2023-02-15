@@ -1,24 +1,17 @@
 #include <catch2/catch_test_macros.hpp>
 
-// #include <iostream>
-// #include <string>
+// #define ENABLE_PRINT_TESTS
+
 #include <vector>
 
 #include "dominoArrangements.hpp"
-
 using namespace dominoArrangements;
-// using std::cout, std::endl;
 
-TEST_CASE("add domino to grid", "[dominoArrangements]") {
-    Grid grid(5);
-    // cout << "===== basic cases =====" << endl;
-    grid.addDominoList({
-        {{0, 0}, Orientation::HORIZONTAL},
-        {{0, 3}, Orientation::VERTICAL}
-    });
-    // cout << std::string(grid) << endl;
-    // cout << "==========" << endl << endl;
-}
+#ifdef ENABLE_PRINT_TESTS
+#include <iostream>
+#include <string>
+using std::cout, std::endl;
+#endif
 
 struct NumberOfSolutionsTestCase {
     const Index size;
@@ -40,9 +33,22 @@ TEST_CASE("number of solutions", "[dominoArrangements]") {
     }
 }
 
-// TEST_CASE("print solutions", "[dominoArrangements]") {
-//     cout << "===== recursive solution =====" << endl;
-//     RecursiveAlgorithm solver(4);
-//     cout << std::string(solver);
-//     cout << "==========" << endl << endl;
-// }
+#ifdef ENABLE_PRINT_TESTS
+TEST_CASE("print grid", "[dominoArrangements]") {
+    Grid grid(5);
+    cout << "===== basic cases =====" << endl;
+    grid.addDominoList({
+        {{0, 0}, Orientation::HORIZONTAL},
+        {{0, 3}, Orientation::VERTICAL}
+    });
+    cout << grid.to_string() << endl;
+    cout << "==========" << endl << endl;
+}
+
+TEST_CASE("print solutions of algorithm", "[dominoArrangements]") {
+    cout << "===== recursive solution =====" << endl;
+    RecursiveAlgorithm solver(4);
+    cout << solver.to_string();
+    cout << "==========" << endl << endl;
+}
+#endif
