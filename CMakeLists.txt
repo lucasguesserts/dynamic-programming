@@ -44,6 +44,11 @@ set(
     ${SRC}/longestIncreasingSubsequence/RecursiveAlgorithm.cpp
     ${SRC}/longestIncreasingSubsequence/DynamicProgrammingAlgorithm.cpp
     ${SRC}/longestIncreasingSubsequence/OptimalAlgorithm.cpp
+    ${SRC}/dominoArrangements/Position.cpp
+    ${SRC}/dominoArrangements/Orientation.cpp
+    ${SRC}/dominoArrangements/Domino.cpp
+    ${SRC}/dominoArrangements/Grid.cpp
+    ${SRC}/dominoArrangements/RecursiveAlgorithm.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
