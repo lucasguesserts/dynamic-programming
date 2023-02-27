@@ -1,0 +1,58 @@
+\newcommand{\apply}[2]{\ensuremath{#1 \left( #2 \right)}}
+\newcommand{\domain}{\ensuremath{\mathbb{D}}}
+\newcommand{\domainf}[1]{\apply{\domain}{#1}}
+\newcommand{\stepLimit}{\ensuremath{l}}
+\newcommand{\fees}{\ensuremath{f}}
+\newcommand{\fee}[1]{\apply{\fees}{#1}}
+\newcommand{\nSteps}{\ensuremath{n}}
+\newcommand{\oneN}{\ensuremath{\N_{>0}}}
+\newcommand{\solution}{\ensuremath{s}}
+\renewcommand{\length}[1]{\ensuremath{\left| #1 \right|}}
+\newcommand{\allSequences}[2]{\ensuremath{\apply{\mathcal{S}}{#1, #2}}}
+\newcommand{\cost}[2]{\ensuremath{\apply{\sigma_{#1}}{#2}}}
+
+\chapter{Stairway to Heaven 2}
+
+\section{Basic Definitions}
+
+\begin{defn}[Step Domain]
+    Given $\stepLimit \in \oneN$, define the Step Domain $\domainf{\stepLimit}$ as:
+    \begin{equation}
+        \domainf{l} = \Set{1, \dots, \stepLimit}
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Sequence Set]
+    Given $\nSteps \in \oneN$ and $\stepLimit \in \oneN$, the set $\allSequences{\nSteps}{\stepLimit}$, known as Sequence Set, of all sequences that lead to heaven with steps in the Step Domain $\domainf{\stepLimit}$, is defined as:
+    \begin{equation}
+        \allSequences{\nSteps}{\stepLimit}
+        =
+        \SetOf
+            {x \in \domainf{\stepLimit}^k}
+            {\Sum{i = 0}{\length{x}-1}{x(i)} = \nSteps}
+    \end{equation}
+    where $\length{x}$ is the size of the sequence $x$.
+\end{defn}
+
+\begin{defn}[Sequence Cost]
+    Given $\nSteps \in \oneN$, $\stepLimit \in \oneN$, $\solution \in \allSequences{\nSteps}{\stepLimit}$, and $\fees \in \R^n$, the cost $\cost{\fees}{\solution}$ of the sequence $\solution$ with the fees $\fees$ is defined as:
+    \begin{equation}
+        \cost{\fees}{\solution} =
+        \fee{0}
+        +
+        \Sum{i = 1}{\length{\solution} - 1}{\fee{\Sum{j=0}{i-1}{\solution(j)}}}
+    \end{equation}
+\end{defn}
+
+\section{Problem Definition}
+
+\begin{enumerate}
+    \item Input:
+    \begin{enumerate}
+        \item the number of steps: a natural number $\nSteps \in \oneN$;
+        \item the largest step: a natural number $\stepLimit \in \oneN$;
+        \item the fees of each step: a vector of values $\fees \in \R^{\nSteps}$;
+    \end{enumerate}
+    \item Output: a sequence $\solution \in \allSequences{\nSteps}{\stepLimit}$;
+    \item Goal: Minimize the cost of the sequence $\cost{\fees}{\solution}$;
+\end{enumerate}
