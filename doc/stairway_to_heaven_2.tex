@@ -10,6 +10,7 @@
 \renewcommand{\length}[1]{\ensuremath{\left| #1 \right|}}
 \newcommand{\allSequences}[2]{\ensuremath{\apply{\mathcal{S}}{#1, #2}}}
 \newcommand{\cost}[2]{\ensuremath{\apply{\sigma_{#1}}{#2}}}
+\newcommand{\ArgMin}[2]{\argmin\limits_{#1} \ #2}
 
 \chapter{Stairway to Heaven 2}
 
@@ -29,7 +30,10 @@
         =
         \SetOf
             {x \in \domainf{\stepLimit}^k}
-            {\Sum{i = 0}{\length{x}-1}{x(i)} = \nSteps}
+            {
+                k \leqslant \nSteps \land
+                \Sum{i = 0}{\length{x}-1}{x(i)} = \nSteps
+            }
     \end{equation}
     where $\length{x}$ is the size of the sequence $x$.
 \end{defn}
@@ -56,3 +60,18 @@
     \item Output: a sequence $\solution \in \allSequences{\nSteps}{\stepLimit}$;
     \item Goal: Minimize the cost of the sequence $\cost{\fees}{\solution}$;
 \end{enumerate}
+
+\section{Naive Algorithm}
+
+The algorithm simply generates all sequences and find the one with the lowest cost by checking everyone.
+
+\begin{algorithm}[H]
+    \caption{Naive}
+    \label{stairway-to-heaven-2:algorithm:naive}
+    \begin{algorithmic}[1]
+        \Require{$\nSteps \in \oneN, \stepLimit \in \oneN, \fees \in \R^\nSteps$}
+        \State{$S \gets \mbox{generate\_sequences}(\nSteps, \stepLimit)$}
+        \State{$s^* \gets \ArgMin{s \in S}{\cost{\fees}{s}}$}
+        \State{\textbf{return} $s^*$}
+    \end{algorithmic}
+\end{algorithm}
