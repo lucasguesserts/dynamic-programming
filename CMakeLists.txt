@@ -50,6 +50,7 @@ set(
     ${SRC}/dominoArrangements/Grid.cpp
     ${SRC}/dominoArrangements/RecursiveAlgorithm.cpp
     ${SRC}/dominoArrangements/DominoArrangementError.cpp
+    ${SRC}/stairwayToHeaven2/Algorithm.cpp
     ${SRC}/stairwayToHeaven2/NaiveAlgorithm.cpp
 )
 

@@ -2,6 +2,8 @@
 
 #include "stairwayToHeaven2.hpp"
 
+#include <memory>
+
 using namespace StairwayToHeaven2;
 
 TEST_CASE("example 1", "[stairwayToHeaven2]") {
@@ -22,7 +24,8 @@ TEST_CASE("example 1", "[stairwayToHeaven2]") {
     const Size step_limit = 3;
     const Fees fees = {2, 3, 4};
     const Sequence expected = {3};
-    CHECK(naiveAlgorithm(number_of_steps, step_limit, fees) == expected);
+    const AlgorithmPtr algorithm = std::make_unique<NaiveAlgorithm>();
+    CHECK(algorithm->solve(number_of_steps, step_limit, fees) == expected);
 }
 
 TEST_CASE("example 2", "[stairwayToHeaven2]") {
@@ -46,7 +49,8 @@ TEST_CASE("example 2", "[stairwayToHeaven2]") {
     const Size step_limit = 3;
     const Fees fees = {1, 1, 1, 3};
     const Sequence expected = {1, 3};
-    CHECK(naiveAlgorithm(number_of_steps, step_limit, fees) == expected);
+    const AlgorithmPtr algorithm = std::make_unique<NaiveAlgorithm>();
+    CHECK(algorithm->solve(number_of_steps, step_limit, fees) == expected);
 }
 
 TEST_CASE("example 3", "[stairwayToHeaven2]") {
@@ -87,5 +91,6 @@ TEST_CASE("example 3", "[stairwayToHeaven2]") {
     const Size step_limit = 3;
     const Fees fees = {4, 3, 6, 9, 5, 1};
     const Sequence expected = {2, 3, 1};
-    CHECK(naiveAlgorithm(number_of_steps, step_limit, fees) == expected);
+    const AlgorithmPtr algorithm = std::make_unique<NaiveAlgorithm>();
+    CHECK(algorithm->solve(number_of_steps, step_limit, fees) == expected);
 }

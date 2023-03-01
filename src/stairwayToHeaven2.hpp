@@ -3,16 +3,31 @@
 
 #include <cstddef>
 #include <vector>
+#include <memory>
 
 namespace StairwayToHeaven2 {
 
     using Size = std::size_t;
     using Step = std::size_t;
-    using Fees = std::vector<double>;
+    using Fee = double;
+    using Fees = std::vector<Fee>;
     using Sequence = std::vector<Step>;
     using SequenceVector = std::vector<Sequence>;
 
-    Sequence naiveAlgorithm(const Size number_of_steps, const Size step_limit, const Fees & fees);
+    class Algorithm {
+        public:
+            virtual Sequence solve(const Size number_of_steps, const Size step_limit, const Fees & fees) const = 0;
+        protected:
+            void check_input(const Size number_of_steps, const Size step_limit, const Fees & fees) const;
+    };
+
+    using AlgorithmPtr = std::unique_ptr<Algorithm>;
+
+    class NaiveAlgorithm: public Algorithm {
+        public:
+            virtual Sequence solve(const Size number_of_steps, const Size step_limit, const Fees & fees) const final;
+    };
+
 
 }
 
