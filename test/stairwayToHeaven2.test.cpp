@@ -1,10 +1,131 @@
 #include <catch2/catch_test_macros.hpp>
 
+#define private public
+
 #include "stairwayToHeaven2.hpp"
 
 #include <memory>
 
 using namespace StairwayToHeaven2;
+
+TEST_CASE("generate all sequences", "[stairwayToHeaven2]") {
+    NaiveAlgorithm algorithm;
+    SECTION("case 1") {
+        const Size number_of_steps = 1;
+        const Size step_limit = 1;
+        const SequenceVector expected = {
+            {}, // size 0
+            {1}, // size 1
+        };
+        const auto all_sequences_generated = algorithm.generate_all_sequences(number_of_steps, step_limit);
+        CHECK(all_sequences_generated == expected);
+    }
+    SECTION("case 2") {
+        const Size number_of_steps = 3;
+        const Size step_limit = 1;
+        const SequenceVector expected = {
+            {}, // size 0
+            {1}, // size 1
+            {1, 1}, // size 2
+            {1, 1, 1}, // size 3
+        };
+        const auto all_sequences_generated = algorithm.generate_all_sequences(number_of_steps, step_limit);
+        CHECK(all_sequences_generated == expected);
+    }
+    SECTION("case 3") {
+        const Size number_of_steps = 3;
+        const Size step_limit = 3;
+        const SequenceVector expected = {
+            {}, // size 0
+            {1}, {2}, {3}, // size 1
+            {1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}, // size 2
+            {1, 1, 1}, {1, 1, 2}, {1, 1, 3},
+                {1, 2, 1}, {1, 2, 2}, {1, 2, 3},
+                {1, 3, 1}, {1, 3, 2}, {1, 3, 3},
+                {2, 1, 1}, {2, 1, 2}, {2, 1, 3},
+                {2, 2, 1}, {2, 2, 2}, {2, 2, 3},
+                {2, 3, 1}, {2, 3, 2}, {2, 3, 3},
+                {3, 1, 1}, {3, 1, 2}, {3, 1, 3},
+                {3, 2, 1}, {3, 2, 2}, {3, 2, 3},
+                {3, 3, 1}, {3, 3, 2}, {3, 3, 3},
+                // size 3
+        };
+        const auto all_sequences_generated = algorithm.generate_all_sequences(number_of_steps, step_limit);
+        CHECK(all_sequences_generated == expected);
+    }
+}
+
+TEST_CASE("generate all valid steps", "[stairwayToHeaven2]") {
+    SECTION("case 1") {
+        const NaiveAlgorithm algorithm;
+        const Size step_limit = 3;
+        const Sequence expected = {1, 2, 3};
+        const auto all_valid_steps = algorithm.get_all_valid_steps(step_limit);
+        CHECK(all_valid_steps == expected);
+    }
+    SECTION("case 2") {
+        const NaiveAlgorithm algorithm;
+        const Size step_limit = 6;
+        const Sequence expected = {1, 2, 3, 4, 5, 6};
+        const auto all_valid_steps = algorithm.get_all_valid_steps(step_limit);
+        CHECK(all_valid_steps == expected);
+    }
+}
+
+TEST_CASE("filter valid sequences", "[stairwayToHeaven2]") {
+    NaiveAlgorithm algorithm;
+    SECTION("case 1") {
+        const Size number_of_steps = 1;
+        const SequenceVector sequences = {
+            {}, // size 0
+            {1}, // size 1
+        };
+        const SequenceVector expected = {
+            {1},
+        };
+        const auto valid_sequences = algorithm.filter_valid_sequences(number_of_steps, sequences);
+        CHECK(valid_sequences == expected);
+    }
+    SECTION("case 2") {
+        const Size number_of_steps = 3;
+        const SequenceVector sequences = {
+            {}, // size 0
+            {1}, // size 1
+            {1, 1}, // size 2
+            {1, 1, 1}, // size 3
+        };
+        const SequenceVector expected = {
+            {1, 1, 1},
+        };
+        const auto valid_sequences = algorithm.filter_valid_sequences(number_of_steps, sequences);
+        CHECK(valid_sequences == expected);
+    }
+    SECTION("case 3") {
+        const Size number_of_steps = 3;
+        const SequenceVector sequences = {
+            {}, // size 0
+            {1}, {2}, {3}, // size 1
+            {1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}, // size 2
+            {1, 1, 1}, {1, 1, 2}, {1, 1, 3},
+                {1, 2, 1}, {1, 2, 2}, {1, 2, 3},
+                {1, 3, 1}, {1, 3, 2}, {1, 3, 3},
+                {2, 1, 1}, {2, 1, 2}, {2, 1, 3},
+                {2, 2, 1}, {2, 2, 2}, {2, 2, 3},
+                {2, 3, 1}, {2, 3, 2}, {2, 3, 3},
+                {3, 1, 1}, {3, 1, 2}, {3, 1, 3},
+                {3, 2, 1}, {3, 2, 2}, {3, 2, 3},
+                {3, 3, 1}, {3, 3, 2}, {3, 3, 3},
+                // size 3
+        };
+        const SequenceVector expected = {
+            {3},
+            {1, 2}, {2, 1},
+            {1, 1, 1},
+        };
+        const auto valid_sequences = algorithm.filter_valid_sequences(number_of_steps, sequences);
+        CHECK(valid_sequences == expected);
+    }
+}
 
 TEST_CASE("example 1", "[stairwayToHeaven2]") {
     /**
