@@ -193,6 +193,70 @@ TEST_CASE("compute sequence cost", "[stairwayToHeaven2]") {
     }
 }
 
+TEST_CASE("select sequence with the lowest cost", "[stairwayToHeaven2]") {
+    /**
+     * ===== random case =====
+     * number_of_steps = 6
+     * step_limit = 3
+     * fees = [4, 3, 6, 9, 5, 1]
+     * sequences and costs:
+     *         cost = 13, sequence = (3, 3)
+     *         cost = 16, sequence = (1, 2, 3)
+     *         cost = 12, sequence = (1, 3, 2)
+     *         cost = 19, sequence = (2, 1, 3)
+     *         cost = 15, sequence = (2, 2, 2)
+     *         cost = 11, sequence = (2, 3, 1)
+     *         cost = 18, sequence = (3, 1, 2)
+     *         cost = 14, sequence = (3, 2, 1)
+     *         cost = 22, sequence = (1, 1, 1, 3)
+     *         cost = 18, sequence = (1, 1, 2, 2)
+     *         cost = 14, sequence = (1, 1, 3, 1)
+     *         cost = 21, sequence = (1, 2, 1, 2)
+     *         cost = 17, sequence = (1, 2, 2, 1)
+     *         cost = 13, sequence = (1, 3, 1, 1)
+     *         cost = 24, sequence = (2, 1, 1, 2)
+     *         cost = 20, sequence = (2, 1, 2, 1)
+     *         cost = 16, sequence = (2, 2, 1, 1)
+     *         cost = 19, sequence = (3, 1, 1, 1)
+     *         cost = 27, sequence = (1, 1, 1, 1, 2)
+     *         cost = 23, sequence = (1, 1, 1, 2, 1)
+     *         cost = 19, sequence = (1, 1, 2, 1, 1)
+     *         cost = 22, sequence = (1, 2, 1, 1, 1)
+     *         cost = 25, sequence = (2, 1, 1, 1, 1)
+     *         cost = 28, sequence = (1, 1, 1, 1, 1, 1)
+     * optimal cost sequence: (2, 3, 1)
+     * cost of optimal sequence: 11
+    */
+    const Fees fees = {4, 3, 6, 9, 5, 1};
+    SECTION("case 1") {
+        const NaiveAlgorithm algorithm;
+        const SequenceVector sequences = {
+            {3, 3}, //cost = 13
+            {1, 2, 3}, //cost = 16
+            {1, 3, 2}, //cost = 12
+            {2, 1, 3}, //cost = 19
+            {2, 2, 2}, //cost = 15
+            {2, 3, 1}, //cost = 11
+        };
+        const Sequence expected = {2, 3, 1};
+        const Sequence lowest_cost_sequence = algorithm.select_sequence_with_the_lowest_cost(sequences, fees);
+        CHECK(lowest_cost_sequence == expected);
+    }
+    SECTION("case 2") {
+        const NaiveAlgorithm algorithm;
+        const SequenceVector sequences = {
+            {1, 1, 3, 1}, // cost = 14
+            {1, 2, 1, 2}, // cost = 21
+            {1, 2, 2, 1}, // cost = 17
+            {1, 3, 1, 1}, // cost = 13
+            {2, 1, 1, 2}, // cost = 24
+        };
+        const Sequence expected = {1, 3, 1, 1};
+        const Sequence lowest_cost_sequence = algorithm.select_sequence_with_the_lowest_cost(sequences, fees);
+        CHECK(lowest_cost_sequence == expected);
+    }
+}
+
 TEST_CASE("NaiveAlgorithm", "[stairwayToHeaven2]") {
     SECTION("example 1") {
         /**
