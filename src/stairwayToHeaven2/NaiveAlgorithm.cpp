@@ -8,10 +8,7 @@ namespace StairwayToHeaven2 {
 
 template <typename T>
 void append_vectors(std::vector<T> & to_expand, const std::vector<T> & expansion) {
-    // to_expand.insert(to_expand.end(), expansion.begin(), expansion.end());
-    for (const auto & x: expansion) {
-        to_expand.push_back(x);
-    }
+    to_expand.insert(to_expand.end(), expansion.begin(), expansion.end());
     return;
 }
 
@@ -51,17 +48,12 @@ Sequence NaiveAlgorithm::get_all_valid_steps(const Size step_limit) const {
 
 SequenceVector NaiveAlgorithm::get_sequences_with_exact_size(const Size size, const SequenceVector & sequences) const {
     SequenceVector sequences_with_size;
-    for (const auto & s: sequences) {
-        if (s.size() == size) {
-            sequences_with_size.push_back(s);
-        }
-    }
-    // std::copy_if(
-    //     sequences.cbegin(),
-    //     sequences.cend(),
-    //     std::back_inserter(sequences_with_size),
-    //     [&size](const Sequence & s) { return s.size() == size; }
-    // );
+    std::copy_if(
+        sequences.cbegin(),
+        sequences.cend(),
+        std::back_inserter(sequences_with_size),
+        [&size](const Sequence & s) { return s.size() == size; }
+    );
     return sequences_with_size;
 }
 
