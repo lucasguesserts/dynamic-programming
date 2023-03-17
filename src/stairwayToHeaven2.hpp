@@ -26,6 +26,11 @@ namespace StairwayToHeaven2 {
     class NaiveAlgorithm: public Algorithm {
         public:
             virtual Sequence solve(const Size number_of_steps, const Size step_limit, const Fees & fees) const final;
+        private:
+            SequenceVector generate_all_sequences(const Size number_of_steps, const Size step_limit) const;
+            Sequence get_all_valid_steps(const Size step_limit) const;
+            SequenceVector get_sequences_with_exact_size(const Size size, const SequenceVector & sequences) const;
+            SequenceVector filter_valid_sequences(const Size number_of_steps, const SequenceVector & sequences) const;
     };
 
 
