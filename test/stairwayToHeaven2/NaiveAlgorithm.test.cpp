@@ -276,5 +276,21 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
         const NaiveAlgorithm algorithm;
         CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
     }
+    SECTION("case 4") {
+        /**
+         * ===== random case =====
+         * number_of_steps = 10
+         * step_limit = 4
+         * fees = [7, 3, 6, 7, 1, 2, 5, 7, 10, 9]
+         * optimal cost sequence: (4, 2, 4)
+         * cost of optimal sequence: 13
+        */
+        const Size number_of_steps = 10;
+        const Size step_limit = 4;
+        const Fees fees = {7, 3, 6, 7, 1, 2, 5, 7, 10, 9};
+        const Sequence expected = {4, 2, 4};
+        const NaiveAlgorithm algorithm;
+        CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
+    }
 }
 
