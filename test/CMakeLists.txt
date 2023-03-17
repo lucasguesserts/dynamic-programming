@@ -18,6 +18,7 @@ set(
     dominoArrangements.test.cpp
     stairwayToHeaven2/Algorithm.test.cpp
     stairwayToHeaven2/NaiveAlgorithm.test.cpp
+    stairwayToHeaven2/DynamicProgrammingAlgorithm.test.cpp
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
