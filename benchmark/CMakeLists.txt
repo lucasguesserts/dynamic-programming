@@ -15,6 +15,7 @@ set(
     BM_shareMarket.cpp
     BM_sumOfTheRange.cpp
     BM_longestIncreasingSubsequence.cpp
+    BM_stairwayToHeaven2.cpp
 )
 
 foreach(BENCKMARK_CASE_SOURCE IN ITEMS ${BENCHMARK_CASE_SOURCE_LIST})

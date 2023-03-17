@@ -1,0 +1,111 @@
+\newcommand{\apply}[2]{\ensuremath{#1 \left( #2 \right)}}
+\newcommand{\domain}{\ensuremath{\mathbb{D}}}
+\newcommand{\domainf}[1]{\apply{\domain}{#1}}
+\newcommand{\stepLimit}{\ensuremath{l}}
+\newcommand{\fees}{\ensuremath{f}}
+\newcommand{\fee}[1]{\apply{\fees}{#1}}
+\newcommand{\nSteps}{\ensuremath{n}}
+\newcommand{\oneN}{\ensuremath{\N_{>0}}}
+\newcommand{\solution}{\ensuremath{s}}
+\renewcommand{\length}[1]{\ensuremath{\left| #1 \right|}}
+\newcommand{\allSequences}[2]{\ensuremath{\apply{\mathcal{S}}{#1, #2}}}
+\newcommand{\cost}[2]{\ensuremath{\apply{\sigma_{#1}}{#2}}}
+\newcommand{\ArgMin}[2]{\argmin\limits_{#1} \ #2}
+
+\chapter{Stairway to Heaven 2}
+
+\section{Basic Definitions}
+
+\begin{defn}[Step Domain]
+    Given $\stepLimit \in \oneN$, define the Step Domain $\domainf{\stepLimit}$ as:
+    \begin{equation}
+        \domainf{l} = \Set{1, \dots, \stepLimit}
+    \end{equation}
+\end{defn}
+
+\begin{defn}[Sequence Set]
+    Given $\nSteps \in \oneN$ and $\stepLimit \in \oneN$, the set $\allSequences{\nSteps}{\stepLimit}$, known as Sequence Set, of all sequences that lead to heaven with steps in the Step Domain $\domainf{\stepLimit}$, is defined as:
+    \begin{equation}
+        \allSequences{\nSteps}{\stepLimit}
+        =
+        \SetOf
+            {x \in \domainf{\stepLimit}^k}
+            {
+                k \leqslant \nSteps \land
+                \Sum{i = 0}{\length{x}-1}{x(i)} = \nSteps
+            }
+    \end{equation}
+    where $\length{x}$ is the size of the sequence $x$.
+\end{defn}
+
+\begin{defn}[Sequence Cost]
+    Given $\nSteps \in \oneN$, $\stepLimit \in \oneN$, $\solution \in \allSequences{\nSteps}{\stepLimit}$, and $\fees \in \R^n$, the cost $\cost{\fees}{\solution}$ of the sequence $\solution$ with the fees $\fees$ is defined as:
+    \begin{equation}
+        \cost{\fees}{\solution} =
+        \fee{0}
+        +
+        \Sum{i = 1}{\length{\solution} - 1}{\fee{\Sum{j=0}{i-1}{\solution(j)}}}
+    \end{equation}
+\end{defn}
+
+\section{Problem Definition}
+
+\begin{enumerate}
+    \item Input:
+    \begin{enumerate}
+        \item the number of steps: a natural number $\nSteps \in \oneN$;
+        \item the largest step: a natural number $\stepLimit \in \oneN$;
+        \item the fees of each step: a vector of values $\fees \in \R^{\nSteps}$;
+    \end{enumerate}
+    \item Output: a sequence $\solution \in \allSequences{\nSteps}{\stepLimit}$;
+    \item Goal: Minimize the cost of the sequence $\cost{\fees}{\solution}$;
+\end{enumerate}
+
+\section{Naive Algorithm}
+
+The algorithm simply generates all sequences and find the one with the lowest cost by checking everyone.
+
+\begin{algorithm}[H]
+    \caption{Naive}
+    \label{stairway-to-heaven-2:algorithm:naive}
+    \begin{algorithmic}[1]
+        \Require{$\nSteps \in \oneN, \stepLimit \in \oneN, \fees \in \R^\nSteps$}
+        \State{$S \gets \mbox{generate\_sequences}(\nSteps, \stepLimit)$}
+        \State{$s^* \gets \ArgMin{s \in S}{\cost{\fees}{s}}$}
+        \State{\textbf{return} $s^*$}
+    \end{algorithmic}
+\end{algorithm}
+
+\section{Dynamic Programming Algorithm}
+
+\subsection{Subproblem}
+
+Let $i \in \oneN \land i \leqslant n$. Given that one has the optimal solution for any $j \in \oneN \land j \leqslant i$, how does one find the optimal solution for when the heaven is at $i$? There are $\stepLimit$\footnote{A \textbf{constant} number of options.} options to consider:
+\begin{description}
+    \item[1:] the optimal solution for $j = i - 1$ plus a step of size $1$
+    \item[2:] the optimal solution for $j = i - 2$ plus a step of size $2$
+    \item[\dots]
+    \item[$\stepLimit$:] the optimal solution for $j = i - \stepLimit$ plus a step of size $\stepLimit$
+\end{description}
+
+The optimal solution for $i$ is, among the $\stepLimit$ options above, the one with the lowest cost. Executing that procedure for all $i \leqslant \nSteps$, one gets a $\mathcal{O}(\nSteps)$ (linear complexity) algorithm.
+
+\subsection{Algorithm}
+
+\newcommand{\Obj}[1]{\ensuremath{\mbox{Object}\left\{ #1 \right\}}}
+
+\begin{algorithm}[H]
+    \caption{DP}
+    \label{stairway-to-heaven-2:algorithm:dp}
+    \begin{algorithmic}[1]
+        \Require{$\nSteps \in \oneN, \stepLimit \in \oneN, \fees \in \R^\nSteps$}
+        \State{$v \gets \tuple{\Obj{sequence: \tuple{}, cost: \fee{0}}}$}
+            \Comment{$v$ is a sequence of objects}
+        \For{$i \in \Set{1, \dots, \nSteps}$}
+            \State{$C \gets \mbox{get\_all\_options}(v, \stepLimit)$}
+            \State{$c^* \gets \ArgMin{c \in C}{c.cost}$}
+            \State{$v.append(c^*)$}
+        \EndFor
+        \State{\textbf{return} $v.back()$}
+    \end{algorithmic}
+\end{algorithm}
