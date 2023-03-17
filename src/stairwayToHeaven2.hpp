@@ -35,7 +35,6 @@ namespace StairwayToHeaven2 {
             Sequence select_sequence_with_the_lowest_cost(const SequenceVector & sequences, const Fees & fees) const;
     };
 
-
 }
 
 #endif
