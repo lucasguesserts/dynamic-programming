@@ -75,3 +75,37 @@ The algorithm simply generates all sequences and find the one with the lowest co
         \State{\textbf{return} $s^*$}
     \end{algorithmic}
 \end{algorithm}
+
+\section{Dynamic Programming Algorithm}
+
+\subsection{Subproblem}
+
+Let $i \in \oneN \land i \leqslant n$. Given that one has the optimal solution for any $j \in \oneN \land j \leqslant i$, how does one find the optimal solution for when the heaven is at $i$? There are $\stepLimit$\footnote{A \textbf{constant} number of options.} options to consider:
+\begin{description}
+    \item[1:] the optimal solution for $j = i - 1$ plus a step of size $1$
+    \item[2:] the optimal solution for $j = i - 2$ plus a step of size $2$
+    \item[\dots]
+    \item[$\stepLimit$:] the optimal solution for $j = i - \stepLimit$ plus a step of size $\stepLimit$
+\end{description}
+
+The optimal solution for $i$ is, among the $\stepLimit$ options above, the one with the lowest cost. Executing that procedure for all $i \leqslant \nSteps$, one gets a $\mathcal{O}(\nSteps)$ (linear complexity) algorithm.
+
+\subsection{Algorithm}
+
+\newcommand{\Obj}[1]{\ensuremath{\mbox{Object}\left\{ #1 \right\}}}
+
+\begin{algorithm}[H]
+    \caption{DP}
+    \label{stairway-to-heaven-2:algorithm:dp}
+    \begin{algorithmic}[1]
+        \Require{$\nSteps \in \oneN, \stepLimit \in \oneN, \fees \in \R^\nSteps$}
+        \State{$v \gets \tuple{\Obj{sequence: \tuple{}, cost: \fee{0}}}$}
+            \Comment{$v$ is a sequence of objects}
+        \For{$i \in \Set{1, \dots, \nSteps}$}
+            \State{$C \gets \mbox{get\_all\_options}(v, \stepLimit)$}
+            \State{$c^* \gets \ArgMin{c \in C}{c.cost}$}
+            \State{$v.append(c^*)$}
+        \EndFor
+        \State{\textbf{return} $v.back()$}
+    \end{algorithmic}
+\end{algorithm}
