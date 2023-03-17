@@ -52,6 +52,7 @@ set(
     ${SRC}/dominoArrangements/DominoArrangementError.cpp
     ${SRC}/stairwayToHeaven2/Algorithm.cpp
     ${SRC}/stairwayToHeaven2/NaiveAlgorithm.cpp
+    ${SRC}/stairwayToHeaven2/DynamicProgrammingAlgorithm.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
