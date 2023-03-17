@@ -14,4 +14,14 @@ void Algorithm::check_input(const Size number_of_steps, const Size step_limit, c
     return;
 }
 
+Fee Algorithm::compute_sequence_cost(const Sequence & sequence, const Fees & fees) const {
+    Size current_index = 0;
+    Fee total = fees[0];
+    for (Size i = 0; i < sequence.size() - 1; ++i) {
+        current_index += sequence[i];
+        total += fees[current_index];
+    }
+    return total;
+}
+
 }

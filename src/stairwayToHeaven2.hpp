@@ -19,6 +19,7 @@ namespace StairwayToHeaven2 {
             virtual Sequence solve(const Size number_of_steps, const Size step_limit, const Fees & fees) const = 0;
         protected:
             void check_input(const Size number_of_steps, const Size step_limit, const Fees & fees) const;
+            Fee compute_sequence_cost(const Sequence & sequence, const Fees & fees) const;
     };
 
     using AlgorithmPtr = std::unique_ptr<Algorithm>;
