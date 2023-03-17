@@ -32,6 +32,7 @@ namespace StairwayToHeaven2 {
             Sequence get_all_valid_steps(const Size step_limit) const;
             SequenceVector get_sequences_with_exact_size(const Size size, const SequenceVector & sequences) const;
             SequenceVector filter_valid_sequences(const Size number_of_steps, const SequenceVector & sequences) const;
+            Sequence select_sequence_with_the_lowest_cost(const SequenceVector & sequences, const Fees & fees) const;
     };
 
 

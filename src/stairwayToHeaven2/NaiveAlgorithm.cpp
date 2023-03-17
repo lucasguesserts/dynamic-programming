@@ -16,6 +16,7 @@ Sequence NaiveAlgorithm::solve(const Size number_of_steps, const Size step_limit
     this->check_input(number_of_steps, step_limit, fees);
     const auto all_sequences = this->generate_all_sequences(number_of_steps, step_limit);
     const auto valid_sequences = this->filter_valid_sequences(number_of_steps, all_sequences);
+    const auto lowest_cost_sequence = this->select_sequence_with_the_lowest_cost(valid_sequences, fees);
     return valid_sequences[0];
 }
 
@@ -66,6 +67,19 @@ SequenceVector NaiveAlgorithm::filter_valid_sequences(const Size number_of_steps
         [&number_of_steps](const Sequence & s) { return std::reduce(s.cbegin(), s.cend()) == number_of_steps; }
     );
     return valid_sequences;
+}
+
+Sequence NaiveAlgorithm::select_sequence_with_the_lowest_cost(const SequenceVector & sequences, const Fees & fees) const {
+    const Sequence * current_best_sequence = &sequences[0];
+    Fee current_lowest_cost = this->compute_sequence_cost(*current_best_sequence, fees);
+    for (const auto & sequence: sequences) {
+        const Fee current_sequence_cost = this->compute_sequence_cost(sequence, fees);
+        if (current_sequence_cost < current_lowest_cost) {
+            current_lowest_cost = current_sequence_cost;
+            current_best_sequence = &sequence;
+        }
+    }
+    return *current_best_sequence;
 }
 
 }
