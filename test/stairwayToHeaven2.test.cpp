@@ -258,7 +258,7 @@ TEST_CASE("select sequence with the lowest cost", "[stairwayToHeaven2]") {
 }
 
 TEST_CASE("NaiveAlgorithm", "[stairwayToHeaven2]") {
-    SECTION("example 1") {
+    SECTION("case 1") {
         /**
          * ===== Example 1 =====
          * number_of_steps = 3
@@ -279,7 +279,7 @@ TEST_CASE("NaiveAlgorithm", "[stairwayToHeaven2]") {
         const AlgorithmPtr algorithm = std::make_unique<NaiveAlgorithm>();
         CHECK(algorithm->solve(number_of_steps, step_limit, fees) == expected);
     }
-    SECTION("example 2") {
+    SECTION("case 2") {
         /**
          * ===== Example 2 =====
          * number_of_steps = 4
@@ -303,7 +303,7 @@ TEST_CASE("NaiveAlgorithm", "[stairwayToHeaven2]") {
         const AlgorithmPtr algorithm = std::make_unique<NaiveAlgorithm>();
         CHECK(algorithm->solve(number_of_steps, step_limit, fees) == expected);
     }
-    SECTION("example 3") {
+    SECTION("case 3") {
         /**
          * ===== random case =====
          * number_of_steps = 6

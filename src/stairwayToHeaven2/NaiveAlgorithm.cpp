@@ -17,7 +17,7 @@ Sequence NaiveAlgorithm::solve(const Size number_of_steps, const Size step_limit
     const auto all_sequences = this->generate_all_sequences(number_of_steps, step_limit);
     const auto valid_sequences = this->filter_valid_sequences(number_of_steps, all_sequences);
     const auto lowest_cost_sequence = this->select_sequence_with_the_lowest_cost(valid_sequences, fees);
-    return valid_sequences[0];
+    return lowest_cost_sequence;
 }
 
 SequenceVector NaiveAlgorithm::generate_all_sequences(const Size size, const Size step_limit) const {
