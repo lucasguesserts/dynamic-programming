@@ -3,6 +3,8 @@
 #include <vector>
 #include <iterator>
 
+namespace BurglarsNightOut {
+
 std::vector<BinarySequence> NaiveAlgorithm::generateAllBinarySequences(const Size n) {
     std::vector<BinarySequence> allVectors;
     if (n == 0) {
@@ -29,4 +31,6 @@ std::vector<BinarySequence> NaiveAlgorithm::filterTrueAlternateSequences(const s
         [](const BinarySequence & b) { return isTrueAlternateSequence(b); }
     );
     return trueAlternateSequences;
+}
+
 }

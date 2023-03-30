@@ -8,6 +8,8 @@
 
 #include "burglarsNightOut.hpp"
 
+using namespace BurglarsNightOut;
+
 TEST_CASE("is true alternate", "[burglarsNightOut]") {
     CHECK(isTrueAlternateSequence({}) == true);
     CHECK(isTrueAlternateSequence({true}) == true);
