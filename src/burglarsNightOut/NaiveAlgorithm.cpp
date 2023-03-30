@@ -26,7 +26,7 @@ std::vector<BinarySequence> NaiveAlgorithm::filterTrueAlternateSequences(const s
         binarySequences.cbegin(),
         binarySequences.cend(),
         std::back_inserter(trueAlternateSequences),
-        [](const BinarySequence & b) { return is_true_alternate_sequence(b); }
+        [](const BinarySequence & b) { return isTrueAlternateSequence(b); }
     );
     return trueAlternateSequences;
 }
