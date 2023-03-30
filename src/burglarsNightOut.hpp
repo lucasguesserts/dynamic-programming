@@ -2,18 +2,24 @@
 #define BLURGARS_NIGHT_OUT_HPP_
 
 #include <vector>
+#include <stdexcept>
+#include <algorithm>
+#include <numeric>
 
 using BinarySequence = std::vector<bool>;
+using Cost = double;
+using RealSequence = std::vector<Cost>;
 
-bool is_true_alternate_sequence(const BinarySequence & b) {
+bool is_true_alternate_sequence(const BinarySequence &b) {
     if (b.empty()) return true;
-    for (auto i = 0u; i < b.size() - 1; ++i) {
-        if (b[i] && b[i+1]) {
-            return false;
-        }
-    }
-    return true;
+    return std::adjacent_find(b.begin(), b.end(), [](bool a, bool b){ return a && b; }) == b.end();
 }
 
+Cost cost_of_sequence(const BinarySequence &b, const RealSequence &r) {
+    if (b.size() != r.size()) {
+        throw std::runtime_error("the binary and real sequences must have the same size");
+    }
+    return std::inner_product(b.begin(), b.end(), r.begin(), 0.0);
+}
 
 #endif
