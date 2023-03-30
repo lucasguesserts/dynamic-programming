@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#define private public
+
 #include "burglarsNightOut.hpp"
 
 TEST_CASE("is true alternate", "[burglarsNightOut]") {
@@ -20,7 +22,7 @@ TEST_CASE("is true alternate", "[burglarsNightOut]") {
     CHECK(is_true_alternate_sequence({false, false}) == true);
 }
 
-TEST_CASE("foo", "[burglarsNightOut]") {
+TEST_CASE("cost_of_sequence", "[burglarsNightOut]") {
     SECTION("case 0") {
         const BinarySequence b = {true, true, true};
         const RealSequence r = {19, 17, 10};
@@ -40,5 +42,28 @@ TEST_CASE("foo", "[burglarsNightOut]") {
         const BinarySequence b = {false, false};
         const RealSequence r = {12, 10};
         CHECK_THAT(cost_of_sequence(b, r), Catch::Matchers::WithinAbs(0.0, 0.01));
+    }
+}
+
+TEST_CASE("NaiveAlgorithm", "[burglarsNightOut]") {
+    SECTION("case n = 0") {
+        const Size n = 0;
+        const std::vector<BinarySequence> expected = {{}};
+        CHECK(NaiveAlgorithm::generateAllBinarySequences(n) == expected);
+    }
+    SECTION("case n = 1") {
+        const Size n = 1;
+        const std::vector<BinarySequence> expected = {{false}, {true}};
+        CHECK(NaiveAlgorithm::generateAllBinarySequences(n) == expected);
+    }
+    SECTION("case n = 2") {
+        const Size n = 2;
+        const std::vector<BinarySequence> expected = {{false, false}, {false, true}, {true, false}, {true, true}};
+        CHECK(NaiveAlgorithm::generateAllBinarySequences(n) == expected);
+    }
+    SECTION("case n = 3") {
+        const Size n = 3;
+        const std::vector<BinarySequence> expected = {{false, false, false}, {false, false, true}, {false, true, false}, {false, true, true}, {true, false, false}, {true, false, true}, {true, true, false}, {true, true, true}};
+        CHECK(NaiveAlgorithm::generateAllBinarySequences(n) == expected);
     }
 }
