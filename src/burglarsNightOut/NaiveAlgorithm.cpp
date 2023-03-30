@@ -1,6 +1,7 @@
 #include "burglarsNightOut.hpp"
 
 #include <vector>
+#include <iterator>
 
 std::vector<BinarySequence> NaiveAlgorithm::generateAllBinarySequences(const Size n) {
     std::vector<BinarySequence> allVectors;
@@ -17,4 +18,15 @@ std::vector<BinarySequence> NaiveAlgorithm::generateAllBinarySequences(const Siz
         }
     }
     return allVectors;
+}
+
+std::vector<BinarySequence> NaiveAlgorithm::filterTrueAlternateSequences(const std::vector<BinarySequence> & binarySequences) {
+    std::vector<BinarySequence> trueAlternateSequences;
+    std::copy_if(
+        binarySequences.cbegin(),
+        binarySequences.cend(),
+        std::back_inserter(trueAlternateSequences),
+        [](const BinarySequence & b) { return is_true_alternate_sequence(b); }
+    );
+    return trueAlternateSequences;
 }

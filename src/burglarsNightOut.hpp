@@ -27,6 +27,7 @@ Cost cost_of_sequence(const BinarySequence &b, const RealSequence &r) {
 class NaiveAlgorithm {
     private:
         static std::vector<BinarySequence> generateAllBinarySequences(const Size n);
+        static std::vector<BinarySequence> filterTrueAlternateSequences(const std::vector<BinarySequence> & binarySequences);
 };
 
 #endif
