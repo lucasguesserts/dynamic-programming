@@ -45,7 +45,7 @@ TEST_CASE("cost_of_sequence", "[burglarsNightOut]") {
     }
 }
 
-TEST_CASE("NaiveAlgorithm", "[burglarsNightOut]") {
+TEST_CASE("NaiveAlgorithm - generateAllBinarySequences", "[burglarsNightOut]") {
     SECTION("case n = 0") {
         const Size n = 0;
         const std::vector<BinarySequence> expected = {{}};
@@ -67,3 +67,22 @@ TEST_CASE("NaiveAlgorithm", "[burglarsNightOut]") {
         CHECK(NaiveAlgorithm::generateAllBinarySequences(n) == expected);
     }
 }
+
+TEST_CASE("NaiveAlgorithm - filterTrueAlternateSequences", "[burglarsNightOut]") {
+    SECTION("case 0") {
+        const std::vector<BinarySequence> binarySequences = {{true, true}};
+        const std::vector<BinarySequence> expected = {};
+        CHECK(NaiveAlgorithm::filterTrueAlternateSequences(binarySequences) == expected);
+    }
+    SECTION("case 1") {
+        const std::vector<BinarySequence> binarySequences = {{false, false}};
+        const std::vector<BinarySequence> expected = {{false, false}};
+        CHECK(NaiveAlgorithm::filterTrueAlternateSequences(binarySequences) == expected);
+    }
+    SECTION("case 0") {
+        const std::vector<BinarySequence> binarySequences = {{false, false, false}, {false, true, true}, {false, true, false}, {true, false, true}, {true, true, false}};
+        const std::vector<BinarySequence> expected = {{false, false, false}, {false, true, false}, {true, false, true}};
+        CHECK(NaiveAlgorithm::filterTrueAlternateSequences(binarySequences) == expected);
+    }
+}
+
