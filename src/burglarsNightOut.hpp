@@ -1,11 +1,13 @@
 #ifndef BLURGARS_NIGHT_OUT_HPP_
 #define BLURGARS_NIGHT_OUT_HPP_
 
+#include <cstddef>
 #include <vector>
 #include <stdexcept>
 #include <algorithm>
 #include <numeric>
 
+using Size = std::size_t;
 using BinarySequence = std::vector<bool>;
 using Cost = double;
 using RealSequence = std::vector<Cost>;
@@ -21,5 +23,10 @@ Cost cost_of_sequence(const BinarySequence &b, const RealSequence &r) {
     }
     return std::inner_product(b.begin(), b.end(), r.begin(), 0.0);
 }
+
+class NaiveAlgorithm {
+    private:
+        static std::vector<BinarySequence> generateAllBinarySequences(const Size n);
+};
 
 #endif
