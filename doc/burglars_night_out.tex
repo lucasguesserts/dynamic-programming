@@ -122,7 +122,6 @@ Finally, the best solution for the problem of size $n$ (the original problem) is
     \caption{data structure $SubproblemSolutions$.}
 \end{algorithm}
 
-
 \begin{algorithm}[H]
     \caption{Dynamic Programming}
     \label{burglar's-night-out:algorithm:dynamic-programming}
@@ -138,13 +137,13 @@ Finally, the best solution for the problem of size $n$ (the original problem) is
             \State{$lastIncluded \gets S[i-1].lastExcluded$}
             \State{$lastIncluded.append(True)$}
             \State{// last excluded}
-            \State{$lastExcluded \gets \max\Set{S[i-1].lastIncluded, S[i-1].lastExcluded}$}
+            \State{$lastExcluded \gets \ArgMax{s \in S[i-1]}{\cost{s}{r}}$}
             \State{$lastExcluded.append(False)$}
             \State{// next entry}
             \State{$S.append(SubproblemSolutions(lastIncluded, lastExcluded))$}
         \EndFor{}
         \State{// Optimal solution of the original problem}
-        \State{$s^* \gets \max\Set{S[n-1].lastIncluded, S[n-1].lastExcluded}$}
+        \State{$s^* \gets \ArgMax{s \in S[n-1]}{\cost{s}{r}}$}
         \State{\textbf{return} $s^*$}
     \end{algorithmic}
 \end{algorithm}
