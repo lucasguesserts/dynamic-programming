@@ -132,3 +132,36 @@ TEST_CASE("NaiveAlgorithm - selectMostExpensiveSequence", "[burglarsNightOut]") 
     }
 }
 
+TEST_CASE("NaiveAlgorithm - solve", "[burglarsNightOut]") {
+    SECTION("case 0") {
+        const RealSequence costs = {};
+        const BinarySequence expected = {};
+        CHECK(NaiveAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 1") {
+        const RealSequence costs = {-10};
+        const BinarySequence expected = {false};
+        CHECK(NaiveAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 2") {
+        const RealSequence costs = {13, 16};
+        const BinarySequence expected = {false, true};
+        CHECK(NaiveAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 3") {
+        const RealSequence costs = {13, 16, 4};
+        const BinarySequence expected = {true, false, true};
+        CHECK(NaiveAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 4") {
+        const RealSequence costs = {13, 160, 4};
+        const BinarySequence expected = {false, true, false};
+        CHECK(NaiveAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 5") {
+        const RealSequence costs = {2, 8, -4, 1, 6};
+        const BinarySequence expected = {false, true, false, false, true};
+        CHECK(NaiveAlgorithm::solve(costs) == expected);
+    }
+}
+
