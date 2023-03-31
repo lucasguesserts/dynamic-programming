@@ -16,6 +16,7 @@ set(
     BM_sumOfTheRange.cpp
     BM_longestIncreasingSubsequence.cpp
     BM_stairwayToHeaven2.cpp
+    BM_burglarsNightOut.cpp
 )
 
 foreach(BENCKMARK_CASE_SOURCE IN ITEMS ${BENCHMARK_CASE_SOURCE_LIST})
