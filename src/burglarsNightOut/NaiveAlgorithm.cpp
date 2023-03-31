@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <iterator>
+#include <limits>
 
 namespace BurglarsNightOut {
 
@@ -31,6 +32,24 @@ std::vector<BinarySequence> NaiveAlgorithm::filterTrueAlternateSequences(const s
         [](const BinarySequence & b) { return isTrueAlternateSequence(b); }
     );
     return trueAlternateSequences;
+}
+
+
+
+BinarySequence NaiveAlgorithm::selectMostExpensiveSequence(const std::vector<BinarySequence> & binarySequences, const RealSequence & costs) {
+    if (binarySequences.empty()) {
+        return {};
+    }
+    Cost largestCost = std::numeric_limits<Cost>::lowest();
+    const BinarySequence * bestSequence;
+    for (const auto & sequence : binarySequences) {
+        const Cost currentCost = costOfSequence(sequence, costs);
+        if (currentCost > largestCost) {
+            largestCost = currentCost;
+            bestSequence = &sequence;
+        }
+    }
+    return *bestSequence;
 }
 
 }

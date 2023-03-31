@@ -30,6 +30,7 @@ namespace BurglarsNightOut {
         private:
             static std::vector<BinarySequence> generateAllBinarySequences(const Size n);
             static std::vector<BinarySequence> filterTrueAlternateSequences(const std::vector<BinarySequence> & binarySequences);
+            static BinarySequence selectMostExpensiveSequence(const std::vector<BinarySequence> & binarySequences, const RealSequence & costs);
     };
 
 }
