@@ -72,19 +72,63 @@ TEST_CASE("NaiveAlgorithm - generateAllBinarySequences", "[burglarsNightOut]") {
 
 TEST_CASE("NaiveAlgorithm - filterTrueAlternateSequences", "[burglarsNightOut]") {
     SECTION("case 0") {
-        const std::vector<BinarySequence> binarySequences = {{true, true}};
+        const std::vector<BinarySequence> binarySequences = {};
         const std::vector<BinarySequence> expected = {};
         CHECK(NaiveAlgorithm::filterTrueAlternateSequences(binarySequences) == expected);
     }
     SECTION("case 1") {
+        const std::vector<BinarySequence> binarySequences = {{true, true}};
+        const std::vector<BinarySequence> expected = {};
+        CHECK(NaiveAlgorithm::filterTrueAlternateSequences(binarySequences) == expected);
+    }
+    SECTION("case 2") {
         const std::vector<BinarySequence> binarySequences = {{false, false}};
         const std::vector<BinarySequence> expected = {{false, false}};
         CHECK(NaiveAlgorithm::filterTrueAlternateSequences(binarySequences) == expected);
     }
-    SECTION("case 0") {
+    SECTION("case 3") {
         const std::vector<BinarySequence> binarySequences = {{false, false, false}, {false, true, true}, {false, true, false}, {true, false, true}, {true, true, false}};
         const std::vector<BinarySequence> expected = {{false, false, false}, {false, true, false}, {true, false, true}};
         CHECK(NaiveAlgorithm::filterTrueAlternateSequences(binarySequences) == expected);
+    }
+}
+
+TEST_CASE("NaiveAlgorithm - selectMostExpensiveSequence", "[burglarsNightOut]") {
+    SECTION("case 0") {
+        const std::vector<BinarySequence> binarySequences = {};
+        const RealSequence costs = {};
+        const BinarySequence expected = {};
+        CHECK(NaiveAlgorithm::selectMostExpensiveSequence(binarySequences, costs) == expected);
+    }
+    SECTION("case 1") {
+        const std::vector<BinarySequence> binarySequences = {{false}};
+        const RealSequence costs = {-10};
+        const BinarySequence expected = {false};
+        CHECK(NaiveAlgorithm::selectMostExpensiveSequence(binarySequences, costs) == expected);
+    }
+    SECTION("case 2") {
+        const std::vector<BinarySequence> binarySequences = {
+            {false, false},
+            {false, true},
+            {true, false},
+            {true, true},
+        };
+        const RealSequence costs = {13, 16};
+        const BinarySequence expected = {true, true};
+        CHECK(NaiveAlgorithm::selectMostExpensiveSequence(binarySequences, costs) == expected);
+    }
+    SECTION("case 3") {
+        const std::vector<BinarySequence> binarySequences = {
+            {false, false, false, true, true, true, true, true, true},
+            {true, false, true, true, true, true, true, false, true},
+            {true, false, true, true, true, false, false, false, true},
+            {true, true, true, false, true, false, false, false, false},
+            {false, true, true, true, true, true, true, false, true},
+            {false, false, false, false, true, true, false, true, false},
+        };
+        const RealSequence costs = {-2, -19, 10, 1, 17, 17, 13, -5, 19};
+        const BinarySequence expected = {true, false, true, true, true, true, true, false, true};
+        CHECK(NaiveAlgorithm::selectMostExpensiveSequence(binarySequences, costs) == expected);
     }
 }
 
