@@ -27,6 +27,8 @@ namespace BurglarsNightOut {
     }
 
     class NaiveAlgorithm {
+        public:
+            static BinarySequence solve(const RealSequence & costs);
         private:
             static std::vector<BinarySequence> generateAllBinarySequences(const Size n);
             static std::vector<BinarySequence> filterTrueAlternateSequences(const std::vector<BinarySequence> & binarySequences);

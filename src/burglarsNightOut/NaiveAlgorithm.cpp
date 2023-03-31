@@ -52,4 +52,11 @@ BinarySequence NaiveAlgorithm::selectMostExpensiveSequence(const std::vector<Bin
     return *bestSequence;
 }
 
+BinarySequence NaiveAlgorithm::solve(const RealSequence & costs) {
+    const auto binarySequences = generateAllBinarySequences(costs.size());
+    const auto trueAlternateBinarySequences = filterTrueAlternateSequences(binarySequences);
+    const auto optimalBinarySequence = selectMostExpensiveSequence(trueAlternateBinarySequences, costs);
+    return optimalBinarySequence;
+}
+
 }
