@@ -53,6 +53,7 @@ set(
     ${SRC}/stairwayToHeaven2/Algorithm.cpp
     ${SRC}/stairwayToHeaven2/NaiveAlgorithm.cpp
     ${SRC}/stairwayToHeaven2/DynamicProgrammingAlgorithm.cpp
+    ${SRC}/burglarsNightOut/BurglarsNightOut.cpp
     ${SRC}/burglarsNightOut/NaiveAlgorithm.cpp
 )
 

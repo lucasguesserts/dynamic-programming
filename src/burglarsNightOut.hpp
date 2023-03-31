@@ -1,5 +1,5 @@
-#ifndef BLURGARS_NIGHT_OUT_HPP_
-#define BLURGARS_NIGHT_OUT_HPP_
+#ifndef BURGLARS_NIGHT_OUT_HPP_
+#define BURGLARS_NIGHT_OUT_HPP_
 
 #include <cstddef>
 #include <vector>
@@ -14,17 +14,8 @@ namespace BurglarsNightOut {
     using Cost = double;
     using RealSequence = std::vector<Cost>;
 
-    bool isTrueAlternateSequence(const BinarySequence &b) {
-        if (b.empty()) return true;
-        return std::adjacent_find(b.begin(), b.end(), [](bool a, bool b){ return a && b; }) == b.end();
-    }
-
-    Cost costOfSequence(const BinarySequence &b, const RealSequence &r) {
-        if (b.size() != r.size()) {
-            throw std::runtime_error("the binary and real sequences must have the same size");
-        }
-        return std::inner_product(b.begin(), b.end(), r.begin(), 0.0);
-    }
+    bool isTrueAlternateSequence(const BinarySequence &b);
+    Cost costOfSequence(const BinarySequence &b, const RealSequence &r);
 
     class NaiveAlgorithm {
         public:
