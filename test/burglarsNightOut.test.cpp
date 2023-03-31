@@ -165,3 +165,35 @@ TEST_CASE("NaiveAlgorithm - solve", "[burglarsNightOut]") {
     }
 }
 
+TEST_CASE("DynamicProgrammingAlgorithm - solve", "[burglarsNightOut]") {
+    SECTION("case 0") {
+        const RealSequence costs = {};
+        const BinarySequence expected = {};
+        CHECK(DynamicProgrammingAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 1") {
+        const RealSequence costs = {-10};
+        const BinarySequence expected = {false};
+        CHECK(DynamicProgrammingAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 2") {
+        const RealSequence costs = {13, 16};
+        const BinarySequence expected = {false, true};
+        CHECK(DynamicProgrammingAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 3") {
+        const RealSequence costs = {13, 16, 4};
+        const BinarySequence expected = {true, false, true};
+        CHECK(DynamicProgrammingAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 4") {
+        const RealSequence costs = {13, 160, 4};
+        const BinarySequence expected = {false, true, false};
+        CHECK(DynamicProgrammingAlgorithm::solve(costs) == expected);
+    }
+    SECTION("case 5") {
+        const RealSequence costs = {2, 8, -4, 1, 6};
+        const BinarySequence expected = {false, true, false, false, true};
+        CHECK(DynamicProgrammingAlgorithm::solve(costs) == expected);
+    }
+}

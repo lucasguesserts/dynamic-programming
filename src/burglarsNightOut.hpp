@@ -26,6 +26,11 @@ namespace BurglarsNightOut {
             static BinarySequence selectMostExpensiveSequence(const std::vector<BinarySequence> & binarySequences, const RealSequence & costs);
     };
 
+    class DynamicProgrammingAlgorithm {
+        public:
+            static BinarySequence solve(const RealSequence & costs);
+    };
+
 }
 
 #endif
