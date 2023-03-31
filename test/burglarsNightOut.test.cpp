@@ -3,12 +3,15 @@
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
 
 #include <vector>
+#include <random>
 
 #define private public
 
 #include "burglarsNightOut.hpp"
 
 using namespace BurglarsNightOut;
+
+RealSequence generateRandomCosts();
 
 TEST_CASE("is true alternate", "[burglarsNightOut]") {
     CHECK(isTrueAlternateSequence({}) == true);
@@ -195,5 +198,35 @@ TEST_CASE("DynamicProgrammingAlgorithm - solve", "[burglarsNightOut]") {
         const RealSequence costs = {2, 8, -4, 1, 6};
         const BinarySequence expected = {false, true, false, false, true};
         CHECK(DynamicProgrammingAlgorithm::solve(costs) == expected);
+    }
+}
+
+RealSequence generateRandomCosts() {
+    static constexpr Size MINIMUM_COST_SIZE = 1;
+    static constexpr Size MAXIMUM_COST_SIZE = 12;
+    static constexpr double MINIMUM_COST_VALUE = -10.0;
+    static constexpr double MAXIMUM_COST_VALUE = 10.0;
+
+    std::random_device rd;
+    std::mt19937 randomGenerator(rd());
+    std::uniform_real_distribution<Cost> uniformDistribution(MINIMUM_COST_VALUE, MAXIMUM_COST_VALUE);
+    std::uniform_int_distribution<Size> integerUniformDistribution(MINIMUM_COST_SIZE, MAXIMUM_COST_SIZE);
+
+    const Size costsSize = integerUniformDistribution(randomGenerator);
+    RealSequence costs(costsSize);
+    for (Size i = 0; i < costsSize; ++i) {
+        costs[i] = uniformDistribution(randomGenerator);
+    }
+
+    return costs;
+}
+
+TEST_CASE("compare algorithms - Naive and DynamicProgramming", "[burglarsNightOut]") {
+    constexpr Size numberOfCases = 10;
+    for (Size i = 0; i < numberOfCases; ++i) {
+        const RealSequence costs = generateRandomCosts();
+        const auto dpSolution = DynamicProgrammingAlgorithm::solve(costs);
+        const auto naiveSolution = NaiveAlgorithm::solve(costs);
+        REQUIRE(dpSolution == naiveSolution);
     }
 }
