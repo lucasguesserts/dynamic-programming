@@ -19,8 +19,14 @@ namespace NumberSplitting {
         private:
             static PartitionSet generateAllPartitions(const Natural n, const bool excludeLast = true);
             static Partition selectMostExpensivePartition(const PartitionSet & partitionSet);
-
     };
+
+    class DynamicProgrammingAlgorithm {
+        public:
+            static Partition solve(const Natural n);
+        private:
+    };
+
 }
 
 #endif
