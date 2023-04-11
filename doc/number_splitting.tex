@@ -1,6 +1,7 @@
 \chapter{Number Splitting}
 
 \newcommand{\Product}[2]{\prod\limits_{#1} #2}
+\newcommand{\Floor}[1]{\left\lfloor #1 \right\rfloor}
 
 \section{Problem Definition}
 
@@ -16,3 +17,44 @@
         \max \Product{s \in S}{s}
     \end{equation}
 \end{enumerate}
+
+\section{Naive Algorithm}
+
+The naive algorithm is pretty simple: generate all partitions of the number $n$ with at least two numbers and select the one with the largest product.
+
+Below, the Algorithm \ref{number-splitting:algorithm:generate-all-partitions} specify how to generate all partitions using a recursive algorithm, and the Algorithm \ref{number-splitting:algorithm:naive-algorithm} is the actual naive algorithm described above.
+
+\begin{algorithm}[H]
+    \caption{Generate all partitions}
+    \label{number-splitting:algorithm:generate-all-partitions}
+    \begin{algorithmic}[1]
+        \Function{Partition}{$n$}
+            \State $P \gets \Set{}$
+            \If {$n = 0$}
+                \State $P.insert(\Set{})$
+            \ElsIf {$n = 1$}
+                \State $P.insert(\Set{1})$
+            \EndIf
+            \For {$i = 1, \dots, n-1$}
+                \For {$p \in \text{Partition}(n-i)$}
+                    \State $p_+ \gets \text{sorted}([i] + p)$
+                    \State $P.insert(p_+)$
+                \EndFor
+            \EndFor
+            \State $P \gets \text{sort\_decreasing\_length}(P)$
+            \State \Return $P$
+        \EndFunction
+        \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Naive algorithm}
+    \label{number-splitting:algorithm:naive-algorithm}
+    \begin{algorithmic}[1]
+        \Function{Naive}{$n$}
+            \State $P \gets \text{Partition}(n)$
+            \State $p^* = \ArgMax{p \in P}{\Product{i \in p}{i}}$
+            \State \Return $p^*$
+        \EndFunction
+        \end{algorithmic}
+\end{algorithm}
