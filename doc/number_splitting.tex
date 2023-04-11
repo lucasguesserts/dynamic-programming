@@ -28,19 +28,22 @@ Below, the Algorithm \ref{number-splitting:algorithm:generate-all-partitions} sp
     \caption{Generate all partitions}
     \label{number-splitting:algorithm:generate-all-partitions}
     \begin{algorithmic}[1]
-        \Function{Partition}{$n$}
+        \Function{Partition}{$n, excludeLast$}
             \State $P \gets \Set{}$
             \If {$n = 0$}
-                \State $P.insert(\Set{})$
+                \State $P.insert(\tuple{})$
             \ElsIf {$n = 1$}
-                \State $P.insert(\Set{1})$
+                \State $P.insert(\tuple{1})$
             \EndIf
-            \For {$i = 1, \dots, n-1$}
-                \For {$p \in \text{Partition}(n-i)$}
+            \For {$i = 1, \dots, n$}
+                \For {$p \in \text{Partition}(n-i, false)$}
                     \State $p_+ \gets \text{sorted}([i] + p)$
                     \State $P.insert(p_+)$
                 \EndFor
             \EndFor
+            \If {$excludeLast$}
+                \State $P.remove\_if(\lambda(p) \ p == \tuple{n}$)
+            \EndIf
             \State \Return $P$
         \EndFunction
         \end{algorithmic}
@@ -51,7 +54,7 @@ Below, the Algorithm \ref{number-splitting:algorithm:generate-all-partitions} sp
     \label{number-splitting:algorithm:naive-algorithm}
     \begin{algorithmic}[1]
         \Function{Naive}{$n$}
-            \State $P \gets \text{Partition}(n)$
+            \State $P \gets \text{Partition}(n, true)$
             \State $p^* = \ArgMax{p \in P}{\Product{i \in p}{i}}$
             \State \Return $p^*$
         \EndFunction
