@@ -1,0 +1,18 @@
+\chapter{Number Splitting}
+
+\newcommand{\Product}[2]{\prod\limits_{#1} #2}
+
+\section{Problem Definition}
+
+\begin{enumerate}
+    \item Input: a number $n \in \N$;
+    \item Output: a tuple of integer values $S = \tuple{s_{0}, \dots, s_{m}}$ such that:
+    \begin{enumerate}
+        \item $m \geqslant 2$;
+        \item $\Sum{s \in S}{}{s} = n$;
+    \end{enumerate}
+    \item Goal: Maximize the product of the elements of $S$:
+    \begin{equation}
+        \max \Product{s \in S}{s}
+    \end{equation}
+\end{enumerate}
