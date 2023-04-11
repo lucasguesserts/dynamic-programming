@@ -7,14 +7,14 @@
 
 \begin{enumerate}
     \item Input: a number $n \in \N$;
-    \item Output: a tuple of integer values $S = \tuple{s_{0}, \dots, s_{m}}$ such that:
+    \item Output: a partition of natural values $P = \tuple{p_{0}, \dots, p_{m}}$ such that:
     \begin{enumerate}
         \item $m \geqslant 2$;
-        \item $\Sum{s \in S}{}{s} = n$;
+        \item $\Sum{p \in P}{}{p} = n$;
     \end{enumerate}
-    \item Goal: Maximize the product of the elements of $S$:
+    \item Goal: Maximize the product of the elements of $P$:
     \begin{equation}
-        \max \Product{s \in S}{s}
+        \max \Product{p \in P}{p}
     \end{equation}
 \end{enumerate}
 
