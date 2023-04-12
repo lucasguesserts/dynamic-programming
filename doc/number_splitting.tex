@@ -63,7 +63,9 @@ Below, the Algorithm \ref{number-splitting:algorithm:generate-all-partitions} sp
 
 \section{Dynamic Programming Algorithm}
 
-Suppose one has the optimal solution $\forall k < n$. Then the optimal solution for $n$ can be found by inspection on $\Floor{\frac{n}{2}}$ options: $\tuple{1, n-1}, \tuple{2, n-2}, \dots, \tuple{\Floor{\frac{n}{2}}, n-\Floor{\frac{n}{2}}}$. Since one knows the optimal solution for all those values, the optimal for $n$ is the one with the highest product.
+Suppose one has the optimal solution $\forall k < n$. Then the optimal solution for $n$ can be found by inspection on $\Floor{\frac{n}{2}} + 1$ options: $n, \tuple{1, n-1}, \tuple{2, n-2}, \dots, \tuple{\Floor{\frac{n}{2}}, n-\Floor{\frac{n}{2}}}$. Since one knows the optimal solution for all those values, the optimal for $n$ is the one with the highest product.
+
+The solution with one element only is not valid as a final solution. That is why the Algorithm \ref{number-splitting:algorithm:dynamic-programming} specify the $includeLast = false$.
 
 \begin{algorithm}
     \begin{lstlisting}
@@ -76,28 +78,40 @@ Suppose one has the optimal solution $\forall k < n$. Then the optimal solution 
     \end{algorithm}
 
 \newcommand{\SubproblemSolution}[2]{\text{SubproblemSolution}\left\{ #1, #2 \right\}}
-\newcommand{\DP}[1]{\text{Dynamic\_Programming}\left( #1 \right)}
+\newcommand{\DP}[1]{\text{DP\_Recursive}\left( #1 \right)}
 
 \begin{algorithm}[H]
-    \caption{Subsolution structure}
-    \label{number-splitting:algorithm:dynamic-programming}
+    \caption{Dynamic Programming Recursive Solver}
+    \label{number-splitting:algorithm:dynamic-programming-recursive}
     \begin{algorithmic}[1]
-        \Function{dynamic\_programming}{$n$}
+        \Function{DP\_recursive}{$n, includeLast$}
             \If {$n = 1$}
                 \State \Return $\SubproblemSolution{1}{\tuple{1}}$
             \Else
                 \State $C \gets \Set{}$
                     \Comment{List of candidates}
+                \If {$includeLast$}
+                    \State $C.add(\SubproblemSolution{n}{\tuple{n}})$
+                \EndIf
                 \For {$i = 1, \dots, \Floor{\frac{n}{2}}$}
-                    \State $lhs \gets \DP{i}$
-                    \State $rhs \gets \DP{n - 1}$
+                    \State $lhs \gets \DP{i, true}$
+                    \State $rhs \gets \DP{n - 1, true}$
                     \State $C.add\left( \SubproblemSolution{lhs.cost \cdot rhs.cost}{lhs.partition + rhs.partition} \right)$
                 \EndFor
                 \State $c^* = \ArgMax{c \in C}{c.cost}$
                     \Comment{Select the best candidate}
-                \State $p^* \gets c^*.partition$
-                \State \Return $p^*$
+                \State \Return $c^*$
             \EndIf
+        \EndFunction
+        \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Dynamic Programming Solver}
+    \label{number-splitting:algorithm:dynamic-programming}
+    \begin{algorithmic}[1]
+        \Function{dynamic\_programming}{$n, includeLast$}
+            \State \Return $\DP{n, false}.partition$
         \EndFunction
         \end{algorithmic}
 \end{algorithm}
