@@ -1,0 +1,117 @@
+\chapter{Number Splitting}
+
+\newcommand{\Product}[2]{\prod\limits_{#1} #2}
+\newcommand{\Floor}[1]{\left\lfloor #1 \right\rfloor}
+
+\section{Problem Definition}
+
+\begin{enumerate}
+    \item Input: a number $n \in \N$;
+    \item Output: a partition of natural values $P = \tuple{p_{0}, \dots, p_{m}}$ such that:
+    \begin{enumerate}
+        \item $m \geqslant 2$;
+        \item $\Sum{p \in P}{}{p} = n$;
+    \end{enumerate}
+    \item Goal: Maximize the product of the elements of $P$:
+    \begin{equation}
+        \max \Product{p \in P}{p}
+    \end{equation}
+\end{enumerate}
+
+\section{Naive Algorithm}
+
+The naive algorithm is pretty simple: generate all partitions of the number $n$ with at least two numbers and select the one with the largest product.
+
+Below, the Algorithm \ref{number-splitting:algorithm:generate-all-partitions} specify how to generate all partitions using a recursive algorithm, and the Algorithm \ref{number-splitting:algorithm:naive-algorithm} is the actual naive algorithm described above.
+
+\begin{algorithm}[H]
+    \caption{Generate all partitions}
+    \label{number-splitting:algorithm:generate-all-partitions}
+    \begin{algorithmic}[1]
+        \Function{Partition}{$n, excludeLast$}
+            \State $P \gets \Set{}$
+            \If {$n = 0$}
+                \State $P.insert(\tuple{})$
+            \ElsIf {$n = 1$}
+                \State $P.insert(\tuple{1})$
+            \EndIf
+            \For {$i = 1, \dots, n$}
+                \For {$p \in \text{Partition}(n-i, false)$}
+                    \State $p_+ \gets \text{sorted}([i] + p)$
+                    \State $P.insert(p_+)$
+                \EndFor
+            \EndFor
+            \If {$excludeLast$}
+                \State $P.remove\_if(\lambda(p) \ p == \tuple{n}$)
+            \EndIf
+            \State \Return $P$
+        \EndFunction
+        \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Naive algorithm}
+    \label{number-splitting:algorithm:naive-algorithm}
+    \begin{algorithmic}[1]
+        \Function{Naive}{$n$}
+            \State $P \gets \text{Partition}(n, true)$
+            \State $p^* = \ArgMax{p \in P}{\Product{i \in p}{i}}$
+            \State \Return $p^*$
+        \EndFunction
+        \end{algorithmic}
+\end{algorithm}
+
+\section{Dynamic Programming Algorithm}
+
+Suppose one has the optimal solution $\forall k < n$. Then the optimal solution for $n$ can be found by inspection on $\Floor{\frac{n}{2}} + 1$ options: $n, \tuple{1, n-1}, \tuple{2, n-2}, \dots, \tuple{\Floor{\frac{n}{2}}, n-\Floor{\frac{n}{2}}}$. Since one knows the optimal solution for all those values, the optimal for $n$ is the one with the highest product.
+
+The solution with one element only is not valid as a final solution. That is why the Algorithm \ref{number-splitting:algorithm:dynamic-programming} specify the $includeLast = false$.
+
+\begin{algorithm}
+    \begin{lstlisting}
+        object SubproblemSolution {
+            cost: Natural
+            partition: Partition
+            }
+        \end{lstlisting}
+        \caption{data structure $SubproblemSolution$.}
+    \end{algorithm}
+
+\newcommand{\SubproblemSolution}[2]{\text{SubproblemSolution}\left\{ #1, #2 \right\}}
+\newcommand{\DP}[1]{\text{DP\_Recursive}\left( #1 \right)}
+
+\begin{algorithm}[H]
+    \caption{Dynamic Programming Recursive Solver}
+    \label{number-splitting:algorithm:dynamic-programming-recursive}
+    \begin{algorithmic}[1]
+        \Function{DP\_recursive}{$n, includeLast$}
+            \If {$n = 1$}
+                \State \Return $\SubproblemSolution{1}{\tuple{1}}$
+            \Else
+                \State $C \gets \Set{}$
+                    \Comment{List of candidates}
+                \If {$includeLast$}
+                    \State $C.add(\SubproblemSolution{n}{\tuple{n}})$
+                \EndIf
+                \For {$i = 1, \dots, \Floor{\frac{n}{2}}$}
+                    \State $lhs \gets \DP{i, true}$
+                    \State $rhs \gets \DP{n - 1, true}$
+                    \State $C.add\left( \SubproblemSolution{lhs.cost \cdot rhs.cost}{lhs.partition + rhs.partition} \right)$
+                \EndFor
+                \State $c^* = \ArgMax{c \in C}{c.cost}$
+                    \Comment{Select the best candidate}
+                \State \Return $c^*$
+            \EndIf
+        \EndFunction
+        \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \caption{Dynamic Programming Solver}
+    \label{number-splitting:algorithm:dynamic-programming}
+    \begin{algorithmic}[1]
+        \Function{dynamic\_programming}{$n, includeLast$}
+            \State \Return $\DP{n, false}.partition$
+        \EndFunction
+        \end{algorithmic}
+\end{algorithm}
