@@ -133,15 +133,94 @@ TEST_CASE("naive algorithm - solve", "[numberSplitting]") {
         const Natural n = 0;
         CHECK_THROWS(NaiveAlgorithm::solve(n));
     }
+    SECTION("case n = 2") {
+        const Natural n = 2;
+        const Partition expected = {1, 1};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 3") {
+        const Natural n = 3;
+        const Partition expected = {1, 2};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
     SECTION("case n = 4") {
         const Natural n = 4;
         const Partition expected = {2, 2};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 5") {
+        const Natural n = 5;
+        const Partition expected = {2, 3};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 6") {
+        const Natural n = 6;
+        const Partition expected = {3, 3};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 7") {
+        const Natural n = 7;
+        const Partition expected = {2, 2, 3};
         CHECK(NaiveAlgorithm::solve(n) == expected);
     }
     SECTION("case n = 8") {
         const Natural n = 8;
         const Partition expected = {2, 3, 3};
         CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 9") {
+        const Natural n = 9;
+        const Partition expected = {3, 3, 3};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 10") {
+        const Natural n = 10;
+        const Partition expected = {2, 2, 3, 3};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 11") {
+        const Natural n = 11;
+        const Partition expected = {2, 3, 3, 3};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 12") {
+        const Natural n = 12;
+        const Partition expected = {3, 3, 3, 3};
+        CHECK(NaiveAlgorithm::solve(n) == expected);
+    }
+}
+
+TEST_CASE("dynamic programming algorithm - solve", "[numberSplitting]") {
+    SECTION("case 0") {
+        const Natural n = 0;
+        CHECK_THROWS(DynamicProgrammingAlgorithm::solve(n));
+    }
+    SECTION("case n = 2") {
+        const Natural n = 2;
+        const Partition expected = {1, 1};
+        CHECK(DynamicProgrammingAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 3") {
+        const Natural n = 3;
+        const Partition expected = {1, 2};
+        CHECK(DynamicProgrammingAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 4") {
+        const Natural n = 4;
+        const Partition expected = {2, 2};
+        CHECK(DynamicProgrammingAlgorithm::solve(n) == expected);
+    }
+    SECTION("case n = 8") {
+        const Natural n = 8;
+        const Partition expected = {2, 3, 3};
+        CHECK(DynamicProgrammingAlgorithm::solve(n) == expected);
+    }
+}
+
+TEST_CASE("compare algorithms", "[numberSplitting]") {
+    SECTION("case 1") {
+        const Natural n = 10;
+        CHECK(NaiveAlgorithm::solve(n) == DynamicProgrammingAlgorithm::solve(n));
     }
 }
 
