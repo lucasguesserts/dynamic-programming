@@ -25,6 +25,9 @@ PartitionSet NaiveAlgorithm::generateAllPartitions(const Natural n, const bool e
     Generate all partitions of the integer n, sorted and without duplicates, excluding [n],
     in decreasing order of tuple length.
     */
+    if (cache.count({n, excludeLast})) {
+        return cache[{n, excludeLast}];
+    }
     PartitionSet parts;
     if (n == 0) {
         parts.insert(Partition{});

@@ -16,10 +16,12 @@ namespace NumberSplitting {
 
     class NaiveAlgorithm {
         public:
-            static Partition solve(const Natural n);
+            NaiveAlgorithm() {};
+            Partition solve(const Natural n);
         private:
-            static PartitionSet generateAllPartitions(const Natural n, const bool excludeLast = true);
-            static Partition selectMostExpensivePartition(const PartitionSet & partitionSet);
+            std::map<std::pair<Natural, bool>, PartitionSet> cache;
+            PartitionSet generateAllPartitions(const Natural n, const bool excludeLast = true);
+            Partition selectMostExpensivePartition(const PartitionSet & partitionSet);
     };
 
     struct SubproblemSolution {
