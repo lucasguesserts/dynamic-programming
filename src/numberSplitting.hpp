@@ -21,10 +21,20 @@ namespace NumberSplitting {
             static Partition selectMostExpensivePartition(const PartitionSet & partitionSet);
     };
 
+    struct SubproblemSolution {
+        Partition partition;
+        Natural cost;
+        bool operator<(SubproblemSolution const& other) const;
+    };
+    using SubproblemSolutionSet = std::set<SubproblemSolution>;
+
+
     class DynamicProgrammingAlgorithm {
         public:
             static Partition solve(const Natural n);
         private:
+            static SubproblemSolution dpSolver(const Natural n, const bool includeLast = false);
+            static SubproblemSolution selectBestCandidate(const SubproblemSolutionSet & candidates);
     };
 
 }

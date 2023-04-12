@@ -57,6 +57,7 @@ set(
     ${SRC}/burglarsNightOut/NaiveAlgorithm.cpp
     ${SRC}/burglarsNightOut/DynamicProgrammingAlgorithm.cpp
     ${SRC}/numberSplitting/NaiveAlgorithm.cpp
+    ${SRC}/numberSplitting/DynamicProgrammingAlgorithm.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
