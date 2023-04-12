@@ -30,6 +30,9 @@ Partition DynamicProgrammingAlgorithm::solve(const Natural n) {
 }
 
 SubproblemSolution DynamicProgrammingAlgorithm::dpSolver(const Natural n, const bool includeLast) {
+    if (cache.count({n, includeLast})) {
+        return cache[{n, includeLast}];
+    }
     if (n == 1) {
         return SubproblemSolution{{1}, 1};
     } else {
@@ -43,7 +46,9 @@ SubproblemSolution DynamicProgrammingAlgorithm::dpSolver(const Natural n, const 
             auto result = joinSolutions(lhs, rhs);
             candidates.insert(result);
         }
-        return selectBestCandidate(candidates);
+        auto bestCandidate = selectBestCandidate(candidates);
+        cache[{n, includeLast}] = bestCandidate;
+        return bestCandidate;
     }
 }
 

@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <vector>
 #include <set>
+#include <map>
 
 namespace NumberSplitting {
 
@@ -31,10 +32,12 @@ namespace NumberSplitting {
 
     class DynamicProgrammingAlgorithm {
         public:
-            static Partition solve(const Natural n);
+            DynamicProgrammingAlgorithm() {};
+            Partition solve(const Natural n);
         private:
-            static SubproblemSolution dpSolver(const Natural n, const bool includeLast = false);
-            static SubproblemSolution selectBestCandidate(const SubproblemSolutionSet & candidates);
+            std::map<std::pair<Natural, bool>, SubproblemSolution> cache;
+            SubproblemSolution dpSolver(const Natural n, const bool includeLast = false);
+            SubproblemSolution selectBestCandidate(const SubproblemSolutionSet & candidates);
     };
 
 }
