@@ -10,7 +10,8 @@ SequenceWithCost::SequenceWithCost(const Fee & initial_cost)
 
 Sequence SequenceWithCost::get_sequence() const noexcept {
     return this->sequence;
-};
+}
+
 Fee SequenceWithCost::get_cost() const noexcept {
     return this->cost;
 }
