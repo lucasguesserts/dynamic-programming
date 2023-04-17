@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - trunk
+      - fix-github-actions
 jobs:
   Test:
     runs-on: ubuntu-20.04
