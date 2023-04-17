@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - trunk
-      - upgrade-catch-2
 jobs:
   Test:
     runs-on: ubuntu-20.04
