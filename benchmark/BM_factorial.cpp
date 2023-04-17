@@ -1,43 +1,36 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include "factorial.hpp"
 
 #include <functional>
 
-void runFactorial(std::function<long unsigned(long unsigned)> f) {
-    const long int nMax = 18;
+long unsigned runFactorial(std::function<long unsigned(long unsigned)> f) {
+    const long unsigned nMax = 18;
+    long unsigned acc = 0;
     for (long unsigned n = 0; n < nMax; ++n) {
-        f(n);
+        acc += f(n);
     }
+    return acc;
 }
 
-static void BM_factorial(benchmark::State& state) {
-  for (auto _ : state) {
-      runFactorial(factorial);
-  }
-}
-BENCHMARK(BM_factorial);
+TEST_CASE("Factorial Benchmark", "[factorial]") {
 
-static void BM_FactorialMemoization(benchmark::State& state) {
-  for (auto _ : state) {
-      FactorialMemoization factorialMemoization;
-      runFactorial(factorialMemoization);
-  }
-}
-BENCHMARK(BM_FactorialMemoization);
+    BENCHMARK("constexpr") {
+        return runFactorial(factorial);
+    };
 
-static void BM_factorial_memoization(benchmark::State& state) {
-  for (auto _ : state) {
-      runFactorial(factorial_memoization);
-  }
-}
-BENCHMARK(BM_factorial_memoization);
+    BENCHMARK("naive") {
+        return runFactorial(factorial_naive);
+    };
 
-static void BM_factorial_naive(benchmark::State& state) {
-  for (auto _ : state) {
-      runFactorial(factorial_naive);
-  }
-}
-BENCHMARK(BM_factorial_naive);
+    BENCHMARK("memoization object") {
+        return runFactorial(factorial_memoization);
+    };
 
-BENCHMARK_MAIN();
+    BENCHMARK("memoization") {
+        FactorialMemoization factorialMemoization;
+        return runFactorial(factorialMemoization);
+    };
+
+}
