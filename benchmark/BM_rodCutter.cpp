@@ -1,16 +1,16 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include "rodCutter.hpp"
 
 const std::initializer_list<double> pricesOfRodPieces = {2, 4, 7, 8};
 
-static void BM_rodCutter(benchmark::State& state) {
-  for (auto _ : state) {
-    const auto problem = RodCutter::Problem(pricesOfRodPieces);
-    auto solver = RodCutter::Solver(problem);
-    solver(4);
-  }
-}
-BENCHMARK(BM_rodCutter);
+TEST_CASE("rodCutter Benchmark", "[benchmark][rodCutter]") {
 
-BENCHMARK_MAIN();
+    BENCHMARK("rodCutter") {
+        const auto problem = RodCutter::Problem(pricesOfRodPieces);
+        auto solver = RodCutter::Solver(problem);
+        return solver(4);
+    };
+
+}

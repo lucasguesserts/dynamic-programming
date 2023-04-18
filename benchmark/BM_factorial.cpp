@@ -14,7 +14,7 @@ long unsigned runFactorial(std::function<long unsigned(long unsigned)> f) {
     return acc;
 }
 
-TEST_CASE("Factorial Benchmark", "[factorial]") {
+TEST_CASE("Factorial Benchmark", "[benchmark][factorial]") {
 
     BENCHMARK("constexpr") {
         return runFactorial(factorial);
