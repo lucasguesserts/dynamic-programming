@@ -2,8 +2,6 @@ project(benchmark)
 
 set(TEST_EXECUTABLE "run_benchmark")
 
-find_package(benchmark REQUIRED)
-
 include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
