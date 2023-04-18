@@ -1,23 +1,20 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include "numberSplitting.hpp"
 
 const NumberSplitting::Natural n = 15;
 
-static void BM_numberSplitting_naive(benchmark::State& state) {
-    for (auto _ : state) {
+TEST_CASE("numberSplitting Benchmark", "[benchmark][numberSplitting]") {
+
+    BENCHMARK("naive") {
         NumberSplitting::NaiveAlgorithm algorithm;
-        algorithm.solve(n);
-    }
-}
-BENCHMARK(BM_numberSplitting_naive);
+        return algorithm.solve(n);
+    };
 
-static void BM_numberSplitting_dynamicProgramming(benchmark::State& state) {
-    for (auto _ : state) {
+    BENCHMARK("dynamic programming") {
         NumberSplitting::DynamicProgrammingAlgorithm algorithm;
-        algorithm.solve(n);
-    }
-}
-BENCHMARK(BM_numberSplitting_dynamicProgramming);
+        return algorithm.solve(n);
+    };
 
-BENCHMARK_MAIN();
+}

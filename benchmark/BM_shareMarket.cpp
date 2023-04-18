@@ -1,4 +1,5 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include <initializer_list>
 
@@ -6,18 +7,14 @@
 
 const std::initializer_list<double> prices = {1, 2, 3, 2, 3, 2, 1, 0, 1, 2, 3, 4};
 
-static void BM_shareMarket(benchmark::State& state) {
-  for (auto _ : state) {
-      shareMarket(prices);
-  }
-}
-BENCHMARK(BM_shareMarket);
+TEST_CASE("shareMarket Benchmark", "[benchmark][shareMarket]") {
 
-static void BM_shareMarketSimple(benchmark::State& state) {
-  for (auto _ : state) {
-      shareMarketSimple(prices);
-  }
-}
-BENCHMARK(BM_shareMarketSimple);
+    BENCHMARK("shareMarket") {
+        return shareMarket(prices);
+    };
 
-BENCHMARK_MAIN();
+    BENCHMARK("shareMarketSimple") {
+        return shareMarketSimple(prices);
+    };
+
+}

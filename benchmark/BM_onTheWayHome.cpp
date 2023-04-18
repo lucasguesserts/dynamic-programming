@@ -1,6 +1,8 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include <vector>
+#include <functional>
 
 #include "onTheWayHome.hpp"
 
@@ -20,32 +22,27 @@ const std::vector<Position> problemInstances = {
     {5, 12},
 };
 
-static void BM_onTheWayHome_opt(benchmark::State& state) {
-  for (auto _ : state) {
-      for (const auto& instance: problemInstances) {
-        onTheWayHome_memoization(instance);
-      }
-  }
+long unsigned run(std::function<long unsigned(const Position &)> f) {
+    long unsigned acc = 0;
+        for (const auto& instance: problemInstances) {
+            acc += f(instance);
+        }
+    return acc;
 }
-BENCHMARK(BM_onTheWayHome_opt);
 
-static void BM_onTheWayHome_class(benchmark::State& state) {
-  for (auto _ : state) {
-      OnTheWayHome solver;
-      for (const auto& instance: problemInstances) {
-        solver.compute(instance);
-      }
-  }
+TEST_CASE("onTheWayHome Benchmark", "[benchmark][onTheWayHome]") {
+
+    BENCHMARK("opt") {
+        return run(onTheWayHome_memoization);
+    };
+
+    BENCHMARK("class") {
+        OnTheWayHome solver;
+        return run([&solver](const Position & p) {return solver.compute(p); });
+    };
+
+    BENCHMARK("naive") {
+        return run(onTheWayHome_naive);
+    };
+
 }
-BENCHMARK(BM_onTheWayHome_class);
-
-static void BM_onTheWayHome_naive(benchmark::State& state) {
-  for (auto _ : state) {
-      for (const auto& instance: problemInstances) {
-        onTheWayHome_naive(instance);
-      }
-  }
-}
-BENCHMARK(BM_onTheWayHome_naive);
-
-BENCHMARK_MAIN();

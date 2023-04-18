@@ -1,6 +1,3 @@
 [submodule "dependency/catch"]
 	path = dependency/catch
 	url = https://github.com/catchorg/Catch2.git
-[submodule "dependency/benchmark"]
-	path = dependency/benchmark
-	url = https://github.com/google/benchmark.git

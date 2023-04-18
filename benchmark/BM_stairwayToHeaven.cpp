@@ -1,36 +1,27 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include "stairwayToHeaven.hpp"
 
 const long unsigned PROBLEM_SIZE = 18;
 
-static void BM_stairwayToHeaven(benchmark::State& state) {
-  for (auto _ : state) {
-      stairwayToHeaven(PROBLEM_SIZE);
-  }
-}
-BENCHMARK(BM_stairwayToHeaven);
+TEST_CASE("stairwayToHeaven Benchmark", "[benchmark][stairwayToHeaven]") {
 
-static void BM_StairwayToHeaven(benchmark::State& state) {
-  for (auto _ : state) {
-      StairwayToHeaven solver;
-      solver(PROBLEM_SIZE);
-  }
-}
-BENCHMARK(BM_StairwayToHeaven);
+    BENCHMARK("stairwayToHeaven") {
+        return stairwayToHeaven(PROBLEM_SIZE);
+    };
 
-static void BM_stairwayToHeaven_recursive(benchmark::State& state) {
-  for (auto _ : state) {
-      stairwayToHeaven_recursive(PROBLEM_SIZE);
-  }
-}
-BENCHMARK(BM_stairwayToHeaven_recursive);
+    BENCHMARK("StairwayToHeaven") {
+        StairwayToHeaven solver;
+        return solver(PROBLEM_SIZE);
+    };
 
-static void BM_stairwayToHeaven_sum(benchmark::State& state) {
-  for (auto _ : state) {
-      stairwayToHeaven(PROBLEM_SIZE);
-  }
-}
-BENCHMARK(BM_stairwayToHeaven_sum);
+    BENCHMARK("stairwayToHeaven_recursive") {
+        return stairwayToHeaven_recursive(PROBLEM_SIZE);
+    };
 
-BENCHMARK_MAIN();
+    BENCHMARK("stairwayToHeaven_sum") {
+        return stairwayToHeaven(PROBLEM_SIZE);
+    };
+
+}

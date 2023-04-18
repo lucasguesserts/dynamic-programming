@@ -1,4 +1,5 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include "stairwayToHeaven2.hpp"
 
@@ -8,20 +9,16 @@ const Size number_of_steps = 7;
 const Size step_limit = 3;
 const Fees fees = {7, 3, 6, 7, 1, 2, 5};
 
-static void BM_stairwayToHeaven2_naive(benchmark::State& state) {
-    for (auto _ : state) {
+TEST_CASE("stairwayToHeaven2 Benchmark", "[benchmark][stairwayToHeaven2]") {
+
+    BENCHMARK("stairwayToHeaven2_naive") {
         const NaiveAlgorithm algorithm;
-        algorithm.solve(number_of_steps, step_limit, fees);
-    }
-}
-BENCHMARK(BM_stairwayToHeaven2_naive);
+        return algorithm.solve(number_of_steps, step_limit, fees);
+    };
 
-static void BM_stairwayToHeaven2_dynamic_programming(benchmark::State& state) {
-    for (auto _ : state) {
+    BENCHMARK("stairwayToHeaven2_dynamic_programming") {
         const DynamicProgrammingAlgorithm algorithm;
-        algorithm.solve(number_of_steps, step_limit, fees);
-    }
-}
-BENCHMARK(BM_stairwayToHeaven2_dynamic_programming);
+        return algorithm.solve(number_of_steps, step_limit, fees);
+    };
 
-BENCHMARK_MAIN();
+}

@@ -1,4 +1,5 @@
-#include <benchmark/benchmark.h>
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/benchmark/catch_benchmark.hpp>
 
 #include <random>
 #include <vector>
@@ -8,7 +9,7 @@
 
 #include "sumOfTheRange.hpp"
 
-class SumOfTheRangeFixture: public benchmark::Fixture {
+class SumOfTheRangeFixture {
     public:
         std::vector<double> values;
         std::vector<Query> queries;
@@ -17,9 +18,7 @@ class SumOfTheRangeFixture: public benchmark::Fixture {
             : gen(rd()),
               realDis(MINIMUM_VALUE, MAXIMUM_VALUE),
               intDis(0, NUMBER_OF_VALUES - 1)
-        {}
-
-        void SetUp([[maybe_unused]] const ::benchmark::State & state) {
+        {
             for (unsigned k = 0; k < NUMBER_OF_VALUES; ++k) {
                 this->values.push_back(getRealRandomNumber());
             }
@@ -31,8 +30,6 @@ class SumOfTheRangeFixture: public benchmark::Fixture {
             }
             return;
         }
-
-        void TearDown([[maybe_unused]] const ::benchmark::State& state) {}
 
     private:
         static constexpr double MINIMUM_VALUE = 0.0;
@@ -54,18 +51,22 @@ class SumOfTheRangeFixture: public benchmark::Fixture {
         }
 };
 
-BENCHMARK_F(SumOfTheRangeFixture, BM_sumOfTheRangeNaive)(benchmark::State & state) {
-    for (auto _ : state) {
-        const Naive solver(values);
-        const auto answers = solver(queries);
-    }
-}
+TEST_CASE("sumOfTheRange Benchmark", "[benchmark][sumOfTheRange]") {
 
-BENCHMARK_F(SumOfTheRangeFixture, BM_sumOfTheRangeOpt)(benchmark::State & state) {
-    for (auto _ : state) {
-        const Opt solver(values);
-        const auto answers = solver(queries);
-    }
-}
+    BENCHMARK_ADVANCED("sumOfTheRangeNaive")(Catch::Benchmark::Chronometer meter) {
+        const SumOfTheRangeFixture fixture;
+        meter.measure([&fixture] {
+            const Naive solver(fixture.values);
+            const auto answers = solver(fixture.queries);
+        });
+    };
 
-BENCHMARK_MAIN();
+    BENCHMARK_ADVANCED("sumOfTheRangeOpt")(Catch::Benchmark::Chronometer meter) {
+        const SumOfTheRangeFixture fixture;
+        meter.measure([&fixture] {
+            const Opt solver(fixture.values);
+            const auto answers = solver(fixture.queries);
+        });
+    };
+
+}
