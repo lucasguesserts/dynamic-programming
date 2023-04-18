@@ -1,5 +1,6 @@
 # c++
 build/
+benchmark.log
 
 # node
 node_modules/
