@@ -21,6 +21,5 @@
   "AllowAllParametersOfDeclarationOnNextLine": true,
   "BinPackArguments": false,
   "BinPackParameters": false,
-  "PackConstructorInitializers": "NextLine",
   "BasedOnStyle": "webkit"
 }
