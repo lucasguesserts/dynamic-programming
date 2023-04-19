@@ -1,7 +1,18 @@
 #!/bin/bash
 
 LOG_FILE="code_quality.log"
+HEADER_FILES=$(ls src/*.hpp)
+SOURCE_FILES=$(ls src/**/*.cpp)
+TEST_FILES=$(ls test/*.test.cpp test/**/*.test.cpp)
+BENCHMARK_FILES=$(ls benchmark/*.cpp)
 
 ./script/make && \
-make -C build check \
-2>&1 | tee $LOG_FILE
+clang-tidy \
+    --quiet \
+    -p "build/compile_commands.json" \
+    --config-file=.clang-tidy \
+    ${HEADER_FILES} \
+    ${SOURCE_FILES} \
+    ${TEST_FILES} \
+    ${BENCHMARK_FILES} \
+    --export-fixes=$LOG_FILE

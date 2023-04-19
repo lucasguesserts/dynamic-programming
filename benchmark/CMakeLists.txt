@@ -16,7 +16,6 @@ set(
     BM_stairwayToHeaven.cpp
     BM_stairwayToHeaven2.cpp
     BM_sumOfTheRange.cpp
-    PARENT_SCOPE
 )
 
 foreach(BENCKMARK_CASE_SOURCE IN ITEMS ${BENCHMARK_CASE_SOURCE_LIST})

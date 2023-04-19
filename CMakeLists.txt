@@ -70,24 +70,9 @@ add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 
 include_directories(${SRC})
 
-FILE(GLOB PROJECT_HEADER_FILES ${SRC}/*.hpp)
-
 enable_testing()
 add_subdirectory(test)
 add_subdirectory(benchmark)
-
-FILE(GLOB PROJECT_HEADER_FILES ${SRC}/*.hpp)
-add_custom_target(
-    check
-    COMMAND clang-tidy
-        -p ${CMAKE_BINARY_DIR}/compile_commands.json
-        --config-file=${CMAKE_SOURCE_DIR}/.clang-tidy
-        ${PROJECT_HEADER_FILES}
-        ${PROJECT_SOURCE_FILES}
-        ${TEST_CASE_SOURCE_LIST}
-        ${BENCHMARK_CASE_SOURCE_LIST}
-    DEPENDS ${PROJECT_LIBRARY}
-)
 
 message("\n")
 message("---- Project ${PROJECT_NAME} ----")
