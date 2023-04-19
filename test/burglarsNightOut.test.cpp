@@ -5,6 +5,10 @@
 #include <vector>
 #include <random>
 
+#if __clang__
+#pragma clang diagnostic ignored "-Wkeyword-macro"
+#endif
+
 #define private public
 
 #include "burglarsNightOut.hpp"

@@ -1,5 +1,9 @@
 #include <catch2/catch_test_macros.hpp>
 
+#if __clang__
+#pragma clang diagnostic ignored "-Wkeyword-macro"
+#endif
+
 #define protected public
 
 #include "stairwayToHeaven2.hpp"
