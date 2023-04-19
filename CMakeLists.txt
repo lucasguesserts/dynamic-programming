@@ -15,12 +15,14 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -pedantic-errors -ferror-limit=1")
 endif()
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(CMAKE_BUILD_TYPE Debug)
 
 find_package(Catch2 3 REQUIRED)
 
 set(PROJECT_LIBRARY ${PROJECT_NAME})
-set(SRC src)
+set(SRC ${CMAKE_SOURCE_DIR}/src)
 
 set(
     PROJECT_SOURCE_FILES
@@ -67,6 +69,14 @@ set(
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})
 
 include_directories(${SRC})
+
+FILE(GLOB PROJECT_HEADER_FILES ${SRC}/*.hpp)
+
+add_custom_target(
+    check
+    COMMAND clang-tidy -p ${CMAKE_BINARY_DIR}/compile_commands.json --config-file=${CMAKE_SOURCE_DIR}/.clang-tidy ${PROJECT_HEADER_FILES} ${PROJECT_SOURCE_FILES}
+    DEPENDS ${PROJECT_LIBRARY}
+)
 
 enable_testing()
 add_subdirectory(test)
