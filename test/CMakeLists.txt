@@ -21,6 +21,7 @@ set(
     stairwayToHeaven2/DynamicProgrammingAlgorithm.test.cpp
     burglarsNightOut.test.cpp
     numberSplitting.test.cpp
+    PARENT_SCOPE
 )
 
 foreach(TEST_CASE_SOURCE IN ITEMS ${TEST_CASE_SOURCE_LIST})
