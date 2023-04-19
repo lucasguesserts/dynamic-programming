@@ -1,5 +1,5 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/benchmark/catch_benchmark.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include "factorial.hpp"
 
@@ -32,5 +32,4 @@ TEST_CASE("Factorial Benchmark", "[benchmark][factorial]") {
         FactorialMemoization factorialMemoization;
         return runFactorial(factorialMemoization);
     };
-
 }

@@ -1,5 +1,5 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/benchmark/catch_benchmark.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include "numberSplitting.hpp"
 
@@ -16,5 +16,4 @@ TEST_CASE("numberSplitting Benchmark", "[benchmark][numberSplitting]") {
         NumberSplitting::DynamicProgrammingAlgorithm algorithm;
         return algorithm.solve(n);
     };
-
 }
