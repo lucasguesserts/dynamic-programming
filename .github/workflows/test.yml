@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - trunk
+      - code-quality
 jobs:
   test-gcc:
     runs-on: ubuntu-22.04
@@ -38,3 +39,13 @@ jobs:
         run: ./script/install_catch
       - name: test
         run: ./script/test
+  formatting-check:
+    name: Format check
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: Run clang-format style check for C/C++ programs.
+        uses: jidicula/clang-format-action@v4.11.0
+        with:
+          clang-format-version: '15'
