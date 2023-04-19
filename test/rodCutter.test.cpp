@@ -1,5 +1,5 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include <initializer_list>
 
@@ -8,7 +8,7 @@
 using namespace Catch::literals;
 
 TEST_CASE("rodCutter", "[rodCutter]") {
-    const std::initializer_list<double> pricesOfRodPieces = {2, 4, 7, 8};
+    const std::initializer_list<double> pricesOfRodPieces = { 2, 4, 7, 8 };
     const auto problem = RodCutter::Problem(pricesOfRodPieces);
     auto solver = RodCutter::Solver(problem);
     CHECK(solver(0u) == 0.0_a);
