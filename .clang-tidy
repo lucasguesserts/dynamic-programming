@@ -1,3 +1,4 @@
 {
-  "Checks": "clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*,llmv-*"
+  "Checks": "clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*,llmv-*",
+  "WarningsAsErrors": "clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*,llmv-*"
 }
