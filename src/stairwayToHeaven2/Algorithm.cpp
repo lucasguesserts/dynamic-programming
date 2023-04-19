@@ -24,4 +24,4 @@ Fee Algorithm::compute_sequence_cost(const Sequence & sequence, const Fees & fee
     return total;
 }
 
-}
+} // namespace StairwayToHeaven2

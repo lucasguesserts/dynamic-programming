@@ -1,8 +1,8 @@
 #include "burglarsNightOut.hpp"
 
-#include <vector>
 #include <iterator>
 #include <limits>
+#include <vector>
 
 namespace BurglarsNightOut {
 
@@ -11,7 +11,7 @@ std::vector<BinarySequence> NaiveAlgorithm::generateAllBinarySequences(const Siz
     if (n == 0) {
         allVectors.push_back({});
     } else {
-        std::vector<BinarySequence> previousSequences = generateAllBinarySequences(n-1);
+        std::vector<BinarySequence> previousSequences = generateAllBinarySequences(n - 1);
         for (Size i = 0; i < previousSequences.size(); ++i) {
             BinarySequence newSequence = previousSequences[i];
             newSequence.push_back(false);
@@ -29,12 +29,9 @@ std::vector<BinarySequence> NaiveAlgorithm::filterTrueAlternateSequences(const s
         binarySequences.cbegin(),
         binarySequences.cend(),
         std::back_inserter(trueAlternateSequences),
-        [](const BinarySequence & b) { return isTrueAlternateSequence(b); }
-    );
+        [](const BinarySequence & b) { return isTrueAlternateSequence(b); });
     return trueAlternateSequences;
 }
-
-
 
 BinarySequence NaiveAlgorithm::selectMostExpensiveSequence(const std::vector<BinarySequence> & binarySequences, const RealSequence & costs) {
     if (binarySequences.empty()) {
@@ -59,4 +56,4 @@ BinarySequence NaiveAlgorithm::solve(const RealSequence & costs) {
     return optimalBinarySequence;
 }
 
-}
+} // namespace BurglarsNightOut

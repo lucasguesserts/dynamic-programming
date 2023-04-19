@@ -5,9 +5,7 @@
 
 long unsigned generateRandomNumber(
     const long unsigned low,
-    const long unsigned high
-)
-{
+    const long unsigned high) {
     // https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution
     static std::random_device rd;
     static std::mt19937 gen(rd());

@@ -5,7 +5,7 @@
 namespace LongestIncreasingSubsequence {
 
 DynamicProgrammingAlgorithm::DynamicProgrammingAlgorithm(const Sequence & sequence)
-: RecursiveAlgorithm(sequence) {
+    : RecursiveAlgorithm(sequence) {
     this->makeB();
     this->makeSolutions();
     this->selectLongestSubsequences();
@@ -26,4 +26,4 @@ Sequence DynamicProgrammingAlgorithm::makeSubproblemSolution(const Index i) {
     }
 }
 
-}
+} // namespace LongestIncreasingSubsequence

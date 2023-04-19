@@ -1,8 +1,8 @@
 #include "burglarsNightOut.hpp"
 
-#include <vector>
 #include <iterator>
 #include <limits>
+#include <vector>
 
 namespace BurglarsNightOut {
 
@@ -22,23 +22,21 @@ BinarySequence DynamicProgrammingAlgorithm::solve(const RealSequence & costs) {
     }
     // Initialization
     std::vector<SubproblemSolutions> subproblemSolutions;
-    subproblemSolutions.push_back({
-        {{true}, costs[0]},
-        {{false}, 0}
-    });
+    subproblemSolutions.push_back({ { { true }, costs[0] },
+        { { false }, 0 } });
     // Recursive solver
     for (Size i = 1; i < costs.size(); ++i) {
         // compute solution with entry i included
-        Solution lastIncluded = subproblemSolutions[i-1].lastExcluded;
+        Solution lastIncluded = subproblemSolutions[i - 1].lastExcluded;
         lastIncluded.sequence.push_back(true);
         lastIncluded.cost += costs[i];
         // compute solution with entry i excluded
-        Solution lastExcluded = subproblemSolutions[i-1].lastIncluded.cost > subproblemSolutions[i-1].lastExcluded.cost
-            ? subproblemSolutions[i-1].lastIncluded
-            : subproblemSolutions[i-1].lastExcluded;
+        Solution lastExcluded = subproblemSolutions[i - 1].lastIncluded.cost > subproblemSolutions[i - 1].lastExcluded.cost
+            ? subproblemSolutions[i - 1].lastIncluded
+            : subproblemSolutions[i - 1].lastExcluded;
         lastExcluded.sequence.push_back(false);
         // next entry
-        subproblemSolutions.push_back({lastIncluded, lastExcluded});
+        subproblemSolutions.push_back({ lastIncluded, lastExcluded });
     }
     // Optimal solution of the original problem
     const auto & optSolutionCandidates = subproblemSolutions.back();
@@ -48,4 +46,4 @@ BinarySequence DynamicProgrammingAlgorithm::solve(const RealSequence & costs) {
     return optimalSequence;
 }
 
-}
+} // namespace BurglarsNightOut

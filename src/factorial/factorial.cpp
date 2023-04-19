@@ -2,23 +2,23 @@
 
 #include <array>
 
-constexpr long int factorialConstexpr (const long int n) {
+constexpr long int factorialConstexpr(const long int n) {
     return n < 1
         ? 1
         : n * factorialConstexpr(n - 1);
 }
 
 constexpr std::array factorialConstexprValues = {
-    factorialConstexpr( 0),
-    factorialConstexpr( 1),
-    factorialConstexpr( 2),
-    factorialConstexpr( 3),
-    factorialConstexpr( 4),
-    factorialConstexpr( 5),
-    factorialConstexpr( 6),
-    factorialConstexpr( 7),
-    factorialConstexpr( 8),
-    factorialConstexpr( 9),
+    factorialConstexpr(0),
+    factorialConstexpr(1),
+    factorialConstexpr(2),
+    factorialConstexpr(3),
+    factorialConstexpr(4),
+    factorialConstexpr(5),
+    factorialConstexpr(6),
+    factorialConstexpr(7),
+    factorialConstexpr(8),
+    factorialConstexpr(9),
     factorialConstexpr(10),
     factorialConstexpr(11),
     factorialConstexpr(12),
