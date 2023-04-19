@@ -2,9 +2,9 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.20)
 
 project(
     dynamic-programming
-	VERSION 0.0.0
-	HOMEPAGE_URL "https://github.com/lucasguesserts/dynamic-programming"
-	LANGUAGES CXX
+    VERSION 0.0.0
+    HOMEPAGE_URL "https://github.com/lucasguesserts/dynamic-programming"
+    LANGUAGES CXX
 )
 
 set(CMAKE_CXX_STANDARD 17)
