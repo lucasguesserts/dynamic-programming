@@ -74,12 +74,17 @@ jobs:
     steps:
       - name: checkout repository
         uses: actions/checkout@v2
-      - name: install clang
+      - name: install requirements
         shell: bash
         run:  |
               sudo apt update
-              sudo apt install clang clang-tidy
+              sudo apt install clang clang-tidy llvm
+              python -m venv venv
+              . venv/bin/activate
+              pip install --requirement requirements.txt
       - name: install catch2
         run: ./script/install_catch
       - name: check
-        run: ./script/check_code_coverage
+        run: |
+              . venv/bin/activate
+              ./script/check_code_coverage
