@@ -12,3 +12,4 @@ gcovr \
     --gcov-executable "llvm-cov gcov" \
     --print-summary \
     --html-details details.html
+brave-browser details.html
