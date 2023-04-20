@@ -69,3 +69,17 @@ jobs:
         run: ./script/install_catch
       - name: check
         run: ./script/check_code_quality
+  code-coverage-check:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: install clang
+        shell: bash
+        run:  |
+              sudo apt update
+              sudo apt install clang clang-tidy
+      - name: install catch2
+        run: ./script/install_catch
+      - name: check
+        run: ./script/check_code_coverage
