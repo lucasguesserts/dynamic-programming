@@ -11,5 +11,5 @@ gcovr \
     --decisions \
     --gcov-executable "llvm-cov gcov" \
     --print-summary \
-    --html-details details.html
-brave-browser details.html
+    --html-details details.html \
+    --fail-under-line 100
