@@ -2,7 +2,7 @@
 
 #include <array>
 
-constexpr long int factorialConstexpr(const long int n) {
+constexpr auto factorialConstexpr(const Value n) -> decltype(n) {
     return n < 1
         ? 1
         : n * factorialConstexpr(n - 1);
@@ -32,6 +32,6 @@ constexpr std::array factorialConstexprValues = {
     factorialConstexpr(20),
 }; // Yeah, this code smells. I don't know how to use templates to make it work though.
 
-long unsigned factorial(const long unsigned n) {
+auto factorial(const long unsigned n) -> decltype(n) {
     return factorialConstexprValues.at(n);
 }

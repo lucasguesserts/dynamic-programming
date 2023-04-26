@@ -1,19 +1,23 @@
 #ifndef FACTORIAL_HPP_
 #define FACTORIAL_HPP_
 
+#include <functional>
 #include <vector>
 
-long unsigned factorial(const long unsigned n);
-long unsigned factorial_memoization(const long unsigned n);
-long unsigned factorial_naive(const long unsigned n);
+using Value = long unsigned;
+using FactorialFunction = std::function<auto(const Value n)->decltype(n)>;
+
+auto factorial(const Value n) -> decltype(n);
+auto factorial_memoization(const Value n) -> decltype(n);
+auto factorial_naive(const Value n) -> decltype(n);
 
 class FactorialMemoization {
 public:
     FactorialMemoization();
-    long unsigned operator()(const long unsigned n);
+    auto operator()(const Value n) -> decltype(n);
 
 private:
-    std::vector<long unsigned> values;
+    std::vector<Value> values;
 };
 
 #endif

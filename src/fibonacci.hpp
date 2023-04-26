@@ -1,6 +1,8 @@
 #ifndef FIBONACCI_HPP
 #define FIBONACCI_HPP
 
-long unsigned fibonacci(long unsigned n);
+using Value = long unsigned;
+
+auto fibonacci(const Value n) -> decltype(n);
 
 #endif

@@ -4,13 +4,13 @@
 #include <vector>
 
 FactorialMemoization::FactorialMemoization() {
-    constexpr long unsigned RESERVED_SIZE = 20;
-    constexpr long unsigned INITIAL_VALUE = 1lu;
+    constexpr auto RESERVED_SIZE = Value{20};
+    constexpr auto INITIAL_VALUE = Value{1};
     this->values.reserve(RESERVED_SIZE);
     this->values.push_back(INITIAL_VALUE);
 }
 
-long unsigned FactorialMemoization::operator()(const long unsigned n) {
+auto FactorialMemoization::operator()(const Value n) -> decltype(n) {
     if (n < values.size()) {
         return values[n];
     } else {
