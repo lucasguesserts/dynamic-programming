@@ -2,36 +2,36 @@
 
 #include <array>
 
-constexpr auto factorialConstexpr(const Value n) -> decltype(n) {
+constexpr auto factorial_constexpr(const Value n) -> decltype(n) {
     return n < 1
         ? 1
-        : n * factorialConstexpr(n - 1);
+        : n * factorial_constexpr(n - 1);
 }
 
-constexpr std::array factorialConstexprValues = {
-    factorialConstexpr(0),
-    factorialConstexpr(1),
-    factorialConstexpr(2),
-    factorialConstexpr(3),
-    factorialConstexpr(4),
-    factorialConstexpr(5),
-    factorialConstexpr(6),
-    factorialConstexpr(7),
-    factorialConstexpr(8),
-    factorialConstexpr(9),
-    factorialConstexpr(10),
-    factorialConstexpr(11),
-    factorialConstexpr(12),
-    factorialConstexpr(13),
-    factorialConstexpr(14),
-    factorialConstexpr(15),
-    factorialConstexpr(16),
-    factorialConstexpr(17),
-    factorialConstexpr(18),
-    factorialConstexpr(19),
-    factorialConstexpr(20),
+constexpr auto factorial_constexpr_values = std::array{
+    factorial_constexpr(0),
+    factorial_constexpr(1),
+    factorial_constexpr(2),
+    factorial_constexpr(3),
+    factorial_constexpr(4),
+    factorial_constexpr(5),
+    factorial_constexpr(6),
+    factorial_constexpr(7),
+    factorial_constexpr(8),
+    factorial_constexpr(9),
+    factorial_constexpr(10),
+    factorial_constexpr(11),
+    factorial_constexpr(12),
+    factorial_constexpr(13),
+    factorial_constexpr(14),
+    factorial_constexpr(15),
+    factorial_constexpr(16),
+    factorial_constexpr(17),
+    factorial_constexpr(18),
+    factorial_constexpr(19),
+    factorial_constexpr(20),
 }; // Yeah, this code smells. I don't know how to use templates to make it work though.
 
-auto factorial(const long unsigned n) -> decltype(n) {
-    return factorialConstexprValues.at(n);
+auto factorial(const Value n) -> decltype(n) {
+    return factorial_constexpr_values.at(n);
 }

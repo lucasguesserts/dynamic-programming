@@ -5,31 +5,30 @@
 
 #include <functional>
 
-long unsigned runFactorial(std::function<long unsigned(long unsigned)> f) {
-    const long unsigned nMax = 18;
-    long unsigned acc = 0;
-    for (long unsigned n = 0; n < nMax; ++n) {
+auto run_factorial(FactorialFunction f) -> decltype(f)::result_type {
+    const auto nMax = Value{18};
+    auto acc = Value{0};
+    for (auto n = 0u; n < nMax; ++n) {
         acc += f(n);
     }
     return acc;
 }
 
 TEST_CASE("Factorial Benchmark", "[benchmark][factorial]") {
-
     BENCHMARK("constexpr") {
-        return runFactorial(factorial);
+        return run_factorial(factorial);
     };
 
     BENCHMARK("naive") {
-        return runFactorial(factorial_naive);
+        return run_factorial(factorial_naive);
     };
 
     BENCHMARK("memoization object") {
-        return runFactorial(factorial_memoization);
+        return run_factorial(factorial_memoization);
     };
 
     BENCHMARK("memoization") {
         FactorialMemoization factorialMemoization;
-        return runFactorial(factorialMemoization);
+        return run_factorial(factorialMemoization);
     };
 }

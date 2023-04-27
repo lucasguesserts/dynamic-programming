@@ -1,6 +1,5 @@
 #include "factorial.hpp"
 
-#include <initializer_list>
 #include <vector>
 
 FactorialMemoization::FactorialMemoization() {
@@ -14,7 +13,7 @@ auto FactorialMemoization::operator()(const Value n) -> decltype(n) {
     if (n < values.size()) {
         return values[n];
     } else {
-        const long unsigned result = n * (*this)(n - 1);
+        const auto result = n * (*this)(n - 1);
         values.push_back(result);
         return result;
     }
