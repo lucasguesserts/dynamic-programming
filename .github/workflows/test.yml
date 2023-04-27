@@ -39,3 +39,19 @@ jobs:
         run: ./script/install_catch
       - name: test
         run: ./script/test
+  code-style-check:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        path:
+          - 'src'
+          - 'test'
+          - 'benchmark'
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: Run clang-format style check for C/C++ programs.
+        uses: jidicula/clang-format-action@v4.11.0
+        with:
+          clang-format-version: '15'
+          check-path: ${{ matrix.path }}
