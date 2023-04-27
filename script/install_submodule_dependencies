@@ -4,10 +4,10 @@ git submodule update --init --recursive
 
 
 cd dependency/catch
-cmake --build build -H. -DBUILD_TESTING=OFF
+cmake -Bbuild -H. -DBUILD_TESTING=OFF
 sudo cmake --build build/ --target install
 cd ../../
 
 cd dependency/itertools
-cmake --build build
+cmake -Bbuild
 sudo cmake --build build/ --target install
