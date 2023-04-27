@@ -47,7 +47,7 @@ protected:
     Index optimalLength;
     SequenceSet optimalSubsequences;
 
-    virtual ~Algorithm() {};
+    virtual ~Algorithm(){};
 };
 
 class NaiveAlgorithm : public Algorithm {

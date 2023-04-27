@@ -11,7 +11,7 @@ using details::onTheWayHome::swapPosition;
 long unsigned onTheWayHome_memoization(const Position & position) {
     static constexpr long unsigned boundaryValue = 1lu;
     static const std::vector<long unsigned> newRow = {};
-    static std::vector<std::vector<long unsigned>> values { { boundaryValue } };
+    static std::vector<std::vector<long unsigned>> values{{boundaryValue}};
     // handle only half of the problem: if row > column, swap them
     // const auto position = swapPosition(pos);
     const auto & row = position.row;

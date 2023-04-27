@@ -24,16 +24,16 @@ PartitionSet NaiveAlgorithm::generateAllPartitions(const Natural n, const bool e
     Generate all partitions of the integer n, sorted and without duplicates, excluding [n],
     in decreasing order of tuple length.
     */
-    if (cache.count({ n, excludeLast })) {
-        return cache[{ n, excludeLast }];
+    if (cache.count({n, excludeLast})) {
+        return cache[{n, excludeLast}];
     }
     PartitionSet parts;
     if (n == 0) {
-        parts.insert(Partition {});
+        parts.insert(Partition{});
         return parts;
     }
     if (n == 1) {
-        parts.insert(Partition { 1 });
+        parts.insert(Partition{1});
         return parts;
     }
     for (Natural i = 1; i < n + 1; i++) {

@@ -14,14 +14,13 @@ OptimalAlgorithm::OptimalAlgorithm(const Sequence & sequence)
     }
     this->optimalLength = this->activeLists.front().size();
     this->optimalSubsequences = {
-        this->activeLists.front()
-    };
+        this->activeLists.front()};
     return;
 }
 
 void OptimalAlgorithm::expand(const Element & element) {
     if (this->activeLists.empty()) {
-        this->activeLists.push_front({ element });
+        this->activeLists.push_front({element});
         return;
     }
     bool isSmallest = true;
@@ -49,7 +48,7 @@ void OptimalAlgorithm::expand(const Element & element) {
             [](const Sequence & s) {
                 return s.size() == 1;
             });
-        this->activeLists.push_back({ element });
+        this->activeLists.push_back({element});
     } else if (isLargest) {
         // case 2: ;element' is the largest among all ends of candidates of active lists,
         // we will clone the largest active list and extend it by 'element'.

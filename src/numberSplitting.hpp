@@ -16,7 +16,7 @@ Natural computeCost(const Partition & partition);
 
 class NaiveAlgorithm {
 public:
-    NaiveAlgorithm() {};
+    NaiveAlgorithm(){};
     Partition solve(const Natural n);
 
 private:
@@ -34,7 +34,7 @@ using SubproblemSolutionSet = std::set<SubproblemSolution>;
 
 class DynamicProgrammingAlgorithm {
 public:
-    DynamicProgrammingAlgorithm() {};
+    DynamicProgrammingAlgorithm(){};
     Partition solve(const Natural n);
 
 private:

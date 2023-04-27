@@ -36,7 +36,7 @@ bool SubsequenceGenerator::doesListHasOneElement(
 }
 
 SequenceVector SubsequenceGenerator::generateFromListOfOneElement(const SequenceIt begin) noexcept {
-    return { { *begin } };
+    return {{*begin}};
 }
 
 SequenceVector SubsequenceGenerator::appendElementToSubsequences(const Element element, const SequenceVector & subsequences) {

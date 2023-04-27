@@ -27,8 +27,8 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          */
         const Size number_of_steps = 3;
         const Size step_limit = 3;
-        const Fees fees = { 2, 3, 4 };
-        const Sequence expected = { 3 };
+        const Fees fees = {2, 3, 4};
+        const Sequence expected = {3};
         const DynamicProgrammingAlgorithm algorithm;
         CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
     }
@@ -51,8 +51,8 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          */
         const Size number_of_steps = 4;
         const Size step_limit = 3;
-        const Fees fees = { 1, 1, 1, 3 };
-        const Sequence expected = { 1, 3 };
+        const Fees fees = {1, 1, 1, 3};
+        const Sequence expected = {1, 3};
         const DynamicProgrammingAlgorithm algorithm;
         CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
     }
@@ -92,8 +92,8 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          */
         const Size number_of_steps = 6;
         const Size step_limit = 3;
-        const Fees fees = { 4, 3, 6, 9, 5, 1 };
-        const Sequence expected = { 2, 3, 1 };
+        const Fees fees = {4, 3, 6, 9, 5, 1};
+        const Sequence expected = {2, 3, 1};
         const DynamicProgrammingAlgorithm algorithm;
         CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
     }
@@ -108,8 +108,8 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          */
         const Size number_of_steps = 10;
         const Size step_limit = 4;
-        const Fees fees = { 7, 3, 6, 7, 1, 2, 5, 7, 10, 9 };
-        const Sequence expected = { 4, 2, 4 };
+        const Fees fees = {7, 3, 6, 7, 1, 2, 5, 7, 10, 9};
+        const Sequence expected = {4, 2, 4};
         const DynamicProgrammingAlgorithm algorithm;
         CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
     }

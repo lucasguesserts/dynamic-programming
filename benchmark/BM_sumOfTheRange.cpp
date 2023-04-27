@@ -24,7 +24,7 @@ public:
         for (unsigned k = 0; k < NUMBER_OF_QUERIES; ++k) {
             const auto i = getUnsignedRandomNumber();
             const auto j = getUnsignedRandomNumber();
-            const Query query { MIN(i, j), MAX(i, j) };
+            const Query query{MIN(i, j), MAX(i, j)};
             this->queries.push_back(query);
         }
         return;

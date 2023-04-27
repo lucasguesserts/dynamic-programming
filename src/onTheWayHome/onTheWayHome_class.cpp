@@ -7,7 +7,7 @@ constexpr long unsigned outOfRangeValue = 0lu;
 constexpr long unsigned boundaryValue = 1lu;
 
 OnTheWayHome::OnTheWayHome() {
-    this->values = { { boundaryValue } };
+    this->values = {{boundaryValue}};
 }
 
 long unsigned OnTheWayHome::compute(const Position & position) {
@@ -68,9 +68,9 @@ bool OnTheWayHome::columnExists(const Position & position) {
 }
 
 Position OnTheWayHome::previousRow(const Position & position) {
-    return { position.row - 1, position.column };
+    return {position.row - 1, position.column};
 }
 
 Position OnTheWayHome::previousColumn(const Position & position) {
-    return { position.row, position.column - 1 };
+    return {position.row, position.column - 1};
 }

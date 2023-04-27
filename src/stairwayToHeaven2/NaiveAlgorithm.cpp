@@ -22,7 +22,7 @@ Sequence NaiveAlgorithm::solve(const Size number_of_steps, const Size step_limit
 
 SequenceVector NaiveAlgorithm::generate_all_sequences(const Size size, const Size step_limit) const {
     if (size == 0) {
-        return { Sequence() };
+        return {Sequence()};
     }
     const Sequence valid_steps = this->get_all_valid_steps(step_limit);
     const auto previous_sequences = this->generate_all_sequences(size - 1, step_limit);

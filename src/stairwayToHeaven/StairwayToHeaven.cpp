@@ -3,7 +3,7 @@
 
 #include <vector>
 
-constexpr auto initialValues = { 1lu, 1lu, 2lu };
+constexpr auto initialValues = {1lu, 1lu, 2lu};
 
 StairwayToHeaven::StairwayToHeaven() {
     this->values = initialValues;

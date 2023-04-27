@@ -33,32 +33,28 @@ std::string RecursiveAlgorithm::to_string() const {
 
 DominoVector RecursiveAlgorithm::oneVerticalDominoAt(const Index column) {
     return {
-        { { 0, column }, Orientation::VERTICAL }
-    };
+        {{0, column}, Orientation::VERTICAL}};
 }
 
 DominoVector RecursiveAlgorithm::twoVerticalDominosAt(const Index column) {
     return {
-        { { 0, column }, Orientation::VERTICAL },
-        { { 0, column + 1 }, Orientation::VERTICAL }
-    };
+        {{0, column}, Orientation::VERTICAL},
+        {{0, column + 1}, Orientation::VERTICAL}};
 }
 
 DominoVector RecursiveAlgorithm::twoHorizontalDominosAt(const Index column) {
     return {
-        { { 0, column }, Orientation::HORIZONTAL },
-        { { 1, column }, Orientation::HORIZONTAL }
-    };
+        {{0, column}, Orientation::HORIZONTAL},
+        {{1, column}, Orientation::HORIZONTAL}};
 }
 
 DominoMatrix RecursiveAlgorithm::solve(const Index size) {
     if (size == 1) {
-        return { this->oneVerticalDominoAt(size - 1) };
+        return {this->oneVerticalDominoAt(size - 1)};
     } else if (size == 2) {
         return {
             twoHorizontalDominosAt(size - 2),
-            twoVerticalDominosAt(size - 2)
-        };
+            twoVerticalDominosAt(size - 2)};
     } else {
         DominoMatrix solutions;
         // vertical part

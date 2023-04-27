@@ -7,7 +7,7 @@ using namespace StairwayToHeaven2;
 
 const Size number_of_steps = 7;
 const Size step_limit = 3;
-const Fees fees = { 7, 3, 6, 7, 1, 2, 5 };
+const Fees fees = {7, 3, 6, 7, 1, 2, 5};
 
 TEST_CASE("stairwayToHeaven2 Benchmark", "[benchmark][stairwayToHeaven2]") {
 

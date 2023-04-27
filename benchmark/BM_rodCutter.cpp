@@ -3,7 +3,7 @@
 
 #include "rodCutter.hpp"
 
-const std::initializer_list<double> pricesOfRodPieces = { 2, 4, 7, 8 };
+const std::initializer_list<double> pricesOfRodPieces = {2, 4, 7, 8};
 
 TEST_CASE("rodCutter Benchmark", "[benchmark][rodCutter]") {
 

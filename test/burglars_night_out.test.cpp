@@ -39,7 +39,9 @@ TEST_CASE("is true alternate", "[burglarsNightOut]") {
 
 TEST_CASE("cost of sequence", "[burglarsNightOut]") {
     SECTION("case -1") {
-        const auto b = BinarySequence{true,};
+        const auto b = BinarySequence{
+            true,
+        };
         const auto r = RealSequence{19, 17};
         REQUIRE_THROWS(Algorithm::cost_of_sequence(b, r));
     }

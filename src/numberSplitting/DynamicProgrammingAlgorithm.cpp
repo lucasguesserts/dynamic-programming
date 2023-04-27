@@ -30,15 +30,15 @@ Partition DynamicProgrammingAlgorithm::solve(const Natural n) {
 }
 
 SubproblemSolution DynamicProgrammingAlgorithm::dpSolver(const Natural n, const bool includeLast) {
-    if (cache.count({ n, includeLast })) {
-        return cache[{ n, includeLast }];
+    if (cache.count({n, includeLast})) {
+        return cache[{n, includeLast}];
     }
     if (n == 1) {
-        return SubproblemSolution { { 1 }, 1 };
+        return SubproblemSolution{{1}, 1};
     } else {
         SubproblemSolutionSet candidates;
         if (includeLast) {
-            candidates.insert(SubproblemSolution { { n }, n });
+            candidates.insert(SubproblemSolution{{n}, n});
         }
         for (Natural i = 1; i <= halfFloor(n); ++i) {
             auto lhs = dpSolver(i, true);
@@ -47,7 +47,7 @@ SubproblemSolution DynamicProgrammingAlgorithm::dpSolver(const Natural n, const 
             candidates.insert(result);
         }
         auto bestCandidate = selectBestCandidate(candidates);
-        cache[{ n, includeLast }] = bestCandidate;
+        cache[{n, includeLast}] = bestCandidate;
         return bestCandidate;
     }
 }

@@ -50,7 +50,7 @@ void Grid::addDominoList(const DominoVector dominoVector) {
 
 char Grid::getNewChar() {
     static size_t currentIndex = 0;
-    static std::array characterArray = { 'a', 'b', 'c', 'd', 'e' };
+    static std::array characterArray = {'a', 'b', 'c', 'd', 'e'};
     const auto ret = characterArray[currentIndex];
     currentIndex = (currentIndex + 1) % characterArray.size();
     return ret;
