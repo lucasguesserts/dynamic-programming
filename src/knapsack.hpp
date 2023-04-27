@@ -3,7 +3,9 @@
 
 #include <cstddef>
 #include <limits>
+#include <map>
 #include <set>
+#include <utility>
 #include <vector>
 
 namespace knapsack {
@@ -70,6 +72,23 @@ private:
     Value value{std::numeric_limits<Value>::min()};
     Weight weight{std::numeric_limits<Value>::min()};
     ItemSet items{};
+};
+
+class DynamicProgramming : public Algorithm {
+public:
+    DynamicProgramming(const Instance instance);
+    auto get_value() -> Value override;
+    auto get_weight() -> Value override;
+    auto get_items() -> ItemSet override;
+
+private:
+    auto recursive_solution(const Weight & current_capacity, const Item & item) -> ItemSet;
+
+    Value value{std::numeric_limits<Value>::min()};
+    Weight weight{std::numeric_limits<Value>::min()};
+    ItemSet items{};
+
+    std::map<std::pair<Weight, Item>, ItemSet> previous_results;
 };
 
 } // namespace knapsack
