@@ -59,9 +59,9 @@ set(
     ${SRC}/stairwayToHeaven2/Algorithm.cpp
     ${SRC}/stairwayToHeaven2/NaiveAlgorithm.cpp
     ${SRC}/stairwayToHeaven2/DynamicProgrammingAlgorithm.cpp
-    ${SRC}/burglarsNightOut/Algorithm.cpp
-    ${SRC}/burglarsNightOut/NaiveAlgorithm.cpp
-    ${SRC}/burglarsNightOut/DynamicProgrammingAlgorithm.cpp
+    ${SRC}/burglars_night_out/Algorithm.cpp
+    ${SRC}/burglars_night_out/NaiveAlgorithm.cpp
+    ${SRC}/burglars_night_out/DynamicProgrammingAlgorithm.cpp
     ${SRC}/numberSplitting/NaiveAlgorithm.cpp
     ${SRC}/numberSplitting/DynamicProgrammingAlgorithm.cpp
 )

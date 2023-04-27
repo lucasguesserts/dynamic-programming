@@ -1,4 +1,4 @@
-#include "burglarsNightOut.hpp"
+#include "burglars_night_out.hpp"
 
 #include <iterator>
 #include <limits>

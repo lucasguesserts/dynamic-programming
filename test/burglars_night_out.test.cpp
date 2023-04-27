@@ -13,7 +13,7 @@
 #define private public
 #define protected public
 
-#include "burglarsNightOut.hpp"
+#include "burglars_night_out.hpp"
 
 using namespace BurglarsNightOut;
 
