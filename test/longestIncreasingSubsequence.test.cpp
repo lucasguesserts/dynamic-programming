@@ -1,18 +1,18 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/catch_approx.hpp>
+#include <catch2/catch_test_macros.hpp>
 
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "longestIncreasingSubsequence.hpp"
 
+using LongestIncreasingSubsequence::DynamicProgrammingAlgorithm;
+using LongestIncreasingSubsequence::NaiveAlgorithm;
+using LongestIncreasingSubsequence::OptimalAlgorithm;
+using LongestIncreasingSubsequence::RecursiveAlgorithm;
 using LongestIncreasingSubsequence::Sequence;
 using LongestIncreasingSubsequence::SequenceSet;
 using LongestIncreasingSubsequence::SubsequenceGenerator;
-using LongestIncreasingSubsequence::NaiveAlgorithm;
-using LongestIncreasingSubsequence::RecursiveAlgorithm;
-using LongestIncreasingSubsequence::DynamicProgrammingAlgorithm;
-using LongestIncreasingSubsequence::OptimalAlgorithm;
 
 struct SubsequenceTestCase {
     const std::string name;
@@ -27,8 +27,7 @@ struct LongestIncreasingSubsequenceTestCase {
 
 TEST_CASE("subsequences") {
     const std::vector<SubsequenceTestCase> testCaseDataList = {
-        {
-            "sequence with three elements",
+        {"sequence with three elements",
             {7, 4, 8},
             {
                 {7},
@@ -38,24 +37,17 @@ TEST_CASE("subsequences") {
                 {7, 8},
                 {4, 8},
                 {7, 4, 8},
-            }
-        },
-        {
-            "sequence with three elements and repetition",
+            }},
+        {"sequence with three elements and repetition",
             {1, 1, 2},
-            {
-                {1},
+            {{1},
                 {2},
                 {1, 1},
                 {1, 2},
-                {1, 1, 2}
-            }
-        },
-        {
-            "sequence with four elements",
+                {1, 1, 2}}},
+        {"sequence with four elements",
             {10, 3, 9, 4},
-            {
-                {10},
+            {{10},
                 {3},
                 {9},
                 {4},
@@ -69,10 +61,7 @@ TEST_CASE("subsequences") {
                 {10, 3, 4},
                 {10, 9, 4},
                 {3, 9, 4},
-                {10, 3, 9, 4}
-            }
-        }
-    };
+                {10, 3, 9, 4}}}};
     for (const auto & data : testCaseDataList) {
         SECTION(data.name) {
             const LongestIncreasingSubsequence::SubsequenceGenerator gen(data.sequence);

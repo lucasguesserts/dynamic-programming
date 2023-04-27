@@ -19,7 +19,7 @@ set(
     stairwayToHeaven2/Algorithm.test.cpp
     stairwayToHeaven2/NaiveAlgorithm.test.cpp
     stairwayToHeaven2/DynamicProgrammingAlgorithm.test.cpp
-    burglarsNightOut.test.cpp
+    burglars_night_out.test.cpp
     numberSplitting.test.cpp
 )
 

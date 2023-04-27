@@ -39,18 +39,46 @@ TEST_CASE("generate all sequences", "[stairwayToHeaven2]") {
         const Size step_limit = 3;
         const SequenceVector expected = {
             {}, // size 0
-            {1}, {2}, {3}, // size 1
-            {1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}, // size 2
-            {1, 1, 1}, {1, 1, 2}, {1, 1, 3},
-                {1, 2, 1}, {1, 2, 2}, {1, 2, 3},
-                {1, 3, 1}, {1, 3, 2}, {1, 3, 3},
-                {2, 1, 1}, {2, 1, 2}, {2, 1, 3},
-                {2, 2, 1}, {2, 2, 2}, {2, 2, 3},
-                {2, 3, 1}, {2, 3, 2}, {2, 3, 3},
-                {3, 1, 1}, {3, 1, 2}, {3, 1, 3},
-                {3, 2, 1}, {3, 2, 2}, {3, 2, 3},
-                {3, 3, 1}, {3, 3, 2}, {3, 3, 3},
-                // size 3
+            {1},
+            {2},
+            {3}, // size 1
+            {1, 1},
+            {1, 2},
+            {1, 3},
+            {2, 1},
+            {2, 2},
+            {2, 3},
+            {3, 1},
+            {3, 2},
+            {3, 3}, // size 2
+            {1, 1, 1},
+            {1, 1, 2},
+            {1, 1, 3},
+            {1, 2, 1},
+            {1, 2, 2},
+            {1, 2, 3},
+            {1, 3, 1},
+            {1, 3, 2},
+            {1, 3, 3},
+            {2, 1, 1},
+            {2, 1, 2},
+            {2, 1, 3},
+            {2, 2, 1},
+            {2, 2, 2},
+            {2, 2, 3},
+            {2, 3, 1},
+            {2, 3, 2},
+            {2, 3, 3},
+            {3, 1, 1},
+            {3, 1, 2},
+            {3, 1, 3},
+            {3, 2, 1},
+            {3, 2, 2},
+            {3, 2, 3},
+            {3, 3, 1},
+            {3, 3, 2},
+            {3, 3, 3},
+            // size 3
         };
         const auto all_sequences_generated = algorithm.generate_all_sequences(number_of_steps, step_limit);
         CHECK(all_sequences_generated == expected);
@@ -106,22 +134,51 @@ TEST_CASE("filter valid sequences", "[stairwayToHeaven2]") {
         const Size number_of_steps = 3;
         const SequenceVector sequences = {
             {}, // size 0
-            {1}, {2}, {3}, // size 1
-            {1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 2}, {2, 3}, {3, 1}, {3, 2}, {3, 3}, // size 2
-            {1, 1, 1}, {1, 1, 2}, {1, 1, 3},
-                {1, 2, 1}, {1, 2, 2}, {1, 2, 3},
-                {1, 3, 1}, {1, 3, 2}, {1, 3, 3},
-                {2, 1, 1}, {2, 1, 2}, {2, 1, 3},
-                {2, 2, 1}, {2, 2, 2}, {2, 2, 3},
-                {2, 3, 1}, {2, 3, 2}, {2, 3, 3},
-                {3, 1, 1}, {3, 1, 2}, {3, 1, 3},
-                {3, 2, 1}, {3, 2, 2}, {3, 2, 3},
-                {3, 3, 1}, {3, 3, 2}, {3, 3, 3},
-                // size 3
+            {1},
+            {2},
+            {3}, // size 1
+            {1, 1},
+            {1, 2},
+            {1, 3},
+            {2, 1},
+            {2, 2},
+            {2, 3},
+            {3, 1},
+            {3, 2},
+            {3, 3}, // size 2
+            {1, 1, 1},
+            {1, 1, 2},
+            {1, 1, 3},
+            {1, 2, 1},
+            {1, 2, 2},
+            {1, 2, 3},
+            {1, 3, 1},
+            {1, 3, 2},
+            {1, 3, 3},
+            {2, 1, 1},
+            {2, 1, 2},
+            {2, 1, 3},
+            {2, 2, 1},
+            {2, 2, 2},
+            {2, 2, 3},
+            {2, 3, 1},
+            {2, 3, 2},
+            {2, 3, 3},
+            {3, 1, 1},
+            {3, 1, 2},
+            {3, 1, 3},
+            {3, 2, 1},
+            {3, 2, 2},
+            {3, 2, 3},
+            {3, 3, 1},
+            {3, 3, 2},
+            {3, 3, 3},
+            // size 3
         };
         const SequenceVector expected = {
             {3},
-            {1, 2}, {2, 1},
+            {1, 2},
+            {2, 1},
             {1, 1, 1},
         };
         const auto valid_sequences = algorithm.filter_valid_sequences(number_of_steps, sequences);
@@ -162,17 +219,17 @@ TEST_CASE("select sequence with the lowest cost", "[stairwayToHeaven2]") {
      *         cost = 28, sequence = (1, 1, 1, 1, 1, 1)
      * optimal cost sequence: (2, 3, 1)
      * cost of optimal sequence: 11
-    */
+     */
     const Fees fees = {4, 3, 6, 9, 5, 1};
     SECTION("case 1") {
         const NaiveAlgorithm algorithm;
         const SequenceVector sequences = {
-            {3, 3}, //cost = 13
-            {1, 2, 3}, //cost = 16
-            {1, 3, 2}, //cost = 12
-            {2, 1, 3}, //cost = 19
-            {2, 2, 2}, //cost = 15
-            {2, 3, 1}, //cost = 11
+            {3, 3}, // cost = 13
+            {1, 2, 3}, // cost = 16
+            {1, 3, 2}, // cost = 12
+            {2, 1, 3}, // cost = 19
+            {2, 2, 2}, // cost = 15
+            {2, 3, 1}, // cost = 11
         };
         const Sequence expected = {2, 3, 1};
         const Sequence lowest_cost_sequence = algorithm.select_sequence_with_the_lowest_cost(sequences, fees);
@@ -207,7 +264,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          *         cost = 9, sequence = (1, 1, 1)
          * optimal cost sequence: (3,)
          * cost of optimal sequence: 2
-        */
+         */
         const Size number_of_steps = 3;
         const Size step_limit = 3;
         const Fees fees = {2, 3, 4};
@@ -231,7 +288,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          *         cost = 6, sequence = (1, 1, 1, 1)
          * optimal cost sequence: (1, 3)
          * cost of optimal sequence: 2
-        */
+         */
         const Size number_of_steps = 4;
         const Size step_limit = 3;
         const Fees fees = {1, 1, 1, 3};
@@ -272,7 +329,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          *         cost = 28, sequence = (1, 1, 1, 1, 1, 1)
          * optimal cost sequence: (2, 3, 1)
          * cost of optimal sequence: 11
-        */
+         */
         const Size number_of_steps = 6;
         const Size step_limit = 3;
         const Fees fees = {4, 3, 6, 9, 5, 1};
@@ -288,7 +345,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          * fees = [7, 3, 6, 7, 1, 2, 5, 7, 10, 9]
          * optimal cost sequence: (4, 2, 4)
          * cost of optimal sequence: 13
-        */
+         */
         const Size number_of_steps = 10;
         const Size step_limit = 4;
         const Fees fees = {7, 3, 6, 7, 1, 2, 5, 7, 10, 9};
@@ -297,4 +354,3 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
         CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
     }
 }
-

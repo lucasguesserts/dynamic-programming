@@ -6,7 +6,7 @@
 
 namespace NumberSplitting {
 
-bool SubproblemSolution::operator<(SubproblemSolution const& other) const {
+bool SubproblemSolution::operator<(SubproblemSolution const & other) const {
     return this->partition < other.partition;
 }
 
@@ -65,4 +65,4 @@ SubproblemSolution DynamicProgrammingAlgorithm::selectBestCandidate(const Subpro
     return *bestCandidate;
 }
 
-}
+} // namespace NumberSplitting

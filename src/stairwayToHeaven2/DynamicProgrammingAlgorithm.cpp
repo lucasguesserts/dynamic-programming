@@ -6,7 +6,8 @@
 namespace StairwayToHeaven2 {
 
 SequenceWithCost::SequenceWithCost(const Fee & initial_cost)
-: sequence(), cost(initial_cost) {}
+    : sequence()
+    , cost(initial_cost) {}
 
 Sequence SequenceWithCost::get_sequence() const noexcept {
     return this->sequence;
@@ -66,4 +67,4 @@ SequenceWithCost DynamicProgrammingAlgorithm::select_best_option(const std::vect
     return *best_option;
 }
 
-}
+} // namespace StairwayToHeaven2

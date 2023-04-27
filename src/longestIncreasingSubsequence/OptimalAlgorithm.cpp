@@ -5,7 +5,7 @@
 namespace LongestIncreasingSubsequence {
 
 OptimalAlgorithm::OptimalAlgorithm(const Sequence & sequence)
-: Algorithm(sequence) {
+    : Algorithm(sequence) {
     if (sequence.empty()) {
         return;
     }
@@ -14,8 +14,7 @@ OptimalAlgorithm::OptimalAlgorithm(const Sequence & sequence)
     }
     this->optimalLength = this->activeLists.front().size();
     this->optimalSubsequences = {
-        this->activeLists.front()
-    };
+        this->activeLists.front()};
     return;
 }
 
@@ -31,10 +30,9 @@ void OptimalAlgorithm::expand(const Element & element) {
     if (element > largestElement) {
         isLargest = true;
         isSmallest = false;
-    }
-    else {
+    } else {
         isLargest = false;
-        for (it = this->activeLists.cbegin() ; it != this->activeLists.cend(); ++it) {
+        for (it = this->activeLists.cbegin(); it != this->activeLists.cend(); ++it) {
             const auto & candidate = *it;
             const auto & largestValueOfCandidate = candidate.back();
             if (element > largestValueOfCandidate) {
@@ -47,9 +45,9 @@ void OptimalAlgorithm::expand(const Element & element) {
         // case 1: 'element' is the smallest among all ends of candidates of active lists,
         // we will start a new list of length 1.
         this->activeLists.remove_if(
-            [] (const Sequence & s) {
+            [](const Sequence & s) {
                 return s.size() == 1;
-        });
+            });
         this->activeLists.push_back({element});
     } else if (isLargest) {
         // case 2: ;element' is the largest among all ends of candidates of active lists,
@@ -70,10 +68,10 @@ void OptimalAlgorithm::expand(const Element & element) {
         const Index sizeOfNewCandidate = newCandidate.size();
         // iterate reverse: remove all lists with the same size
         this->activeLists.remove_if(
-            [&sizeOfNewCandidate, &element] (const Sequence & s) {
+            [&sizeOfNewCandidate, &element](const Sequence & s) {
                 return s.back() > element && (s.size() == sizeOfNewCandidate);
-        });
+            });
     }
 }
 
-}
+} // namespace LongestIncreasingSubsequence

@@ -1,5 +1,5 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/benchmark/catch_benchmark.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include "stairwayToHeaven2.hpp"
 
@@ -20,5 +20,4 @@ TEST_CASE("stairwayToHeaven2 Benchmark", "[benchmark][stairwayToHeaven2]") {
         const DynamicProgrammingAlgorithm algorithm;
         return algorithm.solve(number_of_steps, step_limit, fees);
     };
-
 }

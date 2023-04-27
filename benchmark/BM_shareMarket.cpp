@@ -1,5 +1,5 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/benchmark/catch_benchmark.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include <initializer_list>
 
@@ -16,5 +16,4 @@ TEST_CASE("shareMarket Benchmark", "[benchmark][shareMarket]") {
     BENCHMARK("shareMarketSimple") {
         return shareMarketSimple(prices);
     };
-
 }

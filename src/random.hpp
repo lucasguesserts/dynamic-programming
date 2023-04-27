@@ -6,7 +6,6 @@
 
 long unsigned generateRandomNumber(
     const long unsigned low = 0lu,
-    const long unsigned high = 100lu
-);
+    const long unsigned high = 100lu);
 
 #endif

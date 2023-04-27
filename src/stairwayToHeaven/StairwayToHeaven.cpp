@@ -3,14 +3,13 @@
 
 #include <vector>
 
-constexpr auto initialValues = { 1lu, 1lu, 2lu };
+constexpr auto initialValues = {1lu, 1lu, 2lu};
 
-StairwayToHeaven::StairwayToHeaven () {
+StairwayToHeaven::StairwayToHeaven() {
     this->values = initialValues;
 }
 
-
-long unsigned StairwayToHeaven::operator() (const long unsigned n) {
+long unsigned StairwayToHeaven::operator()(const long unsigned n) {
     static std::vector<long unsigned> values = initialValues;
     if (n < values.size()) {
         return values[n];

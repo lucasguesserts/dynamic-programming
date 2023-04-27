@@ -1,8 +1,7 @@
 #include "shareMarket.hpp"
 
-#include <vector>
 #include <array>
-
+#include <vector>
 
 using Price = double;
 using Prices = std::vector<Price>;
@@ -12,14 +11,14 @@ struct Operation {
     const Index buy;
     Index sell;
     Operation(const Index & buy, const Index & sell)
-        : buy(buy), sell(sell) {}
-
+        : buy(buy)
+        , sell(sell) {}
 };
 using Solution = std::vector<Operation>;
 
 Price computePrice(const Prices & prices, const Solution & solution) {
     Price acc = 0;
-    for (auto& operation : solution) {
+    for (auto & operation : solution) {
         acc += prices[operation.sell] - prices[operation.buy];
     }
     return acc;
@@ -56,7 +55,7 @@ Price shareMarket(const Prices & prices) {
         if ((lastSellIndex == (currentIndex - 1)) && (currentSellPrice >= lastSellPrice)) {
             solution.back().sell = currentIndex;
         } else if (currentSellPrice > previousSellPrice) {
-            solution.emplace_back(Operation(currentIndex-1, currentIndex));
+            solution.emplace_back(Operation(currentIndex - 1, currentIndex));
         }
     }
     // compute price

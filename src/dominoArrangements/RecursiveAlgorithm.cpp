@@ -33,47 +33,41 @@ std::string RecursiveAlgorithm::to_string() const {
 
 DominoVector RecursiveAlgorithm::oneVerticalDominoAt(const Index column) {
     return {
-        {{0, column}, Orientation::VERTICAL}
-    };
+        {{0, column}, Orientation::VERTICAL}};
 }
 
 DominoVector RecursiveAlgorithm::twoVerticalDominosAt(const Index column) {
     return {
         {{0, column}, Orientation::VERTICAL},
-        {{0, column+1}, Orientation::VERTICAL}
-    };
+        {{0, column + 1}, Orientation::VERTICAL}};
 }
 
 DominoVector RecursiveAlgorithm::twoHorizontalDominosAt(const Index column) {
     return {
         {{0, column}, Orientation::HORIZONTAL},
-        {{1, column}, Orientation::HORIZONTAL}
-    };
+        {{1, column}, Orientation::HORIZONTAL}};
 }
 
 DominoMatrix RecursiveAlgorithm::solve(const Index size) {
     if (size == 1) {
-        return { this->oneVerticalDominoAt(size-1) };
+        return {this->oneVerticalDominoAt(size - 1)};
     } else if (size == 2) {
         return {
-            twoHorizontalDominosAt(size-2),
-            twoVerticalDominosAt(size-2)
-        };
+            twoHorizontalDominosAt(size - 2),
+            twoVerticalDominosAt(size - 2)};
     } else {
         DominoMatrix solutions;
         // vertical part
         const auto solutionVerticalPart = this->join(
-            this->solve(size-1),
-            oneVerticalDominoAt(size-1)
-        );
+            this->solve(size - 1),
+            oneVerticalDominoAt(size - 1));
         for (const auto & s : solutionVerticalPart) {
             solutions.push_back(s);
         }
         // horizontal part
         const auto solutionHorizontalPart = this->join(
-            this->solve(size-2),
-            twoHorizontalDominosAt(size-2)
-        );
+            this->solve(size - 2),
+            twoHorizontalDominosAt(size - 2));
         for (const auto & s : solutionHorizontalPart) {
             solutions.push_back(s);
         }
@@ -93,4 +87,4 @@ DominoMatrix RecursiveAlgorithm::join(const DominoMatrix & lhs, const DominoVect
     return result;
 }
 
-}
+} // namespace dominoArrangements

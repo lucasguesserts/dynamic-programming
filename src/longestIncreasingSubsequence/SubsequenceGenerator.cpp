@@ -14,14 +14,13 @@ SequenceSet SubsequenceGenerator::getSubsequences() const noexcept {
 
 SequenceVector SubsequenceGenerator::recursiveGenerator(
     const SequenceIt begin,
-    const SequenceIt end
-) {
+    const SequenceIt end) {
     if (doesListHasOneElement(begin, end)) {
         return generateFromListOfOneElement(begin);
     } else {
-        const auto onlyLastElement = generateFromListOfOneElement(end-1);
-        const auto subsequencesOfSubproblem = recursiveGenerator(begin, end-1);
-        const auto subsequencesOfSubproblemWithLastElement = appendElementToSubsequences(*(end-1), subsequencesOfSubproblem);
+        const auto onlyLastElement = generateFromListOfOneElement(end - 1);
+        const auto subsequencesOfSubproblem = recursiveGenerator(begin, end - 1);
+        const auto subsequencesOfSubproblemWithLastElement = appendElementToSubsequences(*(end - 1), subsequencesOfSubproblem);
         SequenceVector all;
         expandSubsequenceList(all, onlyLastElement);
         expandSubsequenceList(all, subsequencesOfSubproblem);
@@ -32,9 +31,8 @@ SequenceVector SubsequenceGenerator::recursiveGenerator(
 
 bool SubsequenceGenerator::doesListHasOneElement(
     const SequenceIt begin,
-    const SequenceIt end
-) noexcept {
-    return begin == (end-1);
+    const SequenceIt end) noexcept {
+    return begin == (end - 1);
 }
 
 SequenceVector SubsequenceGenerator::generateFromListOfOneElement(const SequenceIt begin) noexcept {
@@ -43,15 +41,15 @@ SequenceVector SubsequenceGenerator::generateFromListOfOneElement(const Sequence
 
 SequenceVector SubsequenceGenerator::appendElementToSubsequences(const Element element, const SequenceVector & subsequences) {
     auto copy = subsequences;
-    for (auto & subsequence: copy) {
+    for (auto & subsequence : copy) {
         subsequence.push_back(element);
     }
     return copy;
 }
 
 void SubsequenceGenerator::expandSubsequenceList(SequenceVector & toExpand, const SequenceVector & expansion) {
-    toExpand.insert(toExpand.end(),expansion.cbegin(), expansion.cend());
+    toExpand.insert(toExpand.end(), expansion.cbegin(), expansion.cend());
     return;
 }
 
-}
+} // namespace LongestIncreasingSubsequence

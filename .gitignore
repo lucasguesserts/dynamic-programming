@@ -2,6 +2,9 @@
 build/
 benchmark.log
 
+# code coverage
+coverage/
+
 # node
 node_modules/
 
@@ -11,6 +14,9 @@ node_modules/
 
 # vscode
 .vscode/
+
+# python
+venv
 
 # others
 *.log

@@ -6,7 +6,7 @@
 namespace LongestIncreasingSubsequence {
 
 NaiveAlgorithm::NaiveAlgorithm(const Sequence & sequence)
-: Algorithm(sequence) {
+    : Algorithm(sequence) {
     if (sequence.empty()) {
         return;
     }
@@ -17,7 +17,7 @@ NaiveAlgorithm::NaiveAlgorithm(const Sequence & sequence)
 
 bool NaiveAlgorithm::isSequenceIncreasing(const Sequence & sequence) {
     for (SequenceIt it = sequence.cbegin() + 1; it != sequence.cend(); ++it) {
-        if (*(it-1) >= *it) {
+        if (*(it - 1) >= *it) {
             return false;
         }
     }
@@ -50,4 +50,4 @@ void NaiveAlgorithm::selectLongestSubsequences() {
     this->optimalSubsequences = currentLongestSubsequences;
 }
 
-}
+} // namespace LongestIncreasingSubsequence

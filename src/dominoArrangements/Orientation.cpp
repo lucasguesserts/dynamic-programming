@@ -10,4 +10,4 @@ std::string to_string(const Orientation & orientation) {
         : "vertical";
 }
 
-}
+} // namespace dominoArrangements

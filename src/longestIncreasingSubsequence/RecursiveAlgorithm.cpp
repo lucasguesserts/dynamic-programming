@@ -3,7 +3,7 @@
 namespace LongestIncreasingSubsequence {
 
 RecursiveAlgorithm::RecursiveAlgorithm(const Sequence & sequence)
-: Algorithm(sequence) {
+    : Algorithm(sequence) {
     this->makeB();
     this->makeSolutions();
     this->selectLongestSubsequences();
@@ -12,7 +12,7 @@ RecursiveAlgorithm::RecursiveAlgorithm(const Sequence & sequence)
 
 void RecursiveAlgorithm::makeB() noexcept {
     this->B.resize(this->sequence.size());
-    for(Index i = 0; i < this->sequence.size(); ++i) {
+    for (Index i = 0; i < this->sequence.size(); ++i) {
         for (Index j = 0; j < i; ++j) {
             if (this->sequence[j] < this->sequence[i]) {
                 this->B[i].insert(j);
@@ -69,4 +69,4 @@ Sequence RecursiveAlgorithm::findLongest(const SequenceVector & subsequences) {
     return *longestSequence;
 }
 
-}
+} // namespace LongestIncreasingSubsequence

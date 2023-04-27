@@ -10,11 +10,11 @@
 
 using namespace StairwayToHeaven2;
 
-class TestAlgorithm: public Algorithm {
-    public:
-        virtual Sequence solve([[maybe_unused]] const Size number_of_steps, [[maybe_unused]] const Size step_limit, [[maybe_unused]] const Fees & fees) const {
-            return {};
-        }
+class TestAlgorithm : public Algorithm {
+public:
+    virtual Sequence solve([[maybe_unused]] const Size number_of_steps, [[maybe_unused]] const Size step_limit, [[maybe_unused]] const Fees & fees) const {
+        return {};
+    }
 };
 
 TEST_CASE("compute sequence cost", "[stairwayToHeaven2]") {
@@ -50,7 +50,7 @@ TEST_CASE("compute sequence cost", "[stairwayToHeaven2]") {
      *         cost = 28, sequence = (1, 1, 1, 1, 1, 1)
      * optimal cost sequence: (2, 3, 1)
      * cost of optimal sequence: 11
-    */
+     */
     const Fees fees = {4, 3, 6, 9, 5, 1};
     const TestAlgorithm algorithm;
     SECTION("case 1") {
@@ -74,4 +74,3 @@ TEST_CASE("compute sequence cost", "[stairwayToHeaven2]") {
         CHECK(algorithm.compute_sequence_cost(sequence, fees) == expected);
     }
 }
-

@@ -24,7 +24,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          *         cost = 9, sequence = (1, 1, 1)
          * optimal cost sequence: (3,)
          * cost of optimal sequence: 2
-        */
+         */
         const Size number_of_steps = 3;
         const Size step_limit = 3;
         const Fees fees = {2, 3, 4};
@@ -48,7 +48,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          *         cost = 6, sequence = (1, 1, 1, 1)
          * optimal cost sequence: (1, 3)
          * cost of optimal sequence: 2
-        */
+         */
         const Size number_of_steps = 4;
         const Size step_limit = 3;
         const Fees fees = {1, 1, 1, 3};
@@ -89,7 +89,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          *         cost = 28, sequence = (1, 1, 1, 1, 1, 1)
          * optimal cost sequence: (2, 3, 1)
          * cost of optimal sequence: 11
-        */
+         */
         const Size number_of_steps = 6;
         const Size step_limit = 3;
         const Fees fees = {4, 3, 6, 9, 5, 1};
@@ -105,7 +105,7 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
          * fees = [7, 3, 6, 7, 1, 2, 5, 7, 10, 9]
          * optimal cost sequence: (4, 2, 4)
          * cost of optimal sequence: 13
-        */
+         */
         const Size number_of_steps = 10;
         const Size step_limit = 4;
         const Fees fees = {7, 3, 6, 7, 1, 2, 5, 7, 10, 9};
@@ -114,4 +114,3 @@ TEST_CASE("solve", "[stairwayToHeaven2]") {
         CHECK(algorithm.solve(number_of_steps, step_limit, fees) == expected);
     }
 }
-

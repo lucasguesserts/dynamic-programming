@@ -1,5 +1,5 @@
-#include <catch2/catch_test_macros.hpp>
 #include <catch2/benchmark/catch_benchmark.hpp>
+#include <catch2/catch_test_macros.hpp>
 
 #include "rodCutter.hpp"
 
@@ -12,5 +12,4 @@ TEST_CASE("rodCutter Benchmark", "[benchmark][rodCutter]") {
         auto solver = RodCutter::Solver(problem);
         return solver(4);
     };
-
 }

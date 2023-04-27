@@ -254,4 +254,3 @@ TEST_CASE("compare algorithms", "[numberSplitting]") {
         CHECK(na.solve(n) == dp.solve(n));
     }
 }
-
