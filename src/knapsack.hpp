@@ -2,9 +2,9 @@
 #define SRC_KNAPSACK_HPP_
 
 #include <cstddef>
+#include <limits>
 #include <set>
 #include <vector>
-#include <limits>
 
 namespace knapsack {
 

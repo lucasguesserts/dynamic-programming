@@ -7,7 +7,7 @@
 namespace knapsack {
 
 Naive::Naive(const Instance instance)
-: Algorithm(std::move(instance)) {
+    : Algorithm(std::move(instance)) {
     auto all_possibilities = iter::powerset(this->get_instance().items);
     for (auto && item_set_gen : all_possibilities) {
         auto item_set = ItemSet{item_set_gen.begin(), item_set_gen.end()};
