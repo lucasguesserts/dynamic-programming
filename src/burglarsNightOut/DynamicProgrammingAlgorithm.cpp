@@ -12,38 +12,38 @@ struct Solution {
 };
 
 struct SubproblemSolutions {
-    Solution lastIncluded;
-    Solution lastExcluded;
+    Solution last_included;
+    Solution last_excluded;
 };
 
-BinarySequence DynamicProgrammingAlgorithm::solve(const RealSequence & costs) {
+auto DynamicProgrammingAlgorithm::solve(const RealSequence & costs) -> BinarySequence {
     if (costs.empty()) {
         return {};
     }
     // Initialization
-    std::vector<SubproblemSolutions> subproblemSolutions;
-    subproblemSolutions.push_back({ { { true }, costs[0] },
-        { { false }, 0 } });
+    auto subproblem_solutions = std::vector<SubproblemSolutions>{};
+    subproblem_solutions.push_back({{{true}, costs[0]},
+        {{false}, 0}});
     // Recursive solver
-    for (Size i = 1; i < costs.size(); ++i) {
+    for (auto i = 1u; i < costs.size(); ++i) {
         // compute solution with entry i included
-        Solution lastIncluded = subproblemSolutions[i - 1].lastExcluded;
-        lastIncluded.sequence.push_back(true);
-        lastIncluded.cost += costs[i];
+        auto last_included = subproblem_solutions[i - 1].last_excluded;
+        last_included.sequence.push_back(true);
+        last_included.cost += costs[i];
         // compute solution with entry i excluded
-        Solution lastExcluded = subproblemSolutions[i - 1].lastIncluded.cost > subproblemSolutions[i - 1].lastExcluded.cost
-            ? subproblemSolutions[i - 1].lastIncluded
-            : subproblemSolutions[i - 1].lastExcluded;
-        lastExcluded.sequence.push_back(false);
+        auto last_excluded = subproblem_solutions[i - 1].last_included.cost > subproblem_solutions[i - 1].last_excluded.cost
+            ? subproblem_solutions[i - 1].last_included
+            : subproblem_solutions[i - 1].last_excluded;
+        last_excluded.sequence.push_back(false);
         // next entry
-        subproblemSolutions.push_back({ lastIncluded, lastExcluded });
+        subproblem_solutions.push_back({last_included, last_excluded});
     }
     // Optimal solution of the original problem
-    const auto & optSolutionCandidates = subproblemSolutions.back();
-    const BinarySequence optimalSequence = optSolutionCandidates.lastIncluded.cost > optSolutionCandidates.lastExcluded.cost
-        ? optSolutionCandidates.lastIncluded.sequence
-        : optSolutionCandidates.lastExcluded.sequence;
-    return optimalSequence;
+    const auto & opt_solution_candidates = subproblem_solutions.back();
+    const auto optimal_sequence = opt_solution_candidates.last_included.cost > opt_solution_candidates.last_excluded.cost
+        ? opt_solution_candidates.last_included.sequence
+        : opt_solution_candidates.last_excluded.sequence;
+    return optimal_sequence;
 }
 
 } // namespace BurglarsNightOut

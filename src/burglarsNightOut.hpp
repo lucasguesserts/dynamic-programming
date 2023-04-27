@@ -5,6 +5,7 @@
 #include <cstddef>
 #include <numeric>
 #include <stdexcept>
+#include <type_traits>
 #include <vector>
 
 namespace BurglarsNightOut {
@@ -14,22 +15,29 @@ using BinarySequence = std::vector<bool>;
 using Cost = double;
 using RealSequence = std::vector<Cost>;
 
-bool isTrueAlternateSequence(const BinarySequence & b);
-Cost costOfSequence(const BinarySequence & b, const RealSequence & r);
-
-class NaiveAlgorithm {
+class Algorithm { // NOLINT(cppcoreguidelines-special-member-functions)
 public:
-    static BinarySequence solve(const RealSequence & costs);
+    virtual auto solve(const RealSequence & costs) -> BinarySequence = 0;
+    virtual ~Algorithm() = default;
 
-private:
-    static std::vector<BinarySequence> generateAllBinarySequences(const Size n);
-    static std::vector<BinarySequence> filterTrueAlternateSequences(const std::vector<BinarySequence> & binarySequences);
-    static BinarySequence selectMostExpensiveSequence(const std::vector<BinarySequence> & binarySequences, const RealSequence & costs);
+protected:
+    static auto is_true_alternate_sequence(const BinarySequence & b) -> bool;
+    static auto cost_of_sequence(const BinarySequence & b, const RealSequence & r) -> Cost;
 };
 
-class DynamicProgrammingAlgorithm {
+class NaiveAlgorithm : public Algorithm {
 public:
-    static BinarySequence solve(const RealSequence & costs);
+    auto solve(const RealSequence & costs) -> BinarySequence override;
+
+private:
+    static auto generate_all_binary_sequences(const Size n) -> std::vector<BinarySequence>;
+    static auto filter_true_alternate_sequences(const std::vector<BinarySequence> & binary_sequences) -> std::remove_reference<decltype(binary_sequences)>::type;
+    static auto select_most_expensive_sequence(const std::vector<BinarySequence> & binary_sequences, const RealSequence & costs) -> std::remove_reference<decltype(binary_sequences)>::type::value_type;
+};
+
+class DynamicProgrammingAlgorithm : public Algorithm {
+public:
+    auto solve(const RealSequence & costs) -> BinarySequence override;
 };
 
 } // namespace BurglarsNightOut
