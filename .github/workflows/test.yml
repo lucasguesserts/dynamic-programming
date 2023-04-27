@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - trunk
+      - knapsack
 jobs:
   test-gcc:
     runs-on: ubuntu-22.04
@@ -17,8 +18,8 @@ jobs:
         run:  |
               sudo apt update
               sudo apt install gcc-11 g++-11 cmake
-      - name: install catch2
-        run: ./script/install_catch
+      - name: install submodule dependencies
+        run: ./script/install_submodule_dependencies
       - name: test
         run: ./script/test
   test-clang:
@@ -34,8 +35,8 @@ jobs:
         run:  |
               sudo apt update
               sudo apt install clang
-      - name: install catch2
-        run: ./script/install_catch
+      - name: install submodule dependencies
+        run: ./script/install_submodule_dependencies
       - name: test
         run: ./script/test
   code-style-check:
@@ -67,7 +68,7 @@ jobs:
         run:  |
               sudo apt update
               sudo apt install clang clang-tidy
-      - name: install catch2
-        run: ./script/install_catch
+      - name: install submodule dependencies
+        run: ./script/install_submodule_dependencies
       - name: check
         run: ./script/check_code_quality
