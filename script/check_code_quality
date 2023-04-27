@@ -1,18 +1,28 @@
 #!/bin/bash
 
+list_subproject() {
+    SUBPROJECT=$1
+    ls \
+        src/$SUBPROJECT.hpp \
+        src/$SUBPROJECT/* \
+        test/$SUBPROJECT.test.cpp \
+        benchmark/*$SUBPROJECT.cpp
+}
+
 LOG_FILE="code_quality.log"
-HEADER_FILES=$(ls src/*.hpp)
-SOURCE_FILES=$(ls src/**/*.cpp)
-TEST_FILES=$(ls test/*.test.cpp test/**/*.test.cpp)
-BENCHMARK_FILES=$(ls benchmark/*.cpp)
+
+SRC_FILES=" \
+$(list_subproject factorial) \
+$(list_subproject fibonacci) \
+$(list_subproject burglars_night_out) \
+"
+
+echo $SRC_FILES
 
 ./script/make && \
 clang-tidy \
     --quiet \
     -p "build/compile_commands.json" \
     --config-file=.clang-tidy \
-    ${HEADER_FILES} \
-    ${SOURCE_FILES} \
-    ${TEST_FILES} \
-    ${BENCHMARK_FILES} \
+    ${SRC_FILES} \
     --export-fixes=$LOG_FILE
