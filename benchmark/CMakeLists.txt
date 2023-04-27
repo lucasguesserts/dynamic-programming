@@ -6,6 +6,7 @@ include_directories(${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/)
 
 set(
     BENCHMARK_CASE_SOURCE_LIST
+    bm_fibonacci.cpp
     bm_factorial.cpp
     bm_burglars_night_out.cpp
     BM_longestIncreasingSubsequence.cpp
