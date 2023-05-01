@@ -64,6 +64,11 @@ set(
     ${SRC}/burglars_night_out/DynamicProgrammingAlgorithm.cpp
     ${SRC}/numberSplitting/NaiveAlgorithm.cpp
     ${SRC}/numberSplitting/DynamicProgrammingAlgorithm.cpp
+    ${SRC}/knapsack/Instance.cpp
+    ${SRC}/knapsack/Algorithm.cpp
+    ${SRC}/knapsack/Naive.cpp
+    ${SRC}/knapsack/Recursion.cpp
+    ${SRC}/knapsack/DynamicProgramming.cpp
 )
 
 add_library(${PROJECT_LIBRARY} SHARED ${PROJECT_SOURCE_FILES})

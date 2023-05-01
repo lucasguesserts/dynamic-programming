@@ -1,0 +1,24 @@
+\section{Knapsack Problem}
+
+\section{Problem Definition}
+
+\begin{enumerate}
+    \item Input:
+    \begin{enumerate}
+        \item a set of items $I$;
+        \item a value function $v : I \rightarrow \R_+$;
+        \item a weight function $w : I \rightarrow \R_+$;
+        \item a weight capacity $W \in \R_+$;
+    \end{enumerate}
+    \item Output: a subset of items $I' \subseteq I$ that does not exceed the weight capacity:
+    \begin{equation}
+        \Sum{i \in I'}{}{w(i)} \leqslant W
+    \end{equation}
+    \item Goal: Maximize the value of $I'$:
+    \begin{equation}
+        \max \Sum{i \in I'}{}{v(i)}
+    \end{equation}
+\end{enumerate}
+
+
+\todo{Describe the naive, recursive, and dynamic programming algorithms.}
